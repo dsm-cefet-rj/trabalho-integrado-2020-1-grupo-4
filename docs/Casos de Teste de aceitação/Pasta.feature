@@ -1,0 +1,43 @@
+# language: pt
+Funcionalidade: Pastas
+
+       O usuário pode criar pastas para acessar arquivos nelas, 
+       pode ver uma listagem delas, para clicar numa e 
+       ver seu conteúdo. Dentro das pastas, o usuário pode visualizar arquivos
+       adicionar novos, e excluí-los.
+    
+
+    Contexto: 
+        PEGAR OS DADOS DE UMA PASTA. PASTA É UM OBJETO NO SISTEMA.
+            | id  | nome        |  unidade  |  unidadeAtual  | unidadesTotais | idc | idp |
+            | 1   | Projeto X   |  Semana   |  2             |  4             | 0.8 | 0.9 |
+            | 2   | Projeto Y   |  Mês      |  4             |  6             | 1.3 | 1.0 |
+            | 3   | Projeto Z   |  Semana   |  3             |  10            | 1.0 | 1.0 |
+
+    Cenário: Visualizar pasta
+        Dado que o usuário esteja na tela de "Your Archive"
+        Quando clicar em uma pasta
+        Então a pasta deve ser aberta. 
+          Essa tela deve conter o nome 
+          da pasta acompanhado de um ícone 
+          e da data de criação; pode conter uma 
+          lista de arquivos; e deve possuir um 
+          botão de upload de arquivo.
+
+    Cenário: Criar pasta
+        Dado que o usuário esteja na tela de "Your Archive"
+        quando clicar em "New Folder"
+        então deve ser aberta uma tela da pasta recém-criada. 
+         Nesta tela deve ter a opção de "Upload" dos arquivos.
+
+    Cenário: Upload de arquivo numa pasta
+        Dado que um usuário do sistema esteja navegando dentro de uma pasta 
+        quando clicar no botão de "Upload"
+        então deverá ser aberto o sistema de arquivos do telefone para que
+         o usuário possa escolher um arquivo para upload.
+
+    Cenário: Deletar um arquivo presente numa pasta
+        Dado que o usuário tenha aberto um arquivo
+        quando clicar em "Deletar"
+        então a aplicação retorna para a raiz da pasta,
+         e o arquivo é removido.
