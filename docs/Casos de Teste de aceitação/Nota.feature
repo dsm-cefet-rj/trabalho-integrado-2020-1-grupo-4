@@ -7,17 +7,19 @@ Funcionalidade: Listar Notas
     de inclusão e alteração de projetos e permite a exclusão de projetos.
     
     Notas podem ser criadas, editadas e visualizadas. Na tela "Your Archive" o usuário pode
-    criar uma nova nota; pode ter acesso a uma lista delas, onde ao clicar numa nota a mesma
-    é aberta, e posteriormente pode ser editada. Na tela de edição é possível deletar a nota também.
+    criar uma nova nota. O nome das notas deve ter um tamanho entre 8char e 128char. O conteúdo deve ter um
+    tamanho entre 0 e 3000char. O usuário pode ter acesso a uma lista das notas, onde ao clicar numa delas a mesma
+    é aberta, e posteriormente pode ser editada. A tela de edição obedece aos mesmos requisitos de tamanho de nome e de conteúdo exigidos na criação de nota.
+    Nessa tela é possível deletar a nota também.
     O usuário pode desistir de criar ou de editar uma nota.
     
 
     Contexto: 
-        PEGAR OS DADOS DAS NOTAS. CREIO EU QUE NOTA NO SISTEMA É UM OBJETO.
-            | id  | nome        |  unidade  |  unidadeAtual  | unidadesTotais | idc | idp |
-            | 1   | Projeto X   |  Semana   |  2             |  4             | 0.8 | 0.9 |
-            | 2   | Projeto Y   |  Mês      |  4             |  6             | 1.3 | 1.0 |
-            | 3   | Projeto Z   |  Semana   |  3             |  10            | 1.0 | 1.0 |
+    Dados de teste:
+            | id  | nome_nota   |  Anexos   |  
+            | 1   | Nota1       |  anexo1.   |  
+            | 2   | Nota2       |  Mês      | 
+            | 3   | Nota3       |  Semana   |  
 
     Cenário: Nova nota
         Dado que um usuário esteja na tela "Your Archive"
