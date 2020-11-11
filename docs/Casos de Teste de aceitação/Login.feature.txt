@@ -7,14 +7,14 @@ Funcionalidade: Login
 
     Contexto: 
         Dado que temos projetos cadastrados
-            | id  | email       |  
-            | 1   | Projeto X   |  
-            | 2   | Projeto Y   | 
-            | 3   | Projeto Z   |  
+            | id  | email              |  Senha     |
+            | 1   | grupo4@teste.com   |  grupo4321 |
+            | 2   | grupo5@teste.com   |  grupo5321 |
+            | 3   | grupo6@teste.com   |  grupo6321 |
 
     Cenário: Realizar Login
         Dado que o usuário esteja na tela de login, 
-	quando o usuário inserir o email e senha, e clicar no botão “Entrar”
-	então o app deve abrir a tela de “Your Archive”.
+	quando o usuário inserir o email e senha corretos, e clicar no botão “Entrar”
+	então a “Your Archive” é exibida.
 
     
