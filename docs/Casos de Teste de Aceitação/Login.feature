@@ -13,8 +13,8 @@ Funcionalidade: Login
             | 3   | Projeto Z   |  
 
     Cenário: Realizar Login
-        Dado que o usuário esteja na tela de login, e tenha inserido o email e senha corretos
-	quando o usuário clicar no botão “Entrar”
+        Dado que o usuário esteja na tela de login, 
+	quando os dados de email e senha estiverem corretos, e o usuário clicar no botão “Entrar”
 	então o app deve abrir a tela de “Your Archive”.
 
     
