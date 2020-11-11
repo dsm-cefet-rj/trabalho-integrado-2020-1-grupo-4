@@ -12,7 +12,7 @@ A gestão do andamento dos projetos será feita com pelos projetos no github na 
 
 A documentação do projeto será feita em formato wiki na aba wiki do projeto (utilizem a formatação markdown para o wiki, que é a default).
 
-===================================================================================================================================================
+============================================================================
 
 # Getting Started with Create React App
 
