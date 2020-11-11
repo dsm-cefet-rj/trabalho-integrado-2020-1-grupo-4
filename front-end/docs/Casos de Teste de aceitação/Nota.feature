@@ -22,22 +22,15 @@ Funcionalidade: Listar Notas
             | 3   | Nota3       |  anexo4.jpg             |  
 
     Cenário: Nova nota
-        Dado que um usuário esteja na tela "Your Archive"
-        Quando o usuário clicar em "new note"
-        Entao deve ser aberta uma tela que tenha o nome da nota;
-         o espaço de texto onde deve estar o conteúdo; e um botão "Choose file",
-         que permite anexar arquivos; um espaço para os anexos; um botão para 
-         cancelar, caso o usuário não queira mais criar aquela nota;
-         e um botão para salvá-la.
+        Dado que um usuário esteja na tela de criar nota
+        Quando o usuário definir um nome com faixa de tamanho entre 8char e 128char e um conteúdo para nota com tamanho de caracteres entre  0 e 3000char
+        Então a tela "Your Archive" será aberta, e o usuário poderá ver sua nota recém criada no espaço da lista de notas criadas.
 
     Cenário: Editar uma nota existente
-        Dado que o usuário esteja na tela de visualizar a nota
-        Quando o usuário clicar em "Edit"
-        Entao aquela nota deve ser aberta em sua tela de edição. 
-         Esta tela deve conter um espaço para se editar o nome da nota,
-         outro espaço para se editar seu conteúdo, deve conter um espaço 
-         "Attachments" para os anexos, um botão "Choose file" para ser feito
-         upload de arquivos; e um botão para deletar e outro botão para salvar. 
+        Dado que o usuário esteja na tela de Editar nota
+        Quando o usuário alterar o nome da nota,  obedecendo o tamanho entre 8char e 128char; ou o seu conteúdo, obedecendo o tamanho entre 0 e 3000char;
+           ou seus anexos e clicar em "salvar"
+        Então o usuário poderá ver sua nota editada na lista de notas existentes. 
 
     Cenário: Upload de Arquivos nas Notas
         Dado que o usuário esteja criando ou editando uma nota
