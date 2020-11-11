@@ -8,11 +8,11 @@ Funcionalidade: Pastas
     
 
     Contexto: 
-        PEGAR OS DADOS DE UMA PASTA. PASTA É UM OBJETO NO SISTEMA.
-            | id  | nome        |  unidade  |  unidadeAtual  | unidadesTotais | idc | idp |
-            | 1   | Projeto X   |  Semana   |  2             |  4             | 0.8 | 0.9 |
-            | 2   | Projeto Y   |  Mês      |  4             |  6             | 1.3 | 1.0 |
-            | 3   | Projeto Z   |  Semana   |  3             |  10            | 1.0 | 1.0 |
+       Dados
+            | id  | Nome     |
+            | 1   | PastaA   |  
+            | 2   | PastaB   |  
+            | 3   | PastaC   |  
 
     Cenário: Visualizar pasta
         Dado que o usuário esteja na tela de "Your Archive"
@@ -26,18 +26,18 @@ Funcionalidade: Pastas
 
     Cenário: Criar pasta
         Dado que o usuário esteja na tela de "Your Archive"
-        quando clicar em "New Folder"
-        então deve ser aberta uma tela da pasta recém-criada. 
+        Quando clicar em "New Folder"
+        Então deve ser aberta uma tela da pasta recém-criada. 
          Nesta tela deve ter a opção de "Upload" dos arquivos.
 
     Cenário: Upload de arquivo numa pasta
         Dado que um usuário do sistema esteja navegando dentro de uma pasta 
-        quando clicar no botão de "Upload"
-        então deverá ser aberto o sistema de arquivos do telefone para que
+        Quando clicar no botão de "Upload"
+        Então deverá ser aberto o sistema de arquivos do telefone para que
          o usuário possa escolher um arquivo para upload.
 
     Cenário: Deletar um arquivo presente numa pasta
         Dado que o usuário tenha aberto um arquivo
-        quando clicar em "Deletar"
-        então a aplicação retorna para a raiz da pasta,
+        Quando clicar em "Deletar"
+        Então a aplicação retorna para a raiz da pasta,
          e o arquivo é removido.
