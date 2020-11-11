@@ -11,15 +11,15 @@ Funcionalidade: Exclusão de Formulário
             | id  | nome        |  tipoForm |  tituloForm    | textoForm      |
             | 1   | Formulario X|  Text     |  Titulo x      |  Texto x       |
 
-    Cenário: Excluir formulário -- Confirmar exclusão
+    Cenário: Confirmar exclusão
         Dado que o usuário esteja na tela de edição do formulário de id "1"
         Quando clicar em "Deletar"
            E confirma a exclusão
         Então a aplicação retornará a tela "Your Archive"
            E o formulário de id "1" será excluído
 
-    Cenário: Excluir formulário -- Cancelar exclusão
+    Cenário: Cancelar exclusão
         Dado que o usuário esteja na tela de edição de formulário de id "1"
         Quando clicar em "Deletar"
            E cancela a exclusão
-        Então a aplicação retornará à edição formulário escolhido
+        Então a aplicação retornará à edição do formulário de id "1"
