@@ -16,15 +16,15 @@ Funcionalidade: Listar Notas
 
     Contexto: 
     Dados de teste:
-            | id  | nome_nota   |  Anexos   |  
-            | 1   | Nota1       |  anexo1.   |  
-            | 2   | Nota2       |  Mês      | 
-            | 3   | Nota3       |  Semana   |  
+            | id  | nome_nota   |  Anexos                 |  
+            | 1   | Nota1       |  anexo1.pdf, anexo2.jpg |  
+            | 2   | Nota2       |  sem anexos             | 
+            | 3   | Nota3       |  anexo4.jpg             |  
 
     Cenário: Nova nota
         Dado que um usuário esteja na tela "Your Archive"
-        quando o usuário clicar em "new note"
-        entao deve ser aberta uma tela que tenha o nome da nota;
+        Quando o usuário clicar em "new note"
+        Entao deve ser aberta uma tela que tenha o nome da nota;
          o espaço de texto onde deve estar o conteúdo; e um botão "Choose file",
          que permite anexar arquivos; um espaço para os anexos; um botão para 
          cancelar, caso o usuário não queira mais criar aquela nota;
@@ -32,8 +32,8 @@ Funcionalidade: Listar Notas
 
     Cenário: Editar uma nota existente
         Dado que o usuário esteja na tela de visualizar a nota
-        quando o usuário clicar em "Edit"
-        então aquela nota deve ser aberta em sua tela de edição. 
+        Quando o usuário clicar em "Edit"
+        Entao aquela nota deve ser aberta em sua tela de edição. 
          Esta tela deve conter um espaço para se editar o nome da nota,
          outro espaço para se editar seu conteúdo, deve conter um espaço 
          "Attachments" para os anexos, um botão "Choose file" para ser feito
@@ -41,30 +41,30 @@ Funcionalidade: Listar Notas
 
     Cenário: Upload de Arquivos nas Notas
         Dado que o usuário esteja criando ou editando uma nota
-        quando clicar em "Choose File"
-        então deve ser aberto o sistema de arquivos do celular 
+        Quando clicar em "Choose File"
+        Entao deve ser aberto o sistema de arquivos do celular 
          para que o usuário possa escolher um arquivo. 
 
     Cenário: Visualizar Nota
         Dado que o usuário esteja na tela de "Your Archive"
-        quando ele clicar em uma nota
-        então a nota deve ser aberta para visualização.
+        Quando ele clicar em uma nota
+        Entao a nota deve ser aberta para visualização.
          Tal tela deve conter um botão de "Editar" 
 
     Cenário: Excluir uma nota
         Dado que um usuário esteja na tela de edição de notas
-        quando clicar em "Delete"
+        Quando clicar em "Delete"
           e confirmar a exclusão
-        então a aplicação retornará para "Your Archive" e a nota será excluída.
+        Entao a aplicação retornará para "Your Archive" e a nota será excluída.
 
     Cenário: Cancelar a criação de uma nova nota
        Dado que um usuário esteja com uma nota aberta, após ser clicado "new note" em "Your Archive"
-       quando clicar em "Cancelar"
-       então a aplicação retorna para a tela de "Your Archive" 
+       Quando clicar em "Cancelar"
+       Entao a aplicação retorna para a tela de "Your Archive" 
 
     Cenário: Cancelar Edição de Nota
        Dado que um usuário esteja na tela de edição de nota
-       quando o mesmo clicar num botão de "setinha" no canto 
+       Quando o mesmo clicar num botão de "setinha" no canto 
         superior esquerdo da tela
-       então a aplicação retornará à tela de "Your Archive" 
+       Entao a aplicação retornará à tela de "Your Archive" 
     	
