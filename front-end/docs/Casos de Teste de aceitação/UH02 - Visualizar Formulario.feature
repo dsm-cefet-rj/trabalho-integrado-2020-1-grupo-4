@@ -6,6 +6,7 @@ Funcionalidade: Visualizar Formulário
     para (não especificado).
 
     Cenário: Visualizar Formulario
-        Dado que o usuário "grupo4@teste.com" esteja na tela "Your Archive"
+        Dado que eu esteja autenticado como o usuário "grupo4@teste.com"
+        E esteja na tela "Your Archive"
         Quando clicar em um formulário existente
         Então deve ser aberta uma tela contendo o formulário. Essa tela deve ter um botão "Editar" que abra uma tela que permita o usuário editar o formulário
