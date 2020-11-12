@@ -1,8 +1,9 @@
 # language: pt
 Funcionalidade: Exclusão de Formulário
 
-    Permite que o usuário exclua o formulário escolhido, apagando 
-    as suas informações do banco de dados.
+    Como​ um usuário do sistema
+    eu gostaria de ​poder deletar um formulário
+    para​ que eu possa excluir um formulário já existente
     
     
 

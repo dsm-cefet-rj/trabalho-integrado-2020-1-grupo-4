@@ -1,8 +1,9 @@
 # language: pt
 Funcionalidade: Edição de Formulário
 
-    Permite que o usuário altere as informações do formulário
-    escolhido
+    Como​ um usuário do sistema
+    eu gostaria de​ poder editar um formulário
+    para​ que eu possa manter o controle de suas informações
     
 
     Contexto: 
