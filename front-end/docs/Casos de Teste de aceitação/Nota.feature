@@ -1,10 +1,5 @@
 # language: pt
 Funcionalidade: Listar Notas
-
-    Apresenta uma lista de projetos juntamente com seu andamento 
-    na unidade selecionada, indice de desempenho de custo (IDC) e prazo (IDP)
-    (conforme protótipo lista de projetos). Possibilita o acesso as ações
-    de inclusão e alteração de projetos e permite a exclusão de projetos.
     
     Notas podem ser criadas, editadas e visualizadas. Na tela "Your Archive" o usuário pode
     criar uma nova nota. O nome das notas deve ter um tamanho entre 8char e 128char. O conteúdo deve ter um
