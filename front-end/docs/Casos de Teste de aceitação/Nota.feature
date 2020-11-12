@@ -45,14 +45,4 @@ Funcionalidade: Listar Notas
           e confirmar a exclusão
         Entao a aplicação retornará para "Your Archive" e a nota será excluída.
 
-    Cenário: Cancelar a criação de uma nova nota
-       Dado que um usuário "grupo4@teste.com" esteja com uma nota aberta, após ser clicado "new note" em "Your Archive"
-       Quando clicar em "Cancelar"
-       Entao a aplicação retorna para a tela de "Your Archive" 
-
-    Cenário: Cancelar Edição de Nota
-       Dado que um usuário esteja na tela de edição de nota
-       Quando o mesmo clicar num botão de "setinha" no canto 
-        superior esquerdo da tela
-       Entao a aplicação retornará à tela de "Your Archive" 
     	
