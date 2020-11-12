@@ -40,4 +40,4 @@ Funcionalidade: Pastas
         Dado que o usuário tenha aberto um arquivo
         Quando clicar em "Deletar"
         Então a aplicação retorna para a raiz da pasta,
-         e o arquivo é removido.
+            E o arquivo é removido.
