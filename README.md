@@ -11,3 +11,5 @@ Organizaremos os arquivos de código-fonte do projeto na seguinte estrutura.
 A gestão do andamento dos projetos será feita com pelos projetos no github na aba projetos.
 
 A documentação do projeto será feita em formato wiki na aba wiki do projeto (utilizem a formatação markdown para o wiki, que é a default).
+
+[config.md](https://github.com/diogosmendonca/pragmapm/blob/master/config.md) do Diogo para configurações do repositório 
