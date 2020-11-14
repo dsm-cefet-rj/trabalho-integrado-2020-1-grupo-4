@@ -2,7 +2,7 @@
 
 # Trabalho Integrado
 
-![](\front-end\docs\Roadmap\Roadmap_semana2.png)
+![](https://github.com/dsm-cefet-rj/trabalho-integrado-2020-1-grupo-4/blob/main/front-end/docs/Roadmap/Roadmap_semana2.png)
 
 
 
