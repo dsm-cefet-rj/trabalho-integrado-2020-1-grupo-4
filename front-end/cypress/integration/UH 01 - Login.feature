@@ -7,7 +7,7 @@ Funcionalidade: Login
 
     Contexto: 
         Dado que temos usuarios cadastrados
-            | id  | nome    | email              |  Senha     |
+            | id  | nome    | email              |  senha     |
             | 1   | Grupo 4 | grupo4@teste.com   |  grupo4321 |
             | 2   | Grupo 5 | grupo5@teste.com   |  grupo5321 |
             | 3   | Grupo 6 | grupo6@teste.com   |  grupo6321 |
