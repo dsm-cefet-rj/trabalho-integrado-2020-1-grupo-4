@@ -39,6 +39,7 @@ build/Release
 
 # dependencies
 /node_modules
+/node_modules_old
 /.pnp
 .pnp.js
 
