@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
-import config from "./../config";
+import config from "../config";
 import "./Notes.css";
 
 export default function Notes(props) {
