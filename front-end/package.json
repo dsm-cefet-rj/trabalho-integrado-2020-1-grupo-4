@@ -6,6 +6,7 @@
   "license": "ISC",
   "description": "Simple note taking app",
   "dependencies": {
+    "axios": "^0.21.0",
     "@cypress/instrument-cra": "^1.4.0",
     "@hookform/resolvers": "^0.1.1",
     "@reduxjs/toolkit": "^1.4.0",
