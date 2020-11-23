@@ -10,7 +10,6 @@ import { Provider } from 'react-redux';
 import Telas from './telas/Telas';
 import Template from './template/Template';
 import NotFound from './notfound/NotFound';
-import NotFound from './notfound/NotFound';
 
 export default function Routes() {
     return (
