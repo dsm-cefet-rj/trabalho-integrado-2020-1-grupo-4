@@ -8,6 +8,8 @@ export default function Telas() {
             <h1>Isto é o conjunto de telas prontas!</h1>
                 <ol>
                     <li><Link to="/login">Login</Link></li>
+                    <li><Link to='/reset'>Reset Password</Link></li>
+                    <li><Link to='/signup'>SignUp</Link></li>
                     <li><Link to="/notfound">NotFound</Link></li>
                     <li><Link to="/template">Template</Link></li>
                 </ol>

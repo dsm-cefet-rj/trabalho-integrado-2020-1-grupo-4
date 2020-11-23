@@ -7,10 +7,9 @@ import {
 } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
-import "./Signup.css";
-import { Auth } from "aws-amplify";
+import "./SignUp.css";
 
-export default function Signup(props) {
+export default function SignUp(props) {
     const [fields, handleFieldChange] = useFormFields({
         email: "",
         password: "",
@@ -38,15 +37,15 @@ export default function Signup(props) {
         setIsLoading(true);
 
         try {
-            const newUser = await Auth.signUp({
+            /*const newUser = await Auth.signUp({
                 username: fields.email,
                 password: fields.password
-            });
+            });*/
             setIsLoading(false);
             setNewUser(newUser);
         } catch (e) {
             if(e.name === 'UsernameExistsException') {
-                await Auth.resendSignUp(fields.email);
+                //await Auth.resendSignUp(fields.email);
                 const newUser = {
                     username: fields.email,
                     password: fields.password
@@ -67,8 +66,8 @@ export default function Signup(props) {
         setIsLoading(true);
 
         try {
-            await Auth.confirmSignUp(fields.email, fields.confirmationCode);
-            await Auth.signIn(fields.email, fields.password);
+            //await Auth.confirmSignUp(fields.email, fields.confirmationCode);
+            //await Auth.signIn(fields.email, fields.password);
 
             props.userHasAuthenticated(true);
             props.history.push("/");

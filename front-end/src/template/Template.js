@@ -7,8 +7,6 @@ export default function Template() {
     return (
         <div className="Template">
             <h1>This is a Template!</h1>
-            <Link to="/">voltar</Link>
         </div>
-        
     );
 }

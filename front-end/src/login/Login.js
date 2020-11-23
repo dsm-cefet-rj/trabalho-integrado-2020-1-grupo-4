@@ -59,7 +59,7 @@ export default function Login(props) {
                 >
                     Login
                 </LoaderButton>
-                <Link to="/login/reset">Forgot password?</Link>
+                <Link to="/reset">Forgot password?</Link>
             </form>
         </div>
     );
