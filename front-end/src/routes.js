@@ -11,7 +11,7 @@ import Login from './login/Login'
 import Notes from './notes/Notes'
 import NewNote from './notes/NewNote'
 import ResetPassword from './login/ResetPassword'
-import SignUp from './login/Signup'
+import SignUp from './login/SignUp'
 import Telas from './telas/Telas';
 import Template from './template/Template';
 import NotFound from './notfound/NotFound';
