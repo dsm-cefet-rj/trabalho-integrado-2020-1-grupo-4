@@ -17,7 +17,7 @@ export default function Routes() {
         <BrowserRouter>
           <Switch>
             <Route path='/' exact component={ () => <Telas />} />
-            <Route path='/Template' component={ () => <Template />} />
+            <Route path='/template' component={ () => <Template />} />
             <Route path='/notfound' component={() => <NotFound />} />
           </Switch>
         </BrowserRouter>
