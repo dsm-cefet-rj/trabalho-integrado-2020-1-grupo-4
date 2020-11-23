@@ -9,6 +9,7 @@ export default function Telas() {
                 <ol>
                     <li><Link to="/template">Template</Link></li>
                     <li><Link to="/notfound">NotFound</Link></li>
+                    <li><Link to="/login">Login</Link></li>
                 </ol>
         </div>
     );

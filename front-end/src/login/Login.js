@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Auth } from "aws-amplify";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
@@ -23,7 +22,7 @@ export default function Login(props) {
         setIsLoading(true);
 
         try {
-            await Auth.signIn(fields.email, fields.password);
+            //await Auth.signIn(fields.email, fields.password);
             props.userHasAuthenticated(true);
         } catch (e) {
             alert(e.message);
