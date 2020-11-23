@@ -7,9 +7,9 @@ export default function Telas() {
         <div className="Telas">
             <h1>Isto é o conjunto de telas prontas!</h1>
                 <ol>
-                    <li><Link to="/template">Template</Link></li>
-                    <li><Link to="/notfound">NotFound</Link></li>
                     <li><Link to="/login">Login</Link></li>
+                    <li><Link to="/notfound">NotFound</Link></li>
+                    <li><Link to="/template">Template</Link></li>
                 </ol>
         </div>
     );
