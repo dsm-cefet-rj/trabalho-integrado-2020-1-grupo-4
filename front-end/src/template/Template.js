@@ -1,12 +1,14 @@
 import React from "react";
-import "./NotFound.css";
+import "./Template.css";
+import { Link } from 'react-router-dom';
 
-function NotFound() {
+export default function Template() {
+    // Remover Link to='/' 
     return (
-        <div className="NotFound">
-            <h3>Sorry, page not found!</h3>
+        <div className="Template">
+            <h1>This is a Template!</h1>
+            <Link to="/">voltar</Link>
         </div>
+        
     );
 }
-
-export {NotFound};
