@@ -4,7 +4,6 @@
   "private": true,
   "description": "Simple note taking app",
   "main": "index.js",
-  
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -14,25 +13,21 @@
     "react-scripts": "4.0.0",
     "web-vitals": "^0.2.4"
   },
-  
   "directories": {
     "doc": "docs"
   },
-  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
   },
-
   "browserslist": {
     "production": [
       ">0.2%",
@@ -45,29 +40,22 @@
       "last 1 safari version"
     ]
   },
-  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dsm-cefet-rj/trabalho-integrado-2020-1-grupo-4.git"
   },
-  
   "author": "Diegobrvt, Zirondi",
-  
   "license": "ISC",
-  
   "bugs": {
     "url": "https://github.com/dsm-cefet-rj/trabalho-integrado-2020-1-grupo-4/issues"
   },
-  
   "homepage": "https://github.com/dsm-cefet-rj/trabalho-integrado-2020-1-grupo-4#readme",
-  
   "devDependencies": {
     "cucumber": "^7.0.0-rc.0",
     "cypress": "^5.6.0",
     "cypress-cucumber-preprocessor": "^4.0.0",
     "lite-server": "^2.6.0"
   },
-
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
   }
