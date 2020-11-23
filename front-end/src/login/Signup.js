@@ -82,14 +82,14 @@ export default function Signup(props) {
         return (
             <form onSubmit={handleConfirmationSubmit}>
                 <FormGroup controlId="confirmationCode" bsSize="large">
-                    <ControlLabel>Código de Confirmação</ControlLabel>
+                    <ControlLabel>Confirmation Code</ControlLabel>
                     <FormControl
                         autoFocus
                         type="tel"
                         onChange={handleFieldChange}
                         value={fields.confirmationCode}
                     />
-                    <HelpBlock>Verifique seu e-mail para obter o código.</HelpBlock>
+                    <HelpBlock>Please check your email for the code.</HelpBlock>
                 </FormGroup>
                 <LoaderButton
                     block
@@ -98,7 +98,7 @@ export default function Signup(props) {
                     isLoading={isLoading}
                     disabled={!validateConfirmationForm()}
                 >
-                   Verificar
+                    Verify
                 </LoaderButton>
             </form>
         );
@@ -117,7 +117,7 @@ export default function Signup(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="password" bsSize="large">
-                    <ControlLabel>Senha</ControlLabel>
+                    <ControlLabel>Password</ControlLabel>
                     <FormControl
                         type="password"
                         value={fields.password}
@@ -125,7 +125,7 @@ export default function Signup(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="confirmPassword" bsSize="large">
-                    <ControlLabel>Confirme a Senha</ControlLabel>
+                    <ControlLabel>Confirm Password</ControlLabel>
                     <FormControl
                         type="password"
                         onChange={handleFieldChange}
@@ -139,7 +139,7 @@ export default function Signup(props) {
                     isLoading={isLoading}
                     disabled={!validateForm()}
                 >
-                    Cadastrar
+                    Signup
                 </LoaderButton>
             </form>
         );

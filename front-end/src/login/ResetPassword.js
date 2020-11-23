@@ -114,12 +114,13 @@ export default class ResetPassword extends Component {
                         onChange={this.handleChange}
                     />
                     <HelpBlock>
-                        Por favor, verifique seu email ({this.state.email}) para o código de confirmação
+                        Please check your email ({this.state.email}) for the confirmation
+                        code.
                     </HelpBlock>
                 </FormGroup>
                 <hr />
                 <FormGroup bsSize="large" controlId="password">
-                    <ControlLabel>Nova Senha</ControlLabel>
+                    <ControlLabel>New Password</ControlLabel>
                     <FormControl
                         type="password"
                         value={this.state.password}
@@ -127,7 +128,7 @@ export default class ResetPassword extends Component {
                     />
                 </FormGroup>
                 <FormGroup bsSize="large" controlId="confirmPassword">
-                    <ControlLabel>Confirmar a Senha</ControlLabel>
+                    <ControlLabel>Confirm Password</ControlLabel>
                     <FormControl
                         type="password"
                         onChange={this.handleChange}
@@ -151,10 +152,10 @@ export default class ResetPassword extends Component {
         return (
             <div className="success">
                 <Glyphicon glyph="ok" />
-                <p>Sua senha foi atualizada</p>
+                <p>Your password has been reset.</p>
                 <p>
                     <Link to="/login">
-                        Clique aqui para entrar com as novas credenciais
+                        Click here to login with your new credentials.
                     </Link>
                 </p>
             </div>

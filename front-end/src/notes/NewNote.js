@@ -62,7 +62,7 @@ export default function NewNote(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="file">
-                    <ControlLabel>Arquivos</ControlLabel>
+                    <ControlLabel>Attachment</ControlLabel>
                     <FormControl onChange={handleFileChange} type="file" />
                 </FormGroup>
                 <LoaderButton
@@ -73,7 +73,7 @@ export default function NewNote(props) {
                     isLoading={isLoading}
                     disabled={!validateForm()}
                 >
-                    Criar
+                    Create
                 </LoaderButton>
             </form>
         </div>

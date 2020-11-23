@@ -94,7 +94,7 @@ export default function Notes(props) {
         event.preventDefault();
 
         const confirmed = window.confirm(
-            "Tem certeza que deseja deletar esse arquivo?"
+            "Are you sure you want to delete this note?"
         );
 
         if (!confirmed) {
@@ -125,7 +125,7 @@ export default function Notes(props) {
                     </FormGroup>
                     {note.attachment && (
                         <FormGroup>
-                            <ControlLabel>Arquivos</ControlLabel>
+                            <ControlLabel>Attachment</ControlLabel>
                             <FormControl.Static>
                                 <a
                                     target="_blank"
@@ -138,7 +138,7 @@ export default function Notes(props) {
                         </FormGroup>
                     )}
                     <FormGroup controlId="file">
-                        {!note.attachment && <ControlLabel>Arquivos</ControlLabel>}
+                        {!note.attachment && <ControlLabel>Attachment</ControlLabel>}
                         <FormControl onChange={handleFileChange} type="file" />
                     </FormGroup>
                     <LoaderButton
@@ -149,7 +149,7 @@ export default function Notes(props) {
                         isLoading={isLoading}
                         disabled={!validateForm()}
                     >
-                        Salvar alteração
+                        Save
                     </LoaderButton>
                     <LoaderButton
                         block
@@ -158,7 +158,7 @@ export default function Notes(props) {
                         onClick={handleDelete}
                         isLoading={isDeleting}
                     >
-                        Deletar nota
+                        Delete
                     </LoaderButton>
                 </form>
             )}

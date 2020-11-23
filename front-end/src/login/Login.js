@@ -5,7 +5,6 @@ import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
 import { Link } from "react-router-dom";
 import "./Login.css";
-import ResetPassword from "./ResetPassword";
 
 export default function Login(props) {
     const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +44,7 @@ export default function Login(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="password" bsSize="large">
-                    <ControlLabel>Senha</ControlLabel>
+                    <ControlLabel>Password</ControlLabel>
                     <FormControl
                         type="password"
                         value={fields.password}
@@ -59,9 +58,9 @@ export default function Login(props) {
                     isLoading={isLoading}
                     disabled={!validateForm()}
                 >
-                    Entrar
+                    Login
                 </LoaderButton>
-                <Link to="/login/Reset">Esqueceu a senha?</Link>
+                <Link to="/login/reset">Forgot password?</Link>
             </form>
         </div>
     );
