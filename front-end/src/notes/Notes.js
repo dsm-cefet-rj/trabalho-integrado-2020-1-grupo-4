@@ -1,10 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
-import { API, Storage } from "aws-amplify";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import config from "./../config";
 import "./Notes.css";
-import { s3Upload } from "../libs/awsLib";
 
 export default function Notes(props) {
     const file = useRef(null);
@@ -15,7 +13,8 @@ export default function Notes(props) {
 
     useEffect(() => {
         function loadNote() {
-            return API.get("notes", `/notes/${props.match.params.id}`);
+            return
+            //return API.get("notes", `/notes/${props.match.params.id}`);
         }
 
         async function onLoad() {
@@ -24,7 +23,7 @@ export default function Notes(props) {
                 const { content, attachment } = note;
 
                 if (attachment) {
-                    note.attachmentURL = await Storage.vault.get(attachment);
+                    //note.attachmentURL = await Storage.vault.get(attachment);
                 }
 
                 setContent(content);
@@ -50,9 +49,10 @@ export default function Notes(props) {
     }
 
     function saveNote(note) {
-        return API.put("notes", `/notes/${props.match.params.id}`, {
+        return
+        /*return API.put("notes", `/notes/${props.match.params.id}`, {
             body: note
-        });
+        });*/
     }
 
     async function handleSubmit(event) {
@@ -72,7 +72,7 @@ export default function Notes(props) {
 
         try {
             if (file.current) {
-                attachment = await s3Upload(file.current);
+                //attachment = await s3Upload(file.current);
             }
 
             await saveNote({
@@ -87,7 +87,8 @@ export default function Notes(props) {
     }
 
     function deleteNote() {
-        return API.del("notes", `/notes/${props.match.params.id}`);
+        return
+        //return API.del("notes", `/notes/${props.match.params.id}`);
     }
 
     async function handleDelete(event) {

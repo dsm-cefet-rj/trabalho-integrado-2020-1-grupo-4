@@ -8,6 +8,8 @@ import {
 import { Provider } from 'react-redux';
 
 import Login from './login/Login'
+import Notes from './notes/Notes'
+import NewNote from './notes/NewNote'
 import ResetPassword from './login/ResetPassword'
 import SignUp from './login/SignUp'
 import Telas from './telas/Telas';
@@ -20,6 +22,8 @@ export default function Routes() {
           <Switch>
             <Route path='/' exact component={ () => <Telas />} />
             <Route path='/login' component={() => <Login />} />
+            <Route path='/notes' component={() => <Notes />} />
+            <Route path='/newnote' component={() => <NewNote />} />
             <Route path='/reset' component={() => <ResetPassword />} />
             <Route path='/signup' component={() => <SignUp />} />
             <Route path='/notfound' component={() => <NotFound />} />
