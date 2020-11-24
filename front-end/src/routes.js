@@ -1,34 +1,32 @@
-import React from 'react';
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom';
-import { Provider } from 'react-redux';
+import Home from "./containers/Home";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import NotFound from "./containers/NotFound";
+import Login from "./containers/Login";
+import AppliedRoute from "./components/AppliedRoute";
+import ResetPassword from "./containers/ResetPassword";
+import Signup from "./containers/Signup";
+import NewNote from "./containers/NewNote";
+import Notes from "./containers/Notes";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
-import Login from './login/Login'
-import Notes from './notes/Notes'
-import NewNote from './notes/NewNote'
-import ResetPassword from './login/ResetPassword'
-import SignUp from './login/SignUp'
-import Telas from './telas/Telas';
-import Template from './template/Template';
-import NotFound from './notfound/NotFound';
-
-export default function Routes() {
+export default function Routes({ appProps }) {
     return (
-        <BrowserRouter>
-          <Switch>
-            <Route path='/' exact component={ () => <Telas />} />
-            <Route path='/login' component={() => <Login />} />
-            <Route path='/notes' component={() => <Notes />} />
-            <Route path='/newnote' component={() => <NewNote />} />
-            <Route path='/reset' component={() => <ResetPassword />} />
-            <Route path='/signup' component={() => <SignUp />} />
-            <Route path='/notfound' component={() => <NotFound />} />
-            <Route path='/template' component={ () => <Template />} />
-          </Switch>
-        </BrowserRouter>
-    )
-  }
+        <Switch>
+            <AppliedRoute path="/" exact component={Home} appProps={appProps} />
+            <UnauthenticatedRoute path="/login" exact component={Login} appProps={appProps} />
+            <UnauthenticatedRoute path="/signup" exact component={Signup} appProps={appProps} />
+            <AuthenticatedRoute path="/notes/new" exact component={NewNote} appProps={appProps} />
+            <AuthenticatedRoute path="/notes/:id" exact component={Notes} appProps={appProps} />
+            <UnauthenticatedRoute
+                path="/login/reset"
+                exact
+                component={ResetPassword}
+                props={appProps}
+            />
+            { /* Finally, catch all unmatched routes */ }
+            <Route component={NotFound} />
+        </Switch>
+    );
+}

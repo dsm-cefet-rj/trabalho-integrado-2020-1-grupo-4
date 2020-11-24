@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+//import { Auth } from "aws-amplify";
 import { Link } from "react-router-dom";
 import {
     HelpBlock,
@@ -64,11 +65,11 @@ export default class ResetPassword extends Component {
         this.setState({ isConfirming: true });
 
         try {
-            /*await Auth.forgotPasswordSubmit(
-                this.state.email,
-                this.state.code,
-                this.state.password
-            );*/
+            //await Auth.forgotPasswordSubmit(
+            //    this.state.email,
+            //    this.state.code,
+            //    this.state.password
+            //);
             this.setState({ confirmed: true });
         } catch (e) {
             alert(e.message);

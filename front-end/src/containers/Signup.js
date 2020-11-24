@@ -7,9 +7,10 @@ import {
 } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
-import "./SignUp.css";
+import "./Signup.css";
+//import { Auth } from "aws-amplify";
 
-export default function SignUp(props) {
+export default function Signup(props) {
     const [fields, handleFieldChange] = useFormFields({
         email: "",
         password: "",
@@ -37,10 +38,10 @@ export default function SignUp(props) {
         setIsLoading(true);
 
         try {
-            /*const newUser = await Auth.signUp({
+            const newUser = null({//await Auth.signUp({
                 username: fields.email,
                 password: fields.password
-            });*/
+            });
             setIsLoading(false);
             setNewUser(newUser);
         } catch (e) {

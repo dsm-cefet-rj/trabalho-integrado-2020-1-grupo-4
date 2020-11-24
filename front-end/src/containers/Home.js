@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import "./Home.css";
+//import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 
 export default function Home(props) {
@@ -27,7 +28,13 @@ export default function Home(props) {
     }, [props.isAuthenticated]);
 
     function loadNotes() {
-        return API.get("notes", "/notes");
+        return ("notes", "/notes", {
+            body: 'nota',
+            content: "isso eh uma nota ",
+            id: 'nota',
+            createdAt : 'data'
+        });
+        //API.get("notes", "/notes");
     }
 
     function renderNotesList(notes) {
