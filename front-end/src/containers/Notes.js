@@ -15,7 +15,7 @@ export default function Notes(props) {
 
     useEffect(() => {
         function loadNote() {
-            return API.get("notes", `/notes/${props.match.params.id}`);
+            return //API.get("notes", `/notes/${props.match.params.id}`);
         }
 
         async function onLoad() {
@@ -72,7 +72,7 @@ export default function Notes(props) {
 
         try {
             if (file.current) {
-                attachment = await s3Upload(file.current);
+                attachment = null;//await s3Upload(file.current);
             }
 
             await saveNote({
