@@ -38,7 +38,7 @@ export default function Signup(props) {
         setIsLoading(true);
 
         try {
-            const newUser = null({//await Auth.signUp({
+            const newUser = ({//await Auth.signUp({
                 username: fields.email,
                 password: fields.password
             });
@@ -82,14 +82,14 @@ export default function Signup(props) {
         return (
             <form onSubmit={handleConfirmationSubmit}>
                 <FormGroup controlId="confirmationCode" bsSize="large">
-                    <ControlLabel>Confirmation Code</ControlLabel>
+                    <ControlLabel>Condigo de Confirmação</ControlLabel>
                     <FormControl
                         autoFocus
                         type="tel"
                         onChange={handleFieldChange}
                         value={fields.confirmationCode}
                     />
-                    <HelpBlock>Please check your email for the code.</HelpBlock>
+                    <HelpBlock>Por favor verifique seu e-mail pelo código</HelpBlock>
                 </FormGroup>
                 <LoaderButton
                     block
@@ -98,7 +98,7 @@ export default function Signup(props) {
                     isLoading={isLoading}
                     disabled={!validateConfirmationForm()}
                 >
-                    Verify
+                    Verificado
                 </LoaderButton>
             </form>
         );
@@ -117,7 +117,7 @@ export default function Signup(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="password" bsSize="large">
-                    <ControlLabel>Password</ControlLabel>
+                    <ControlLabel>Senha</ControlLabel>
                     <FormControl
                         type="password"
                         value={fields.password}
@@ -125,7 +125,7 @@ export default function Signup(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="confirmPassword" bsSize="large">
-                    <ControlLabel>Confirm Password</ControlLabel>
+                    <ControlLabel>Confirmar senha</ControlLabel>
                     <FormControl
                         type="password"
                         onChange={handleFieldChange}
@@ -139,7 +139,7 @@ export default function Signup(props) {
                     isLoading={isLoading}
                     disabled={!validateForm()}
                 >
-                    Signup
+                   Cadastrar
                 </LoaderButton>
             </form>
         );

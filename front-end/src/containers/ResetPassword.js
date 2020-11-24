@@ -106,7 +106,7 @@ export default class ResetPassword extends Component {
         return (
             <form onSubmit={this.handleConfirmClick}>
                 <FormGroup bsSize="large" controlId="code">
-                    <ControlLabel>Confirmation Code</ControlLabel>
+                    <ControlLabel>Código de confirmação</ControlLabel>
                     <FormControl
                         autoFocus
                         type="tel"
@@ -114,13 +114,12 @@ export default class ResetPassword extends Component {
                         onChange={this.handleChange}
                     />
                     <HelpBlock>
-                        Please check your email ({this.state.email}) for the confirmation
-                        code.
+                       Por favor verifique seu e-mail ({this.state.email}) para confirmação do código.
                     </HelpBlock>
                 </FormGroup>
                 <hr />
                 <FormGroup bsSize="large" controlId="password">
-                    <ControlLabel>New Password</ControlLabel>
+                    <ControlLabel>Nova senha</ControlLabel>
                     <FormControl
                         type="password"
                         value={this.state.password}
@@ -128,7 +127,7 @@ export default class ResetPassword extends Component {
                     />
                 </FormGroup>
                 <FormGroup bsSize="large" controlId="confirmPassword">
-                    <ControlLabel>Confirm Password</ControlLabel>
+                    <ControlLabel>Confirmar senha</ControlLabel>
                     <FormControl
                         type="password"
                         onChange={this.handleChange}
@@ -152,10 +151,10 @@ export default class ResetPassword extends Component {
         return (
             <div className="success">
                 <Glyphicon glyph="ok" />
-                <p>Your password has been reset.</p>
+                <p>Sua senha foi alterada.</p>
                 <p>
                     <Link to="/login">
-                        Click here to login with your new credentials.
+                        Clique aqui para entrar com as suas novas credênciais.
                     </Link>
                 </p>
             </div>

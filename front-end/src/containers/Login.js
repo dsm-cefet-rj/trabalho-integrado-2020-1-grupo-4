@@ -58,9 +58,9 @@ export default function Login(props) {
                     isLoading={isLoading}
                     disabled={!validateForm()}
                 >
-                    Login
+                    Entrar
                 </LoaderButton>
-                <Link to="/login/reset">Forgot password?</Link>
+                <Link to="/ResetPassword">Esqueceu a Senha?</Link>
             </form>
         </div>
     );

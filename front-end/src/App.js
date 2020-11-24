@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "./App.css";
-import Routes from "./Routes";
+import Routes from "./routes";
 //import { Auth } from "aws-amplify";
 
 function App(props) {
@@ -34,7 +34,7 @@ function App(props) {
 
         userHasAuthenticated(false);
 
-        props.history.push("/login");
+        props.history.push("/Login");
     }
 
     return (
@@ -50,13 +50,13 @@ function App(props) {
                 <Navbar.Collapse>
                     <Nav pullRight>
                         {isAuthenticated
-                            ? <NavItem onClick={handleLogout}>Logout</NavItem>
+                            ? <NavItem onClick={handleLogout}>Sair</NavItem>
                             : <>
                                 <LinkContainer to="/signup">
-                                    <NavItem>Signup</NavItem>
+                                    <NavItem>Cadastrar</NavItem>
                                 </LinkContainer>
                                 <LinkContainer to="/login">
-                                    <NavItem>Login</NavItem>
+                                    <NavItem>Entrar</NavItem>
                                 </LinkContainer>
                             </>
                         }

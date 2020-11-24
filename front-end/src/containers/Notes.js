@@ -15,7 +15,7 @@ export default function Notes(props) {
 
     useEffect(() => {
         function loadNote() {
-            return API.get("notes", `/notes/${props.match.params.id}`);
+            //return API.get("notes", `/notes/${props.match.params.id}`);
         }
 
         async function onLoad() {
@@ -62,7 +62,7 @@ export default function Notes(props) {
 
         if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
             alert(
-                `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
+                `Por favor coloque um arquivo menor que ${config.MAX_ATTACHMENT_SIZE /
                 1000000} MB.`
             );
             return;
@@ -72,7 +72,7 @@ export default function Notes(props) {
 
         try {
             if (file.current) {
-                attachment = await s3Upload(file.current);
+               // attachment = await s3Upload(file.current);
             }
 
             await saveNote({
@@ -94,7 +94,7 @@ export default function Notes(props) {
         event.preventDefault();
 
         const confirmed = window.confirm(
-            "Are you sure you want to delete this note?"
+            "Tem certeza que deseja deletar esse arquivo?"
         );
 
         if (!confirmed) {
@@ -125,7 +125,7 @@ export default function Notes(props) {
                     </FormGroup>
                     {note.attachment && (
                         <FormGroup>
-                            <ControlLabel>Attachment</ControlLabel>
+                            <ControlLabel>Arquivo</ControlLabel>
                             <FormControl.Static>
                                 <a
                                     target="_blank"
@@ -138,7 +138,7 @@ export default function Notes(props) {
                         </FormGroup>
                     )}
                     <FormGroup controlId="file">
-                        {!note.attachment && <ControlLabel>Attachment</ControlLabel>}
+                        {!note.attachment && <ControlLabel>Arquivo</ControlLabel>}
                         <FormControl onChange={handleFileChange} type="file" />
                     </FormGroup>
                     <LoaderButton
@@ -149,7 +149,7 @@ export default function Notes(props) {
                         isLoading={isLoading}
                         disabled={!validateForm()}
                     >
-                        Save
+                        Salvar
                     </LoaderButton>
                     <LoaderButton
                         block
@@ -158,7 +158,7 @@ export default function Notes(props) {
                         onClick={handleDelete}
                         isLoading={isDeleting}
                     >
-                        Delete
+                        Deletar
                     </LoaderButton>
                 </form>
             )}
