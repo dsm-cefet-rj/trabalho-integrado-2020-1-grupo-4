@@ -4,10 +4,14 @@ import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "./App.css";
 import Routes from "./routes";
+import { connect } from 'react-redux';
 //import { Auth } from "aws-amplify";
 
-function App(props) {
 
+import Signup from "./containers/Signup";
+import Login from "./containers/Login";
+
+function App(props, {signInUser, user}) {
     const [isAuthenticated, userHasAuthenticated] = useState(false);
     const [isAuthenticating, setIsAuthenticating] = useState(true);
 
@@ -15,25 +19,24 @@ function App(props) {
         onLoad();
     }, []);
 
+    //Feio
     async function onLoad() {
-        try {
-            //await Auth.currentSession();
+        if(user?.id === ""){
             userHasAuthenticated(true);
-        }
-        catch(e) {
-            if (e !== 'No current user') {
-                alert(e);
-            }
-        }
-
-        setIsAuthenticating(false);
+        } else {
+            //alert('No current user');
+            setIsAuthenticating(false);
+        }  
     }
 
     async function handleLogout() {
-        //await Auth.signOut();
-
+        signInUser(
+            null,
+            null,
+            null
+        );
+        
         userHasAuthenticated(false);
-
         props.history.push("/Login");
     }
 
@@ -52,12 +55,12 @@ function App(props) {
                         {isAuthenticated
                             ? <NavItem onClick={handleLogout}>Sair</NavItem>
                             : <>
-                                <LinkContainer to="/signup">
+                                <Link to="/Signup">
                                     <NavItem>Cadastrar</NavItem>
-                                </LinkContainer>
-                                <LinkContainer to="/login">
+                                </Link>
+                                <Link to="/Login">
                                     <NavItem>Entrar</NavItem>
-                                </LinkContainer>
+                                </Link>
                             </>
                         }
                     </Nav>
@@ -68,4 +71,52 @@ function App(props) {
     );
 }
 
-export default withRouter(App);
+//export default withRouter(App);
+
+const mapStateToProps = state => ({
+    user: state.user
+});
+
+export default connect(mapStateToProps)(App);
+
+
+// async function handleLogout() {
+//     //await Auth.signOut();
+
+//     userHasAuthenticated(false);
+
+//     props.history.push("/Login");
+// }
+
+    // async function onLoad() {
+    //     API.get(`/profile?email=${fields.email}&password${fields.senha}`)
+    //     .then(Response =>{
+    //         props.userHasAuthenticated(true);
+    //         signInUser(
+    //             Response.data[0].id,
+    //             Response.data[0].email,
+    //             Response.data[0].password
+    //         )
+    //     })
+    //     .catch((e) => {
+    //         alert(e.message);
+    //         setIsLoading(false);
+    //     })
+    //     setIsAuthenticating(false)
+    // }
+
+
+    
+    // async function onLoad() {
+    //     try {
+    //         await Auth.currentSession();
+    //         userHasAuthenticated(true);
+    //     }
+    //     catch(e) {
+    //         if (e !== 'No current user') {
+    //             alert(e);
+    //         }
+    //     }
+
+    //     setIsAuthenticating(false);
+    // }
