@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "./App.css";
-import Routes from "./routes";
-import { connect } from 'react-redux';
-//import { Auth } from "aws-amplify";
+import Routes from "./Routes";
+import { getCurrentUserService } from "./store/auth/services";
+import { useDispatch } from "react-redux";
+import { AUTH_REDUCER_LOGOUT } from "./store/auth/reducer";
 
-
-import Signup from "./containers/Signup";
-import Login from "./containers/Login";
-
-function App(props, {signInUser, user}) {
+function App(props) {
+    const dispatch = useDispatch()
     const [isAuthenticated, userHasAuthenticated] = useState(false);
     const [isAuthenticating, setIsAuthenticating] = useState(true);
 
@@ -19,25 +17,25 @@ function App(props, {signInUser, user}) {
         onLoad();
     }, []);
 
-    //Feio
     async function onLoad() {
-        if(user?.id === ""){
-            userHasAuthenticated(true);
-        } else {
-            //alert('No current user');
-            setIsAuthenticating(false);
-        }  
+        try {
+            const user = await getCurrentUserService(dispatch)
+            if(user) userHasAuthenticated(true);
+        }
+        catch(e) {
+            if (e !== 'No current user') {
+                alert(e);
+            }
+        }
+
+        setIsAuthenticating(false);
     }
 
     async function handleLogout() {
-        signInUser(
-            null,
-            null,
-            null
-        );
-        
+        dispatch({type: AUTH_REDUCER_LOGOUT})
         userHasAuthenticated(false);
-        props.history.push("/Login");
+
+        props.history.push("/login");
     }
 
     return (
@@ -53,14 +51,14 @@ function App(props, {signInUser, user}) {
                 <Navbar.Collapse>
                     <Nav pullRight>
                         {isAuthenticated
-                            ? <NavItem onClick={handleLogout}>Sair</NavItem>
+                            ? <NavItem onClick={handleLogout}>Logout</NavItem>
                             : <>
-                                <Link to="/Signup">
-                                    <NavItem>Cadastrar</NavItem>
-                                </Link>
-                                <Link to="/Login">
-                                    <NavItem>Entrar</NavItem>
-                                </Link>
+                                <LinkContainer to="/signup">
+                                    <NavItem>Signup</NavItem>
+                                </LinkContainer>
+                                <LinkContainer to="/login">
+                                    <NavItem>Login</NavItem>
+                                </LinkContainer>
                             </>
                         }
                     </Nav>
@@ -71,52 +69,4 @@ function App(props, {signInUser, user}) {
     );
 }
 
-//export default withRouter(App);
-
-const mapStateToProps = state => ({
-    user: state.user
-});
-
-export default connect(mapStateToProps)(App);
-
-
-// async function handleLogout() {
-//     //await Auth.signOut();
-
-//     userHasAuthenticated(false);
-
-//     props.history.push("/Login");
-// }
-
-    // async function onLoad() {
-    //     API.get(`/profile?email=${fields.email}&password${fields.senha}`)
-    //     .then(Response =>{
-    //         props.userHasAuthenticated(true);
-    //         signInUser(
-    //             Response.data[0].id,
-    //             Response.data[0].email,
-    //             Response.data[0].password
-    //         )
-    //     })
-    //     .catch((e) => {
-    //         alert(e.message);
-    //         setIsLoading(false);
-    //     })
-    //     setIsAuthenticating(false)
-    // }
-
-
-    
-    // async function onLoad() {
-    //     try {
-    //         await Auth.currentSession();
-    //         userHasAuthenticated(true);
-    //     }
-    //     catch(e) {
-    //         if (e !== 'No current user') {
-    //             alert(e);
-    //         }
-    //     }
-
-    //     setIsAuthenticating(false);
-    // }
+export default withRouter(App);

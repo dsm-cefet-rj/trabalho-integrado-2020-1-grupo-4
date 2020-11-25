@@ -1,41 +1,40 @@
-import React, { useRef, useState, useEffect } from "react";
-//import { API, Storage } from "aws-amplify";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import React, { useEffect, useRef, useState } from "react";
+import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import config from "./../config";
 import "./Notes.css";
 //import { s3Upload } from "../libs/awsLib";
+import { api } from "../api";
+import { useDispatch, useSelector } from "react-redux";
+import { getNoteWithS3Service } from "../store/notes/services";
+import { NoteSelector } from "../store/notes/selectors";
+import { NOTES_REDUCER_SET_NOTE_WITH_S3 } from "../store/notes/reducer";
 
 export default function Notes(props) {
+    const dispatch = useDispatch()
     const file = useRef(null);
-    const [note, setNote] = useState(null);
     const [content, setContent] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
+    const note = useSelector(NoteSelector)
 
     useEffect(() => {
-        function loadNote() {
-            return//API.get("notes", `/notes/${props.match.params.id}`);
-        }
+      getNoteWithS3Service(dispatch, props.match.params.id)
+        .catch(alert)
 
-        async function onLoad() {
-            try {
-                const note = await loadNote();
-                const { content, attachment } = note;
-
-                if (attachment) {
-                    //note.attachmentURL = await Storage.vault.get(attachment);
-                }
-
-                setContent(content);
-                setNote(note);
-            } catch (e) {
-                alert(e);
-            }
-        }
-
-        onLoad();
+      return () => {
+        dispatch({type: NOTES_REDUCER_SET_NOTE_WITH_S3, payload: null})
+      }
     }, [props.match.params.id]);
+
+    useEffect(() => {
+      if(note) {
+        const {content} = note;
+        setContent(content);
+      }
+
+
+    }, [note])
 
     function validateForm() {
         return content.length > 0;
@@ -49,10 +48,8 @@ export default function Notes(props) {
         file.current = event.target.files[0];
     }
 
-    function saveNote(note) {
-        return //API.put("notes", `/notes/${props.match.params.id}`, {
-            //body: note
-        //});
+    function saveNote(data) {
+        return api.patch(`/notes/${note.id}`, data);
     }
 
     async function handleSubmit(event) {
@@ -62,7 +59,7 @@ export default function Notes(props) {
 
         if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
             alert(
-                `Por favor coloque um arquivo menor que ${config.MAX_ATTACHMENT_SIZE /
+                `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
                 1000000} MB.`
             );
             return;
@@ -72,10 +69,7 @@ export default function Notes(props) {
 
         try {
             if (file.current) {
-
-               // attachment = await s3Upload(file.current);
-                attachment = null;//await s3Upload(file.current);
-
+                attachment = null //(NO FILE IN MOCKUP)await s3Upload(file.current);
             }
 
             await saveNote({
@@ -90,14 +84,14 @@ export default function Notes(props) {
     }
 
     function deleteNote() {
-        return //API.del("notes", `/notes/${props.match.params.id}`);
+        return api.delete(`/notes/${note.id}`);
     }
 
     async function handleDelete(event) {
         event.preventDefault();
 
         const confirmed = window.confirm(
-            "Tem certeza que deseja deletar esse arquivo?"
+            "Are you sure you want to delete this note?"
         );
 
         if (!confirmed) {
@@ -128,7 +122,7 @@ export default function Notes(props) {
                     </FormGroup>
                     {note.attachment && (
                         <FormGroup>
-                            <ControlLabel>Arquivo</ControlLabel>
+                            <ControlLabel>Attachment</ControlLabel>
                             <FormControl.Static>
                                 <a
                                     target="_blank"
@@ -141,7 +135,7 @@ export default function Notes(props) {
                         </FormGroup>
                     )}
                     <FormGroup controlId="file">
-                        {!note.attachment && <ControlLabel>Arquivo</ControlLabel>}
+                        {!note.attachment && <ControlLabel>Attachment</ControlLabel>}
                         <FormControl onChange={handleFileChange} type="file" />
                     </FormGroup>
                     <LoaderButton
@@ -152,7 +146,7 @@ export default function Notes(props) {
                         isLoading={isLoading}
                         disabled={!validateForm()}
                     >
-                        Salvar
+                        Save
                     </LoaderButton>
                     <LoaderButton
                         block
@@ -161,7 +155,7 @@ export default function Notes(props) {
                         onClick={handleDelete}
                         isLoading={isDeleting}
                     >
-                        Deletar
+                        Delete
                     </LoaderButton>
                 </form>
             )}

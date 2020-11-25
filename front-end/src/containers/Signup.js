@@ -1,23 +1,19 @@
 import React, { useState } from "react";
-import {
-    HelpBlock,
-    FormGroup,
-    FormControl,
-    ControlLabel
-} from "react-bootstrap";
+import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
 import "./Signup.css";
-//import { Auth } from "aws-amplify";
+import { createUserService, getCurrentUserService } from "../store/auth/services";
+import { useDispatch } from "react-redux";
 
 export default function Signup(props) {
+    const dispatch = useDispatch()
     const [fields, handleFieldChange] = useFormFields({
         email: "",
         password: "",
         confirmPassword: "",
         confirmationCode: ""
     });
-    const [newUser, setNewUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     function validateForm() {
@@ -28,80 +24,25 @@ export default function Signup(props) {
         );
     }
 
-    function validateConfirmationForm() {
-        return fields.confirmationCode.length > 0;
-    }
-
     async function handleSubmit(event) {
         event.preventDefault();
 
         setIsLoading(true);
 
         try {
-            const newUser = ({//await Auth.signUp({
-                username: fields.email,
+            const newUser = {
+                email: fields.email,
                 password: fields.password
-            });
+            };
+            const {id: user_id} = await createUserService(dispatch, newUser)
+            localStorage.setItem('user_id', user_id)
             setIsLoading(false);
-            setNewUser(newUser);
+            props.userHasAuthenticated(true)
+            props.history.push('/')
         } catch (e) {
-            if(e.name === 'UsernameExistsException') {
-                //await Auth.resendSignUp(fields.email);
-                const newUser = {
-                    username: fields.email,
-                    password: fields.password
-                };
-                setIsLoading(false);
-                setNewUser(newUser);
-            } else {
-                alert(e);
-                setIsLoading(false);
-            }
-
-        }
-    }
-
-    async function handleConfirmationSubmit(event) {
-        event.preventDefault();
-
-        setIsLoading(true);
-
-        try {
-            //await Auth.confirmSignUp(fields.email, fields.confirmationCode);
-            //await Auth.signIn(fields.email, fields.password);
-
-            props.userHasAuthenticated(true);
-            props.history.push("/");
-        } catch (e) {
-            alert(e.message);
+            alert(e);
             setIsLoading(false);
         }
-    }
-
-    function renderConfirmationForm() {
-        return (
-            <form onSubmit={handleConfirmationSubmit}>
-                <FormGroup controlId="confirmationCode" bsSize="large">
-                    <ControlLabel>Condigo de Confirmação</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="tel"
-                        onChange={handleFieldChange}
-                        value={fields.confirmationCode}
-                    />
-                    <HelpBlock>Por favor verifique seu e-mail pelo código</HelpBlock>
-                </FormGroup>
-                <LoaderButton
-                    block
-                    type="submit"
-                    bsSize="large"
-                    isLoading={isLoading}
-                    disabled={!validateConfirmationForm()}
-                >
-                    Verificado
-                </LoaderButton>
-            </form>
-        );
     }
 
     function renderForm() {
@@ -117,7 +58,7 @@ export default function Signup(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="password" bsSize="large">
-                    <ControlLabel>Senha</ControlLabel>
+                    <ControlLabel>Password</ControlLabel>
                     <FormControl
                         type="password"
                         value={fields.password}
@@ -125,7 +66,7 @@ export default function Signup(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="confirmPassword" bsSize="large">
-                    <ControlLabel>Confirmar senha</ControlLabel>
+                    <ControlLabel>Confirm Password</ControlLabel>
                     <FormControl
                         type="password"
                         onChange={handleFieldChange}
@@ -139,7 +80,7 @@ export default function Signup(props) {
                     isLoading={isLoading}
                     disabled={!validateForm()}
                 >
-                   Cadastrar
+                    Signup
                 </LoaderButton>
             </form>
         );
@@ -147,7 +88,7 @@ export default function Signup(props) {
 
     return (
         <div className="Signup">
-            {newUser === null ? renderForm() : renderConfirmationForm()}
+            {renderForm()}
         </div>
     );
 }

@@ -1,15 +1,19 @@
 import React, { useRef, useState } from "react";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
+import { v4 as uuid } from 'uuid'
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 import "./NewNote.css";
-//import { API } from "aws-amplify";
 //import { s3Upload } from "../libs/awsLib";
+import { api } from "../api";
+import { useSelector } from "react-redux";
+import { AuthUserSelector } from "../store/auth/selectors";
 
 export default function NewNote(props) {
     const file = useRef(null);
     const [content, setContent] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const user = useSelector(AuthUserSelector)
 
     function validateForm() {
         return content.length > 0;
@@ -34,7 +38,7 @@ export default function NewNote(props) {
 
         try {
             const attachment = file.current
-                ? null//await s3Upload(file.current)
+                ? null//(NO FILES IN MOCKUP) await s3Upload(file.current)
                 : null;
 
             await createNote({ content, attachment });
@@ -46,9 +50,12 @@ export default function NewNote(props) {
     }
 
     function createNote(note) {
-        return //API.post("notes", "/notes", {
-            //body: note
-        //});
+        return api.post("/notes", {
+          ...note,
+          userid: user.id,
+          id: uuid(),
+          createdAt: Date.now()
+        });
     }
 
     return (
@@ -62,7 +69,7 @@ export default function NewNote(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="file">
-                    <ControlLabel>Arquivos</ControlLabel>
+                    <ControlLabel>Attachment</ControlLabel>
                     <FormControl onChange={handleFileChange} type="file" />
                 </FormGroup>
                 <LoaderButton
@@ -73,7 +80,7 @@ export default function NewNote(props) {
                     isLoading={isLoading}
                     disabled={!validateForm()}
                 >
-                    Criar Nota
+                    Create
                 </LoaderButton>
             </form>
         </div>

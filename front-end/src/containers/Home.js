@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { ListGroup, ListGroupItem, PageHeader } from "react-bootstrap";
 import "./Home.css";
-//import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
-import API from '../services/api'
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import { NotesSelector } from "../store/notes/selectors";
+import { AuthUserSelector } from "../store/auth/selectors";
+import { getNotesService } from "../store/notes/services";
 
-
-function Home(props,{ user }) {
-    const [notes, setNotes] = useState([]);
+export default function Home(props) {
+    const dispatch = useDispatch()
+    const user = useSelector(AuthUserSelector)
+    const notes = useSelector(NotesSelector);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -16,10 +18,8 @@ function Home(props,{ user }) {
             if (!props.isAuthenticated) {
                 return;
             }
-
             try {
-                const notes = await loadNotes();
-                setNotes(notes);
+                await getNotesService(dispatch, user.id)
             } catch (e) {
                 alert(e);
             }
@@ -30,23 +30,10 @@ function Home(props,{ user }) {
         onLoad();
     }, [props.isAuthenticated]);
 
-    function loadNotes() {
-        return API.get(`/notes?idDono=${user.id}`)
-        
-        // return ("notes", "/notes", {
-        //     content: "isso eh uma nota ",
-        //     id: 'nota',
-        //     createdAt : 'data'
-        // });
-        
-        
-        //API.get("notes", "/notes");
-    }
-
     function renderNotesList(notes) {
         return [{}].concat(notes).map((note, i) =>
             i !== 0 ? (
-                <LinkContainer key={note.noteid} to={`/notes/${note.noteid}`}>
+                <LinkContainer key={note.id} to={`/notes/${note.id}`}>
                     <ListGroupItem header={note.content.trim().split("\n")[0]}>
                         {"Created: " + new Date(note.createdAt).toLocaleString()}
                     </ListGroupItem>
@@ -55,7 +42,7 @@ function Home(props,{ user }) {
                 <LinkContainer key="new" to="/notes/new">
                     <ListGroupItem>
                         <h4>
-                            <b>{"\uFF0B"}</b> Criar nova nota
+                            <b>{"\uFF0B"}</b> Create a new note
                         </h4>
                     </ListGroupItem>
                 </LinkContainer>
@@ -67,7 +54,7 @@ function Home(props,{ user }) {
         return (
             <div className="lander">
                 <h1>Scratch</h1>
-                <p>Um aplicativo simples para tomar notas</p>
+                <p>A simple note taking app</p>
             </div>
         );
     }
@@ -75,7 +62,7 @@ function Home(props,{ user }) {
     function renderNotes() {
         return (
             <div className="notes">
-                <PageHeader>Seus Arquivos</PageHeader>
+                <PageHeader>Your Notes</PageHeader>
                 <ListGroup>
                     {!isLoading && renderNotesList(notes)}
                 </ListGroup>
@@ -89,9 +76,3 @@ function Home(props,{ user }) {
         </div>
     );
 }
-
-const mapStateToProps = state => ({
-    user: state.user
-});
-
-export default connect(mapStateToProps)(Home);

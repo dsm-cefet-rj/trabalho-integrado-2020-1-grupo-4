@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import { Auth } from "aws-amplify";
 import { Link } from "react-router-dom";
 import {
     HelpBlock,
@@ -51,7 +50,7 @@ export default class ResetPassword extends Component {
         this.setState({ isSendingCode: true });
 
         try {
-            //await Auth.forgotPassword(this.state.email);
+            // await Auth.forgotPassword(this.state.email);
             this.setState({ codeSent: true });
         } catch (e) {
             alert(e.message);
@@ -65,11 +64,11 @@ export default class ResetPassword extends Component {
         this.setState({ isConfirming: true });
 
         try {
-            //await Auth.forgotPasswordSubmit(
-            //    this.state.email,
-            //    this.state.code,
-            //    this.state.password
-            //);
+            // await Auth.forgotPasswordSubmit(
+            //     this.state.email,
+            //     this.state.code,
+            //     this.state.password
+            // );
             this.setState({ confirmed: true });
         } catch (e) {
             alert(e.message);
@@ -93,11 +92,11 @@ export default class ResetPassword extends Component {
                     block
                     type="submit"
                     bsSize="large"
-                    loadingText="Sending…"
-                    text="Send Confirmation"
                     isLoading={this.state.isSendingCode}
                     disabled={!this.validateCodeForm()}
-                />
+                >
+                  { this.state.isSendingCode ? 'Sending...' : 'Send confirmation' }
+                </LoaderButton>
             </form>
         );
     }
@@ -106,7 +105,7 @@ export default class ResetPassword extends Component {
         return (
             <form onSubmit={this.handleConfirmClick}>
                 <FormGroup bsSize="large" controlId="code">
-                    <ControlLabel>Código de confirmação</ControlLabel>
+                    <ControlLabel>Confirmation Code</ControlLabel>
                     <FormControl
                         autoFocus
                         type="tel"
@@ -114,12 +113,13 @@ export default class ResetPassword extends Component {
                         onChange={this.handleChange}
                     />
                     <HelpBlock>
-                       Por favor verifique seu e-mail ({this.state.email}) para confirmação do código.
+                        Please check your email ({this.state.email}) for the confirmation
+                        code.
                     </HelpBlock>
                 </FormGroup>
                 <hr />
                 <FormGroup bsSize="large" controlId="password">
-                    <ControlLabel>Nova senha</ControlLabel>
+                    <ControlLabel>New Password</ControlLabel>
                     <FormControl
                         type="password"
                         value={this.state.password}
@@ -127,7 +127,7 @@ export default class ResetPassword extends Component {
                     />
                 </FormGroup>
                 <FormGroup bsSize="large" controlId="confirmPassword">
-                    <ControlLabel>Confirmar senha</ControlLabel>
+                    <ControlLabel>Confirm Password</ControlLabel>
                     <FormControl
                         type="password"
                         onChange={this.handleChange}
@@ -138,11 +138,11 @@ export default class ResetPassword extends Component {
                     block
                     type="submit"
                     bsSize="large"
-                    text="Confirm"
-                    loadingText="Confirm…"
                     isLoading={this.state.isConfirming}
                     disabled={!this.validateResetForm()}
-                />
+                >
+                  Confirm{this.state.isConfirming ? '...' : ''}
+                </LoaderButton>
             </form>
         );
     }
@@ -151,10 +151,10 @@ export default class ResetPassword extends Component {
         return (
             <div className="success">
                 <Glyphicon glyph="ok" />
-                <p>Sua senha foi alterada.</p>
+                <p>Your password has been reset.</p>
                 <p>
                     <Link to="/login">
-                        Clique aqui para entrar com as suas novas credênciais.
+                        Click here to login with your new credentials.
                     </Link>
                 </p>
             </div>

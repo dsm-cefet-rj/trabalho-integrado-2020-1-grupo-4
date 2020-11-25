@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-//import { Auth } from "aws-amplify";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
 import { Link } from "react-router-dom";
 import "./Login.css";
-import API from '../services/api'
-import * as UserActions from '../store/actions/user';
-import { connect } from 'react-redux';
+import { useDispatch } from "react-redux";
+import { loginUserService } from "../store/auth/services";
 
-function Login(props, {signInUser, user}) {   
+export default function Login(props) {
+    const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(false);
     const [fields, handleFieldChange] = useFormFields({
         email: "",
@@ -24,20 +23,15 @@ function Login(props, {signInUser, user}) {
         event.preventDefault();
 
         setIsLoading(true);
-        
-        API.get(`/users?email=${fields.email}`)
-        .then(Response =>{
+
+        try {
+            const user = await loginUserService(dispatch, fields);
+            localStorage.setItem('user_id', user.id)
             props.userHasAuthenticated(true);
-            signInUser(
-                Response.data[0].id,
-                Response.data[0].email,
-                Response.data[0].password
-            )
-        })
-        .catch((e) => {
+        } catch (e) {
             alert(e.message);
             setIsLoading(false);
-        })
+        }
     }
 
     return (
@@ -67,29 +61,10 @@ function Login(props, {signInUser, user}) {
                     isLoading={isLoading}
                     disabled={!validateForm()}
                 >
-                    Entrar
+                    Login
                 </LoaderButton>
-                <Link to="/ResetPassword">Esqueceu a Senha?</Link>
+                <Link to="/login/reset">Forgot password?</Link>
             </form>
         </div>
     );
 }
-
-const mapDispatchToProps = dispatch => ({
-    signInUser: (id, email, password) => dispatch(UserActions.signInUser(id, email, password))
-  });
-
-const mapStateToProps = state => ({
-    user: state.user
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
-
-
-// try {
-//     await Auth.signIn(fields.email, fields.password);
-//     props.userHasAuthenticated(true);
-// } catch (e) {
-//     alert(e.message);
-//     setIsLoading(false);
-// }
