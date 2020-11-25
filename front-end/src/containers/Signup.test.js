@@ -61,3 +61,9 @@ test('Senha inválida, com caractere especial', () => {throw 'Not implemented ye
 test('Confirmação de Senha inválida, diferente da senha anterior', () => {throw 'Not implemented yet'});
 
 test('Confirmação de Senha válida', () => {throw 'Not implemented yet'});
+
+//####### BOTAO CADASTRAR ################################
+
+test('Clilcar no botão cadastrar sem campos preenchidos', () => {throw 'Not implemented yet'});
+
+test('Clilcar no botão cadastrar com os campos preenchidos', () => {throw 'Not implemented yet'});
