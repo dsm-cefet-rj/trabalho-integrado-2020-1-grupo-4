@@ -3,8 +3,11 @@ import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import "./Home.css";
 //import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
+import API from '../services/api'
+import { connect } from 'react-redux';
 
-export default function Home(props) {
+
+function Home(props,{ user }) {
     const [notes, setNotes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -28,12 +31,15 @@ export default function Home(props) {
     }, [props.isAuthenticated]);
 
     function loadNotes() {
-        return ("notes", "/notes", {
-            body: 'nota',
-            content: "isso eh uma nota ",
-            id: 'nota',
-            createdAt : 'data'
-        });
+        return API.get(`/notes?idDono=${user.id}`)
+        
+        // return ("notes", "/notes", {
+        //     content: "isso eh uma nota ",
+        //     id: 'nota',
+        //     createdAt : 'data'
+        // });
+        
+        
         //API.get("notes", "/notes");
     }
 
@@ -83,3 +89,9 @@ export default function Home(props) {
         </div>
     );
 }
+
+const mapStateToProps = state => ({
+    user: state.user
+});
+
+export default connect(mapStateToProps)(Home);
