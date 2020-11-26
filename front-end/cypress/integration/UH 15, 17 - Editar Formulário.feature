@@ -14,10 +14,9 @@ Funcionalidade: Edição de Formulário
             
     Cenario: Concluir edição
         Dado que o usuário esteja na tela de edição do formulario de id "1"
-        Quando alterar um campo, por exemplo o "nome" para "Formulario Y"
-            E clicar no botão "Save"
+        Quando definir um nome "teste" para o formulario
         Então então a aplicação retornará à tela "Your Archive"
-            E o formulário de id "1" tem o nome alterado para "Formulario Y"
+            E o formulário de id "1" tem o nome alterado para "teste"
             
     Cenario: Cancelar edição
         Dado que o usuário esteja na tela de edição do formulário de id "1"

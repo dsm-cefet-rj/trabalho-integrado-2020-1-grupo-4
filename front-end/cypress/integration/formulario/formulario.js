@@ -27,7 +27,7 @@ Dado(`que temos Formulários cadastrados`, async function (forms) {
     }
 });
 
-Dado('esteja na tela "Your Archive"', (nome, senha) => {
+Dado('esteja na tela "Your Archive"', () => {
     cy.visit('/');
 })
 
@@ -41,26 +41,43 @@ Entao(`deve ser aberta uma tela contendo o formulário.`,() => {
 });
 
 Dado(`que o usuário esteja na tela de edição do formulario de id {string}`, (id) => {
-    cy.visit('/forms/'+id);
-    cy.get('#botao_31').click();
+    cy.visit('/forms/edit/'+id);
 });
 
-Quando(`definir um nome {string} para o formulario`, (nomeNovo) => {
+Quando(`definir um nome {string} para o formulario`, (text) => {
     cy.get('#form_10').clear();
-    cy.get('#form_10').type(nomeNovo);
+    cy.get('#form_10').type(text);
 });
 
-Quando(`definir um tipo de formulario {string} para o formulario`, (nomeNovo) => {
-    cy.get('#form_10').clear();
-    cy.get('#form_10').type(nomeNovo);
+Quando(`definir um tipo de formulario {string} para o formulario`, (text) => {
+    cy.get('#botao_foo').select(text); //botao de placeholder, pois nao foi apresentado na listagem de ID disponibilizada
 });
 
-Quando(`definir um titulo {string} para o formulario`, (nomeNovo) => {
-    cy.get('#form_10').clear();
-    cy.get('#form_10').type(nomeNovo);
+Quando(`definir um titulo {string} para o formulario`, (text) => {
+    cy.get('#form_11').clear();
+    cy.get('#form_11').type(text);
 });
 
-Quando(`clicar no botão "Save"`, (nomeNovo) => {
+Quando(`definir um texto {string} para o formulario`, (text) => {
+    cy.get('#form_12').clear();
+    cy.get('#form_12').type(text);
+});
+
+Quando(`definir um tipo {string} para a pergunta {string} do formulario`, (text) => {
+    cy.get('#botao_26').select(text);
+});
+
+Quando(`definir um titulo {string} para a pergunta {string} do formulario`, (text) => {
+    cy.get('#form_13').clear();
+    cy.get('#form_13').type(text);
+});
+
+Quando(`definir um texto {string} para a pergunta {string} do formulario`, (text) => {
+    cy.get('#form_14').clear();
+    cy.get('#form_14').type(text);
+});
+
+Quando(`clicar no botão "Save"`, () => {
     cy.get('#botao_29').click();
 });
 
@@ -69,13 +86,17 @@ Entao(`então a aplicação retornará à tela "Your Archive"`,() => {
 });
 
 Entao(`o formulário de id {string} tem o nome alterado para {string}`,(id, nome) => {
-    await window.fetch(URL +'forms?id=' + u.id, {method: 'GET'}).then((response) => {
-        await window.fetch(URL +'forms', {method: 'PUT', body: JSON.stringify(response),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        });
+    await window.fetch(URL +'forms?id=' + id, {method: 'GET'}).then((response) => { //checa no banco
+        expect(response.nome).to.equal(nome);
     });
-    //fazer um assert pra ver se o nome mudou
+    cy.get('#tabela_02 > .form').first().should('have.value', nome) //checa na tela
+});
+
+Quando(`clicar no botão de "setinha" no canto superior esquerdo da tela`, () => {
+    cy.get('#botao_30').click();
+});
+
+Entao(`nenhum dado será alterado`,() => {
+    cy.url().should('include', '/forms/1');
+    cy.get('#form_10').should('eq', 'Formulario X');
 });
