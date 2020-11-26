@@ -1,7 +1,7 @@
 import { Given as Dado, When as Quando, Then as Entao} from "cypress-cucumber-preprocessor/steps";
 
 Dado(`que estou autenticado com email {string} e senha {string}`, (email, senha) => {
-    cy.visit('./login');
+    cy.visit('/home/login');
     cy.get('#form_06').type(email);
     cy.get('#form_07').type(senha);
     cy.server();
@@ -15,7 +15,7 @@ Dado(`que é exibida a tela de "Your Archive"`, () =>{
 });
 
 Quando('clico no botão sair', () =>{
-    cy.get('#botao_07').click();
+    cy.get('#botao_08').click();
 });
 
 Entao('a tela de login é exibida', () => {
