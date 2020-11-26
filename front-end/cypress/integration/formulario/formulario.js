@@ -35,9 +35,9 @@ Dado(`que eu esteja autenticado como o usuário {string} com senha {string}`, (n
     cy.get('#botao_07').click();
 });
 
-Dado('esteja na tela "Your Archive"', (nome, senha) => {
-    cy.visit('/');
-})
+Dado('esteja na tela "Your Archive"', () => {
+    cy.visit('/home/dashboard');
+});
 
 Quando(`clicar em um formulário existente`, () => {
     cy.get('#tabela_02 > .form').first().click(); //TODO pegar campo form certo quando for implementado
@@ -46,4 +46,16 @@ Quando(`clicar em um formulário existente`, () => {
 Entao(`deve ser aberta uma tela contendo o formulário.`,() => {
     cy.url().should('include', '/forms/1');
     cy.get('#form_10').should('eq', 'Formulario X');
+});
+
+Dado('que é exibida a tela de formulários', () => {
+    cy.visit('/dashboard/forms');
+});
+
+Quando('confirma a exclusão', () =>{
+    //cy.get('#botao_').click(); // QUAL O ID DO BTN SIM
+});
+
+Quando('cancela a exclusão', () =>{
+    //cy.get('#botao_').click(); // QUAL O ID DO BTN NAO
 });

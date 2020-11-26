@@ -101,3 +101,7 @@ Dado('tenha aberto um arquivo' , () =>{
 Quando('clicar em "Deletar"', () =>{
     cy.get('#botao_35').click();
 });
+
+Dado('que é exibida a tela de pastas', () => {
+    cy.visit('/dashboard/folders');
+});
