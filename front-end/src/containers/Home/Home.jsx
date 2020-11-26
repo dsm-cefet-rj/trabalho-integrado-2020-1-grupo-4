@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 
 import { Login, Signup, Welcome } from "./";
 import UnauthenticatedRoute from "@components/UnauthenticatedRoute";
@@ -23,12 +23,6 @@ export function Home(props) {
                     <UnauthenticatedRoute path="/home/login" exact component={Login} appProps={userProps} />
                     <UnauthenticatedRoute path="/home/signup" exact component={Signup} appProps={userProps} />
                 </Switch>
-
-                {/* <Switch>
-                    <Route exact path={"/"} render={(props) => <Login {...props} {...userProps} /> }   />
-                    <Route path={"/login"}  render={(props) => <Login {...props} {...userProps} /> }   />
-                    <Route path={"/signup"} render={(props) => <Signup {...props} {...userProps} />}   />
-                </Switch> */}
             </div>
         </>
 

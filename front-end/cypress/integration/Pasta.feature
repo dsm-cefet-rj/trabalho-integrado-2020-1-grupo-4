@@ -8,29 +8,30 @@ Funcionalidade: Pastas
     
 
     Contexto: 
-       Dados
+       Dado que temos pastas cadastradas
             | id  | Nome     |
             | 1   | PastaA   |  
             | 2   | PastaB   |  
             | 3   | PastaC   |  
+        E que estou autenticado com email "grupo4@teste.com" e senha "grupo4321"
 
     Cenário: Visualizar pasta
-        Dado que um usuário "grupo4@teste.com" esteja na tela de "Your Archive"
+        E que é exibida a tela de "Your Archive"
         Quando clicar em uma pasta
-        Então a tela de pasta deve ser aberta.
+        Então a tela de pasta deve ser aberta
 
-    Cenário: Criar pasta
-        Dado que um usuário "grupo4@teste.com" esteja na tela de "Your Archive"
+    Cenário: Criar pasta 
+        E que é exibida a tela de "Your Archive"
         Quando clicar em "New Folder"
-        Então deve ser aberta uma tela da pasta recém-criada. 
+        Então deve ser aberta uma tela da pasta recém-criada 
 
-    Cenário: Upload de arquivo numa pasta
-        Dado que um usuário "grupo4@teste.com" do sistema esteja navegando dentro de uma pasta 
+    Cenário: Upload de arquivo numa pasta 
+        E esteja navegando dentro de uma pasta 
         Quando clicar no botão de "Upload"
-        Então a tela de pasta deverá conter um novo arquivo.
+        Então a tela de pasta deverá conter um novo arquivo
 
-    Cenário: Deletar um arquivo presente numa pasta
-        Dado que um usuário "grupo4@teste.com" tenha aberto um arquivo
+    Cenário: Deletar um arquivo presente numa pasta 
+        E tenha aberto um arquivo
         Quando clicar em "Deletar"
         Então a aplicação retornará para "Pasta" e o arquivo será excluído
             

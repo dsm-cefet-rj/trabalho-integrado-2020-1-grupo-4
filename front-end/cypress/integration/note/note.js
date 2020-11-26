@@ -1,6 +1,6 @@
 import { Given as Dado, When as Quando, Then as Entao, And } from "cypress-cucumber-preprocessor/steps";
 
-const URL = 'http://192.168.15.4:3004/';
+const URL = 'http://localhost:3001/';
 
 Dado('que temos notas cadastradas', async function (notas) {
     this.notas = notas.hashes();
@@ -10,13 +10,13 @@ Dado('que temos notas cadastradas', async function (notas) {
     for(let u of this.notas){
         
         let u_cast = {
-            ...p,
+            ...u,
             id: parseInt(u.id)
         }
 
         this.notas[i] = u_cast;
-        await window.fetch(URL +'notas/' + u.id, {method: 'DELETE'})
-        await window.fetch(URL +'notas', {method: 'POST', body: JSON.stringify(u_cast),
+        await window.fetch(URL +'notes/' + u.id, {method: 'DELETE'})
+        await window.fetch(URL +'notes', {method: 'POST', body: JSON.stringify(u_cast),
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -25,17 +25,6 @@ Dado('que temos notas cadastradas', async function (notas) {
 
         i++;
     }
-});
-
-// Cenário: Nova nota
-Dado(`que um usuário {string} e senha {string}`, (email,senha) => {
-    cy.visit('/login');
-    cy.get('#form_06').type(email);
-    cy.get('#form_07').type(senha);
-    cy.server();
-    cy.route('/users?email*').as('getUser');
-    cy.get('#botao_07').click();
-    cy.wait('@getUser');
 });
 
 Dado('esteja na tela de Criar nota', () => {
@@ -107,4 +96,8 @@ Quando ('confirmar a exclusão de nota', () => {
 
 Entao(`a aplicação retornará para "Your Archive" e a nota será excluída`,() => {
     cy.url().should('contain', '/');
+});
+
+Dado('que é exibida a tela de notas', () => {
+    cy.visit('/dashboard/notes');
 });

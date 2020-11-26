@@ -40,7 +40,7 @@ export function Login(props) {
     return (
         <div className="Login">
             <form onSubmit={handleSubmit}>
-                <FormGroup controlId="email" bsSize="large">
+                <FormGroup id="form_06" controlId="email" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
                     <FormControl
                         autoFocus
@@ -49,7 +49,7 @@ export function Login(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
+                <FormGroup id="form_07" controlId="password" bsSize="large">
                     <ControlLabel>Password</ControlLabel>
                     <FormControl
                         type="password"
@@ -58,6 +58,7 @@ export function Login(props) {
                     />
                 </FormGroup>
                 <LoaderButton
+                    id="botao_07"
                     block
                     type="submit"
                     bsSize="large"
