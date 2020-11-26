@@ -21,7 +21,7 @@ Funcionalidade: Exclusão de Formulário
            E o formulário de id "1" será excluído
 
     Cenário: Cancelar exclusão
-        Dado que o usuário esteja na tela de edição de formulário de id "1"
+        Dado que o usuário esteja na tela de edição do formulário de id "1"
         Quando clicar em "Deletar"
            E cancela a exclusão
         Então a aplicação retornará à edição do formulário de id "1"
