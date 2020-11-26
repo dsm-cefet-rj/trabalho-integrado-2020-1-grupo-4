@@ -17,27 +17,21 @@ Funcionalidade: Pastas
     Cenário: Visualizar pasta
         Dado que um usuário "grupo4@teste.com" esteja na tela de "Your Archive"
         Quando clicar em uma pasta
-        Então a pasta deve ser aberta. 
-          Essa tela deve conter o nome 
-          da pasta acompanhado de um ícone 
-          e da data de criação; pode conter uma 
-          lista de arquivos; e deve possuir um 
-          botão de upload de arquivo.
+        Então a tela de pasta deve ser aberta. 
+          .
 
     Cenário: Criar pasta
         Dado que um usuário "grupo4@teste.com" esteja na tela de "Your Archive"
         Quando clicar em "New Folder"
         Então deve ser aberta uma tela da pasta recém-criada. 
-         Nesta tela deve ter a opção de "Upload" dos arquivos.
 
     Cenário: Upload de arquivo numa pasta
         Dado que um usuário "grupo4@teste.com" do sistema esteja navegando dentro de uma pasta 
         Quando clicar no botão de "Upload"
-        Então deverá ser aberto o sistema de arquivos do telefone para que
-         o usuário possa escolher um arquivo para upload.
+        Então a tela de pasta deverá conter um novo arquivo.
 
     Cenário: Deletar um arquivo presente numa pasta
         Dado que um usuário "grupo4@teste.com" tenha aberto um arquivo
         Quando clicar em "Deletar"
-        Então a aplicação retorna para a raiz da pasta,
-            E o arquivo é removido.
+        Então a aplicação retornará para "Pasta" e o arquivo será excluído
+            
