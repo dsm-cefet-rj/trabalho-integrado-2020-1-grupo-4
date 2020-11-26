@@ -1,5 +1,7 @@
 import { Given as Dado, When as Quando, Then as Entao } from "cypress-cucumber-preprocessor/steps";
 
+const URL = 'http://localhost:3001/';
+
 Dado('que temos pastas cadastradas', async function (pastas) {
     this.pastas = pastas.hashes();
     var i = 0;
@@ -13,7 +15,7 @@ Dado('que temos pastas cadastradas', async function (pastas) {
         }
 
         this.pastas[i] = p_cast;
-        //await window.fetch(URL +'folders/' + u.id, {method: 'DELETE'}) //NAO TEM METODO DELETE PARA USERS
+        await window.fetch(URL +'folders/' + u.id, {method: 'DELETE'})
         await window.fetch(URL +'folders', {method: 'POST', body: JSON.stringify(p_cast),
         headers: {
             'Accept': 'application/json',
