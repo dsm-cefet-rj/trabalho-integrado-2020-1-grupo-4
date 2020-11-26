@@ -27,14 +27,6 @@ Dado(`que temos Formulários cadastrados`, async function (forms) {
     }
 });
 
-Dado(`que eu esteja autenticado como o usuário {string} com senha {string}`, (nome, senha) => {
-    //TODO ver se ja está logado
-    cy.visit('/login');
-    cy.get('#form_06').type(email);
-    cy.get('#form_07').type(senha);
-    cy.get('#botao_07').click();
-});
-
 Dado('esteja na tela "Your Archive"', (nome, senha) => {
     cy.visit('/');
 })
@@ -46,4 +38,44 @@ Quando(`clicar em um formulário existente`, () => {
 Entao(`deve ser aberta uma tela contendo o formulário.`,() => {
     cy.url().should('include', '/forms/1');
     cy.get('#form_10').should('eq', 'Formulario X');
+});
+
+Dado(`que o usuário esteja na tela de edição do formulario de id {string}`, (id) => {
+    cy.visit('/forms/'+id);
+    cy.get('#botao_31').click();
+});
+
+Quando(`definir um nome {string} para o formulario`, (nomeNovo) => {
+    cy.get('#form_10').clear();
+    cy.get('#form_10').type(nomeNovo);
+});
+
+Quando(`definir um tipo de formulario {string} para o formulario`, (nomeNovo) => {
+    cy.get('#form_10').clear();
+    cy.get('#form_10').type(nomeNovo);
+});
+
+Quando(`definir um titulo {string} para o formulario`, (nomeNovo) => {
+    cy.get('#form_10').clear();
+    cy.get('#form_10').type(nomeNovo);
+});
+
+Quando(`clicar no botão "Save"`, (nomeNovo) => {
+    cy.get('#botao_29').click();
+});
+
+Entao(`então a aplicação retornará à tela "Your Archive"`,() => {
+    cy.url().should('eq', 'http://localhost:3000/');
+});
+
+Entao(`o formulário de id {string} tem o nome alterado para {string}`,(id, nome) => {
+    await window.fetch(URL +'forms?id=' + u.id, {method: 'GET'}).then((response) => {
+        await window.fetch(URL +'forms', {method: 'PUT', body: JSON.stringify(response),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        });
+    });
+    //fazer um assert pra ver se o nome mudou
 });
