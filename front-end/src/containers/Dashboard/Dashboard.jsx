@@ -1,6 +1,20 @@
 import React from "react";
 
 
+
 export const Dashboard = (props) => {
-    return(<h1>Dashboard</h1>)
+    
+    const logout = () => {
+        localStorage.removeItem('user_id')
+        props.history.push('/')
+
+    }
+    
+    
+    return(
+        <>
+            <h2>Gambiarra</h2>
+            <button onClick={logout} href='/'>logout</button>
+        </>
+    )
 }
