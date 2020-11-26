@@ -26,7 +26,7 @@ export default function UnauthenticatedRoute({ component: C, appProps, ...rest }
                 !appProps.isAuthenticated
                     ? <C {...props} {...appProps} />
                     : <Redirect
-                        to={redirect === "" || redirect === null ? "/" : redirect}
+                        to={redirect === "" || redirect === null ? "/dashboard" : redirect}
                     />}
         />
     );

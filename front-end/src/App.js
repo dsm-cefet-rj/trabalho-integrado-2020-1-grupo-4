@@ -2,19 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+
 import { useDispatch } from "react-redux";
+import { getCurrentUserService } from "@store/auth/services";
+import { AUTH_REDUCER_LOGOUT } from "@store/auth/reducer";
 
-import { getCurrentUserService } from "./store/auth/services";
-import { AUTH_REDUCER_LOGOUT } from "./store/auth/reducer";
-
-import "./App.css";
 import Routes from "./routes";
-
+import "./App.css";
 
 function App(props) {
     const dispatch = useDispatch()
     const [isAuthenticated, userHasAuthenticated] = useState(false);
     const [isAuthenticating, setIsAuthenticating] = useState(true);
+    
+    //botao esquerdo superior para voltar 
+    const { location, history } = props;
+    const initialPages = ['/home', '/dashboard']
 
     useEffect( () => {
         async function onLoad() {
@@ -41,39 +44,15 @@ function App(props) {
     }
 
     return (
-        <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
+        <>
+            {!initialPages.includes(location.pathname) && (
+                <button className="goback" id="botao_03" onClick={history.goBack}>
+                    <i className="fas fa-chevron-left"></i>
+                </button>
+            )}
+            <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
+        </>
     );
 }
-
-// return (
-//     !isAuthenticating &&
-//     <div className="App container">
-//         <Navbar fluid collapseOnSelect>
-//             <Navbar.Header>
-//                 <Navbar.Brand>
-//                     <Link to="/">Scratch</Link>
-//                 </Navbar.Brand>
-//                 <Navbar.Toggle />
-//             </Navbar.Header>
-//             <Navbar.Collapse>
-//                 <Nav pullRight>
-//                     {isAuthenticated
-//                         ? <NavItem onClick={handleLogout}>Logout</NavItem>
-//                         : <>
-//                             <LinkContainer to="/signup">
-//                                 <NavItem>Signup</NavItem>
-//                             </LinkContainer>
-//                             <LinkContainer to="/login">
-//                                 <NavItem>Login</NavItem>
-//                             </LinkContainer>
-//                         </>
-//                     }
-//                 </Nav>
-//             </Navbar.Collapse>
-//         </Navbar>
-//         <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
-//     </div>
-// );
-
 
 export default withRouter(App);

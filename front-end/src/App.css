@@ -1,7 +1,8 @@
-.App {
-  margin-top: 15px;
-}
-
-.App .navbar-brand {
-  font-weight: bold;
+.goback {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
 }

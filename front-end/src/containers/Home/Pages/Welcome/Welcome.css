@@ -1,0 +1,22 @@
+.home > .description > h5 {
+    font-size: 18px;
+}
+
+.home > .actions {
+    margin-top: 46px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home > .actions > a:first-child {
+    padding: 6px 20px;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.home > .actions > a:last-child {
+    border: none;
+    color: #000;
+}
+

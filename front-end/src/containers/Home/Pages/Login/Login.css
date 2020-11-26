@@ -14,3 +14,18 @@
         font-size: 14px;
     }
 }
+
+.home > .Login {
+    margin-top: 24px;
+}
+
+.home > .Login > form > .form-group {
+    margin-bottom: 20px;
+}
+
+.home > .Login > form > a {
+    display: block;
+    margin-top: 6px;
+    color: #333;
+    text-decoration: none;
+}

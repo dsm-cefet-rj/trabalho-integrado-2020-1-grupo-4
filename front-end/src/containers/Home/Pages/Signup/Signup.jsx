@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
-import LoaderButton from "../../components/LoaderButton";
-import { useFormFields } from "../../libs/hooksLib";
-import "./Signup.css";
-import { createUserService, getCurrentUserService } from "../../store/auth/services";
 import { useDispatch } from "react-redux";
+import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
+
+
+import LoaderButton from "@components/LoaderButton";
+import { createUserService, getCurrentUserService } from "@store/auth/services";
+import { useFormFields } from "@libs/hooksLib";
+
+import "./Signup.css";
 
 export function Signup(props) {
+    console.log(props);
     const dispatch = useDispatch()
     const [fields, handleFieldChange] = useFormFields({
+        name: "",
         email: "",
+        confirmEmail:"",
         password: "",
         confirmPassword: "",
         confirmationCode: ""
@@ -18,7 +24,9 @@ export function Signup(props) {
 
     function validateForm() {
         return (
+            fields.name.length > 0 &&
             fields.email.length > 0 &&
+            fields.email === fields.confirmEmail &&
             fields.password.length > 0 &&
             fields.password === fields.confirmPassword
         );
@@ -26,9 +34,7 @@ export function Signup(props) {
 
     async function handleSubmit(event) {
         event.preventDefault();
-
         setIsLoading(true);
-
         try {
             const newUser = {
                 email: fields.email,
@@ -48,12 +54,30 @@ export function Signup(props) {
     function renderForm() {
         return (
             <form onSubmit={handleSubmit}>
+                <FormGroup controlId="name" bsSize="large">
+                    <ControlLabel>Nome</ControlLabel>
+                    <FormControl
+                        autoFocus
+                        type="name"
+                        value={fields.name}
+                        onChange={handleFieldChange}
+                    />
+                </FormGroup>
                 <FormGroup controlId="email" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
                     <FormControl
                         autoFocus
                         type="email"
                         value={fields.email}
+                        onChange={handleFieldChange}
+                    />
+                </FormGroup>
+                <FormGroup controlId="confirmEmail" bsSize="large">
+                    <ControlLabel>Email Confirmation</ControlLabel>
+                    <FormControl
+                        autoFocus
+                        type="email"
+                        value={fields.confirmEmail}
                         onChange={handleFieldChange}
                     />
                 </FormGroup>

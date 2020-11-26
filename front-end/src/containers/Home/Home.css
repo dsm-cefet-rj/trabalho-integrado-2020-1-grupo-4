@@ -1,54 +1,15 @@
-/* .Home .lander {
-    padding: 80px 0;
-    text-align: center;
-  }
-   */
-/* .Home .lander h1 {
-font-family: "Open Sans", sans-serif;
-font-weight: 600;
-} */
-
-/* .Home .lander p {
-color: #999;
-} */
-
-/* .Home .notes h4 {
-    font-family: "Open Sans", sans-serif;
-    font-weight: 600;
-    overflow: hidden;
-    line-height: 1.5;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.Home .notes p {
-    color: #666;
-} */
-
-/* .Home {
-    padding: 80px 0;
-    text-align: center;
-    font-family: "Cascadia Code", sans-serif;
-}
-
-.Home h1 {
-    font-family: "Cascadia Code", sans-serif;
-    font-weight: 600;
-    }
-
-.Home p {
-    color:#999;
-} */
-
 .home {
     width: 90%;
     margin: 0 auto;
     text-align: center;
-    padding-top: 72px;
-  }
-
-.home > .actions {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+    padding-bottom: 72px;
 }
 
+.home > .title > h1 {
+    font-size: 48px;
+}
