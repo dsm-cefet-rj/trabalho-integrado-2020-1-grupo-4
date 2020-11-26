@@ -93,7 +93,7 @@ Quando(`clicar no botão "Save"`, () => {
     cy.get('#botao_29').click();
 });
 
-Entao(`então a aplicação retornará à tela "Your Archive"`,() => {
+Entao(`a aplicação retornará à tela "Your Archive"`,() => {
     cy.url().should('include', '/home/dashboard');
 });
 
@@ -130,7 +130,7 @@ Entao(`deve ser aberta uma tela com uma lista de tipos de formulário, onde o us
     cy.get('#botao_19').should('be.visible');
 });
 
-Entao(`o usuário terá acesso ao seu formulário salvo de nome {string} na lista de formulários em "Your Archive"`,() => {
+Entao(`o usuário terá acesso ao seu formulário salvo de nome {string} na lista de formulários em "Your Archive"`,(nome) => {
     cy.get('#tabela_02 > .form').first().should('have.value', nome);
 });
 
@@ -140,4 +140,18 @@ Quando(`o usuário clicar em cancelar`, () => {
 
 Entao(`a aplicação retornará à tela de "Your Archive"`,() => {
     cy.url().should('include', '/home/dashboard');
+});
+
+Quando(`clicar em "Deletar"`, () => {
+    //cy.get('#botao_').click(); // QUAL O ID DO BOTAO DE DELETAR
+});
+
+Entao(`o formulário de id {string} será excluído`,(id) => {
+    window.fetch(URL +'forms?id=' + id, {method: 'GET'}).then((response) => { //checa no banco
+        expect(response).to.equal(null);
+    });
+});
+
+Entao(`a aplicação retornará à edição do formulário de id {string}`,(id) => {
+    cy.url().should('include', '/forms/edit'+id);
 });
