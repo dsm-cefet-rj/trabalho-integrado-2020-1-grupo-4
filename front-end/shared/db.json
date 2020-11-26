@@ -9,6 +9,11 @@
       "email": "grupo4@teste.com",
       "password": "$2a$10$NI/hL/IqIaZTQce5olXsAuu9G6cowlyp2tZqYJtsszFUVC/HBGCL.",
       "id": "f560ba87-b8df-4c70-bfc5-7fb112309b07"
+    },
+    {
+      "email": "vitoria@grupo4.com",
+      "password": "$2a$10$JDuR12d35Cjhre0ua4FIEOkEJy8MKUyJctszJCthRruo5y7PJGb.y",
+      "id": "be10f4a0-8eaa-440b-a6e4-7ef58e48846a"
     }
   ],
   "notes": [
