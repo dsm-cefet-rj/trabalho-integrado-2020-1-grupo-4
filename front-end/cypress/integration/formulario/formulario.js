@@ -109,6 +109,7 @@ Quando(`clicar no botão de "setinha" no canto superior esquerdo da tela`, () =>
 });
 
 Entao(`nenhum dado será alterado`,() => {
-    cy.url().should('include', '/forms/1');
-    cy.get('#form_10').should('eq', 'Formulario X');
+    await window.fetch(URL +'forms?id=' + id, {method: 'GET'}).then((response) => { //checa no banco
+        expect(response).to.equal(this.forms[0]);
+    });
 });
