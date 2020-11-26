@@ -43,6 +43,7 @@ export function Login(props) {
                 <FormGroup controlId="email" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
                     <FormControl
+                        id="form_06"
                         autoFocus
                         type="email"
                         value={fields.email}
@@ -52,12 +53,14 @@ export function Login(props) {
                 <FormGroup controlId="password" bsSize="large">
                     <ControlLabel>Password</ControlLabel>
                     <FormControl
+                        id="form_07"
                         type="password"
                         value={fields.password}
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
                 <LoaderButton
+                    id="botao_07"
                     block
                     type="submit"
                     bsSize="large"
