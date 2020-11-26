@@ -98,7 +98,7 @@ Entao(`então a aplicação retornará à tela "Your Archive"`,() => {
 });
 
 Entao(`o formulário de id {string} tem o nome alterado para {string}`,(id, nome) => {
-    await window.fetch(URL +'forms?id=' + id, {method: 'GET'}).then((response) => { //checa no banco
+    window.fetch(URL +'forms?id=' + id, {method: 'GET'}).then((response) => { //checa no banco
         expect(response.nome).to.equal(nome);
     });
     cy.get('#tabela_02 > .form').first().should('have.value', nome) //checa na tela
@@ -109,7 +109,15 @@ Quando(`clicar no botão de "setinha" no canto superior esquerdo da tela`, () =>
 });
 
 Entao(`nenhum dado será alterado`,() => {
-    await window.fetch(URL +'forms?id=' + id, {method: 'GET'}).then((response) => { //checa no banco
+    window.fetch(URL +'forms?id=' + id, {method: 'GET'}).then((response) => { //checa no banco
         expect(response).to.equal(this.forms[0]);
     });
+});
+
+Dado('que esteja na tela de criação de formulário', () => {
+    cy.visit('/forms/new');
+});
+
+Quando(`clicar no botão de "setinha" no canto superior esquerdo da tela`, () => {
+    cy.get('#botao_30').click();
 });
