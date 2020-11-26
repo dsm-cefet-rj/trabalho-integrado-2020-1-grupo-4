@@ -35,7 +35,7 @@ Quando(`clicar em um formulário existente`, () => {
     cy.get('#tabela_02 > .form').first().click(); //TODO pegar campo form certo quando for implementado
 });
 
-Entao(`deve ser aberta uma tela contendo o formulário.`,() => {
+Entao(`deve ser aberta uma tela contendo o formulário`,() => {
     cy.url().should('include', '/forms/1');
     cy.get('#form_10').should('eq', 'Formulario X');
 });
@@ -120,4 +120,24 @@ Dado('que esteja na tela de criação de formulário', () => {
 
 Quando(`clicar no botão de "setinha" no canto superior esquerdo da tela`, () => {
     cy.get('#botao_30').click();
+});
+
+Quando(`o usuário clicar em "New Form"`, () => {
+    cy.get('#botao_10').click();
+});
+
+Entao(`deve ser aberta uma tela com uma lista de tipos de formulário, onde o usuário deve escolher um para ser criado`,() => {
+    cy.get('#botao_19').should('be.visible');
+});
+
+Entao(`o usuário terá acesso ao seu formulário salvo de nome {string} na lista de formulários em "Your Archive"`,() => {
+    cy.get('#tabela_02 > .form').first().should('have.value', nome);
+});
+
+Quando(`o usuário clicar em cancelar`, () => {
+    cy.get('#botao_28').click();
+});
+
+Entao(`a aplicação retornará à tela de "Your Archive"`,() => {
+    cy.url().should('include', '/home/dashboard');
 });
