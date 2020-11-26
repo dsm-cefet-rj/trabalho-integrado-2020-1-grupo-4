@@ -28,7 +28,7 @@ Dado('que temos usuarios cadastrados', async function (usuarios) {
 });
 
 Dado('que é exibida a tela de login', () => {
-    cy.visit('/login');
+    cy.visit('/home/login');
 });
 
 Quando(`insiro email {string} e senha {string}`, (email, senha) =>{
@@ -44,5 +44,5 @@ Quando(`clico no botão entrar`, () => {
 });
 
 Entao(`a tela Your Archive é exibida`,() => {
-    cy.url().should('eq', 'http://localhost:3000/'); // ALTERAR ESSE ASSERT
+    cy.url().should('contain', '/dashboard');
 });

@@ -6,12 +6,12 @@ Dado(`que estou autenticado com email {string} e senha {string}`, (email, senha)
     cy.get('#form_07').type(senha);
     cy.server();
     cy.route('/users?email*').as('getUser');
-    cy.get('.LoaderButton').click();
+    cy.get('#botao_07').click();
     cy.wait('@getUser');
 });
 
 Dado(`que é exibida a tela de "Your Archive"`, () =>{
-    cy.visit('/');
+    cy.visit('./dashboard');
 });
 
 Quando('clico no botão sair', () =>{
