@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
+import { ControlLabel, FormControl, FormGroup, Button } from "react-bootstrap";
+// import { Alert } from '@components/Alert.jsx';
+import { alertService } from '@services/alert.service.js';
 
 
 import LoaderButton from "@components/LoaderButton";
-import { createUserService, getCurrentUserService } from "@store/auth/services";
+import { createUserService } from "@store/auth/services";
 import { useFormFields } from "@libs/hooksLib";
 
 import "./Signup.css";
 
 export function Signup(props) {
-    console.log(props);
+
     const dispatch = useDispatch()
     const [fields, handleFieldChange] = useFormFields({
         name: "",
@@ -51,10 +53,15 @@ export function Signup(props) {
         }
     }
 
+    const [options, setOptions] = useState({
+        autoClose: false,
+        keepAfterRouteChange: true
+    });
+
     function renderForm() {
         return (
             <form onSubmit={handleSubmit}>
-                <FormGroup controlId="name" bsSize="large">
+                <FormGroup id="form_01" controlId="name" bsSize="large">
                     <ControlLabel>Nome</ControlLabel>
                     <FormControl
                         autoFocus
@@ -63,7 +70,7 @@ export function Signup(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup controlId="email" bsSize="large">
+                <FormGroup id="form_02" controlId="email" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
                     <FormControl
                         autoFocus
@@ -72,7 +79,7 @@ export function Signup(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup controlId="confirmEmail" bsSize="large">
+                <FormGroup id="form_03" controlId="confirmEmail" bsSize="large">
                     <ControlLabel>Email Confirmation</ControlLabel>
                     <FormControl
                         autoFocus
@@ -81,7 +88,7 @@ export function Signup(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
+                <FormGroup id="form_04" controlId="password" bsSize="large">
                     <ControlLabel>Password</ControlLabel>
                     <FormControl
                         type="password"
@@ -89,7 +96,7 @@ export function Signup(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup controlId="confirmPassword" bsSize="large">
+                <FormGroup id="form_05" controlId="confirmPassword" bsSize="large">
                     <ControlLabel>Confirm Password</ControlLabel>
                     <FormControl
                         type="password"
@@ -97,12 +104,15 @@ export function Signup(props) {
                         value={fields.confirmPassword}
                     />
                 </FormGroup>
+                
                 <LoaderButton
+                    id="botao_04"
                     block
                     type="submit"
                     bsSize="large"
                     isLoading={isLoading}
                     disabled={!validateForm()}
+                    onClick={() => alertService.success('Success!!', options)}
                 >
                     Signup
                 </LoaderButton>
