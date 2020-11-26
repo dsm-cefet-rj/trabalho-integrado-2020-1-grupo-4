@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
-import LoaderButton from "../components/LoaderButton";
-import { useFormFields } from "../libs/hooksLib";
+import LoaderButton from "../../components/LoaderButton";
+import { useFormFields } from "../../libs/hooksLib";
 import "./Signup.css";
-import { createUserService, getCurrentUserService } from "../store/auth/services";
+import { createUserService, getCurrentUserService } from "../../store/auth/services";
 import { useDispatch } from "react-redux";
 
-export default function Signup(props) {
+export function Signup(props) {
     const dispatch = useDispatch()
     const [fields, handleFieldChange] = useFormFields({
         email: "",
