@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 };
 
 
-export const authReducer = (action, state = INITIAL_STATE,) => {
+export const authReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case AUTH_REDUCER_SET_USER:
       return {
