@@ -15,8 +15,8 @@ Dado('que temos usuarios cadastrados', async function (usuarios) {
         }
 
         this.usuarios[i] = u_cast;
-        await window.fetch(URL +'usuarios/' + u.id, {method: 'DELETE'})
-        await window.fetch(URL +'usuarios', {method: 'POST', body: JSON.stringify(u_cast),
+        //await window.fetch(URL +'users/' + u.id, {method: 'DELETE'}) //NAO TEM METODO DELETE PARA USERS
+        await window.fetch(URL +'users', {method: 'POST', body: JSON.stringify(u_cast),
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -37,7 +37,10 @@ Quando(`insiro email {string} e senha {string}`, (email, senha) =>{
 });
 
 Quando(`clico no botão entrar`, () => {
-    cy.get('botao_07').click();
+    cy.server();
+    cy.route('/users?email*').as('getUser');
+    cy.get('#botao_07').click();
+    cy.wait('@getUser');
 });
 
 Entao(`a tela Your Archive é exibida`,() => {
