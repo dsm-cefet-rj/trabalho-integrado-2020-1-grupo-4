@@ -46,3 +46,7 @@ Quando(`clico no botão entrar`, () => {
 Entao(`a tela Your Archive é exibida`,() => {
     cy.url().should('contain', '/dashboard');
 });
+
+Entao(`clico no botão voltar`, () => {
+    cy.get('#btnVoltar').click();
+});
