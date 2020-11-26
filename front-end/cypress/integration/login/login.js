@@ -1,6 +1,6 @@
 import { Given as Dado, When as Quando, Then as Entao, And } from "cypress-cucumber-preprocessor/steps";
 
-const URL = 'http://192.168.15.4:3004/';
+const URL = 'http://localhost:3001/';
 
 Dado('que temos usuarios cadastrados', async function (usuarios) {
     this.usuarios = usuarios.hashes();
@@ -10,7 +10,7 @@ Dado('que temos usuarios cadastrados', async function (usuarios) {
     for(let u of this.usuarios){
         
         let u_cast = {
-            ...p,
+            ...u,
             id: parseInt(u.id)
         }
 
@@ -28,8 +28,7 @@ Dado('que temos usuarios cadastrados', async function (usuarios) {
 });
 
 Dado('que é exibida a tela de login', () => {
-    cy.visit('./');
-    cy.get('#botao_01').click();
+    cy.visit('/login');
 });
 
 Quando(`insiro email {string} e senha {string}`, (email, senha) =>{
@@ -38,9 +37,9 @@ Quando(`insiro email {string} e senha {string}`, (email, senha) =>{
 });
 
 Quando(`clico no botão entrar`, () => {
-    cy.get('#botao_07').click();
+    cy.get('botao_07').click();
 });
 
 Entao(`a tela Your Archive é exibida`,() => {
-
+    cy.url().should('eq', 'http://localhost:3000/'); // ALTERAR ESSE ASSERT
 });
