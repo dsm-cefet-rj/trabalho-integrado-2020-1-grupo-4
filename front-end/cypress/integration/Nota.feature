@@ -19,25 +19,25 @@ Funcionalidade: Listar Notas
     Cenário: Nova nota
         Dado que um usuário "grupo4@teste.com" e senha "grupo4321" 
         E esteja na tela de Criar nota
-        Quando o usuário definir um nome "Teste" 
-        E um conteúdo "Conteúdo de nota de teste"
+        Quando o usuário definir um nome "Teste" para a nota 
+        E um conteúdo "Conteúdo de nota de teste" para a nota
         E clicar no botão salvar nova nota
         Então a tela "Your Archive" será aberta e a nota foi criada.
 
     Cenário: Editar uma nota existente
         Dado que um usuário "grupo4@teste.com" e senha "grupo4321" 
         E esteja na tela de Editar nota
-        Quando o usuário alterar o nome da nota para "Teste alterando" 
-        E altera o conteúdo para "Conteúdo de nota de teste alterando"
+        Quando o usuário definir um nome "Teste alterando" para a nota
+        E um conteúdo "Conteúdo de nota de teste alterando" para a nota
         E clicar no botão salvar nota editada
         Então o usuário poderá ver sua nota editada na lista de notas existentes. 
 
     Cenário: Upload de Arquivos nas Notas
         Dado que um usuário "grupo4@teste.com" e senha "grupo4321" 
-        E esteja na tela de Criar ou Editar nota
+        E esteja na tela de Editar nota
         Quando clicar no botão Choose File, seleciona o arquivo
-        E clica no botão para salvar a nota com o novo anexo inserido 
-        Entao o usuário poderá ver sua nota editada com o novo anexo na lista de notas existentes. 
+        E clicar no botão salvar nota editada 
+        Entao o usuário poderá ver sua nota editada na lista de notas existentes. 
 
     Cenário: Visualizar Nota
         Dado que um usuário "grupo4@teste.com" e senha "grupo4321" 

@@ -42,11 +42,11 @@ Dado('esteja na tela de Criar nota', () => {
     cy.visit('/notes/new');
 });
 
-Quando (`o usuário definir um nome {string}`, (nome) => {
+Quando (`o usuário definir um nome {string} para a nota`, (nome) => {
     cy.get('#form_08').type(nome);
 });
 
-Quando (`um conteúdo {string}`, (conteudo) => {
+Quando (`um conteúdo {string} para a nota`, (conteudo) => {
     cy.get('#form_09').type(conteudo);
 });
 
@@ -64,14 +64,6 @@ Dado('esteja na tela de Editar nota', () => {
     cy.visit('/notes/edit');
 });
 
-Quando (`o usuário alterar o nome da nota para {string}`, (nome) => {
-    cy.get('#form_08').type(nome);
-});
-
-Quando (`altera o conteúdo para {string}`, (conteudo) => {
-    cy.get('#form_09').type(conteudo);
-});
-
 Quando ('clicar no botão salvar nota editada', () => {
     cy.get('#botao_15').click();
 });
@@ -82,22 +74,10 @@ Entao('o usuário poderá ver sua nota editada na lista de notas existentes',() 
 
 
 // Cenário: Upload de Arquivos nas Notas
-Dado('esteja na tela de Criar ou Editar nota', () => {
-    cy.visit('/notes/edit');
-});
-
 Quando ('clicar no botão Choose File, seleciona o arquivo', () => {
    // Caminho do arquivo a ser anexado.
    const filePath = 'anexo2.jpg';
    cy.get('#botao_13').attachFile(filePath);
-});
-
-Quando ('clica no botão para salvar a nota com o novo anexo inserido', () => {
-    cy.get('#botao_15').click();
-});
-
-Entao('o usuário poderá ver sua nota editada com o novo anexo na lista de notas existentes',() => {
-    cy.url().should('contain', '/');
 });
 
 
@@ -117,10 +97,6 @@ Entao('a nota deve ser aberta para visualização',() => {
 
 
 // Cenário: Excluir uma nota
-Dado('esteja na tela de Editar nota', () => {
-    cy.visit('/notes/edit');
-});
-
 Quando ('clicar no botão Delete para deletar nota', () => {
     cy.get('#botao_14').click();
 });
