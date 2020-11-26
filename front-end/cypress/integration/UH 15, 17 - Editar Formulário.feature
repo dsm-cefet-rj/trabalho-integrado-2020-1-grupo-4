@@ -7,9 +7,10 @@ Funcionalidade: Edição de Formulário
     
 
     Contexto: 
-        Dado que temos Formulários cadastrados
-            | id  | nome        |  tipoForm |  tituloForm    | textoForm      |
-            | 1   | Formulario X|  Text     |  Titulo x      | Texto x        |
+        Dado que estou autenticado com email "grupo4@teste.com" e senha "grupo4321"
+            E que temos Formulários cadastrados
+                | id  | nome        |  tipoForm |  tituloForm    | textoForm      |
+                | 1   | Formulario X|  Text     |  Titulo x      | Texto x        |
             
     Cenario: Concluir edição
         Dado que o usuário esteja na tela de edição do formulario de id "1"

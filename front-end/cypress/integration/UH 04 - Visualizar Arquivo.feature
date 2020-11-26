@@ -4,6 +4,9 @@ Funcionalidade: Visualizar Arquivo
     Como​ um usuário do sistema, 
     eu gostaria de​ visualizar meus arquivos 
     para​ poder acessar em outros dispositivos ou liberar espaço no meu dispositivo
+    
+    Contexto:
+        Dado que estou autenticado com email "grupo4@teste.com" e senha "grupo4321"
 
     Cenário: Visualizar Arquivo
         Dado que o usuário tenha entrado numa pasta

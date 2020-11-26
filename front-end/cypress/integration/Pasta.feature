@@ -17,8 +17,7 @@ Funcionalidade: Pastas
     Cenário: Visualizar pasta
         Dado que um usuário "grupo4@teste.com" esteja na tela de "Your Archive"
         Quando clicar em uma pasta
-        Então a tela de pasta deve ser aberta. 
-          .
+        Então a tela de pasta deve ser aberta.
 
     Cenário: Criar pasta
         Dado que um usuário "grupo4@teste.com" esteja na tela de "Your Archive"
