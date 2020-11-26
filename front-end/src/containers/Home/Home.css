@@ -1,0 +1,15 @@
+.home {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-bottom: 72px;
+}
+
+.home > .title > h1 {
+    font-size: 48px;
+}

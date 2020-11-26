@@ -1,30 +1,12 @@
-import { createStore } from 'redux';
-import rootReducers from './reducers';
+import { combineReducers, createStore } from "redux";
+import { authReducer } from "./auth/reducer";
+import { notesReducer } from "./notes/reducer";
 
-function saveToLocalStorage(state){
-    try {
-      const serializedState = JSON.stringify(state)
-      localStorage.setItem('state', serializedState)
-    } catch(e) {
-      console.log(e)
-    }
-  }
-  
-  function loadFromLocalStorage() {
-    try {
-      const serializedState = localStorage.getItem('state')
-      if(serializedState === null) { return undefined }
-      return JSON.parse(serializedState)
-    } catch(e) {
-      console.log(e)
-      return undefined
-    }
-  }
+const reducers= {
+  auth: authReducer,
+  notes: notesReducer
+}
 
-const persistedState = loadFromLocalStorage();
-
-const store = createStore(rootReducers, persistedState);
-
-store.subscribe(() => saveToLocalStorage(store.getState()));
-
-export default store;
+export const store = createStore(
+  combineReducers(reducers)
+)

@@ -1,53 +1,23 @@
 {
   "users": [
     {
-      "id": "0",
       "email": "zirondil@gmail.com",
-      "password": "123456"
+      "password": "$2a$10$ZcsFZVLzsIXLLGZQIEquD.OY33XjClJ8PW0o5hF1r0weFkHj8Hrbm",
+      "id": "934cf4e2-bc43-4d10-8116-8c5c94a042fb"
     },
     {
-      "id": "1",
-      "email": "diego@gmail.com",
-      "password": "123456"
+      "email": "grupo4@teste.com",
+      "password": "$2a$10$NI/hL/IqIaZTQce5olXsAuu9G6cowlyp2tZqYJtsszFUVC/HBGCL.",
+      "id": "f560ba87-b8df-4c70-bfc5-7fb112309b07"
     }
   ],
-
-  "notes":[
+  "notes": [
     {
-      "id": "0",
-      "idDono": "0",
-      "body": "Isso eh o body?",
-      "content": "Isso eh uma nota",
-      "createdAt": "11/11/2011"
-    },
-    {
-      "id": "0",
-      "idDono": "0",
-      "body": "Isso eh o body?",
-      "content": "Isso eh uma nota",
-      "createdAt": "11/11/2011"
-    },
-    {
-      "id": "1",
-      "idDono": "0",
-      "body": "Isso eh o body?",
-      "content": "Isso eh uma nota",
-      "createdAt": "11/11/2011"
-    }
-  ],
-
-  "forms":[
-    {
-      "id":"0",
-      "idDono":"0"
-    }
-  ],
-
-  "folders":[
-    {
-      "id":"0",
-      "idDono":"0",
-      "nome":"Meu Folder"
+      "content": "Oi!",
+      "attachment": null,
+      "userid": "f560ba87-b8df-4c70-bfc5-7fb112309b07",
+      "id": "6aa98d39-9e36-408b-9080-d293b7921030",
+      "createdAt": 1606348211899
     }
   ]
 }

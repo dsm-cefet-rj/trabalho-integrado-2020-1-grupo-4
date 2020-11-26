@@ -46,6 +46,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+.idea/
+idea/
 
 # testing
 /coverage
@@ -126,3 +128,4 @@ dist
 
 # TernJS port file
 .tern-port
+.eslintcache

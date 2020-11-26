@@ -1,9 +1,9 @@
 export function signInUser(id, email, password){
-    console.log("cheguei aqui")
     return{
         type: 'USER_LOGIN',
         payload: {
             id,
+            name,
             email,
             password
         }
@@ -15,6 +15,7 @@ export function signUpUser(id, email, password){
         type: 'USER_SIGN_UP',
         payload: {
             id,
+            name,
             email,
             password
         }
@@ -26,6 +27,7 @@ export function changePasswordUser(id, email, password){
         type: 'CHANGE_PASSWORD',
         payload: {
             id,
+            name,
             email,
             password
         }

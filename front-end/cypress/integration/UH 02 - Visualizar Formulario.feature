@@ -5,8 +5,13 @@ Funcionalidade: Visualizar Formulário
     Eu gostaria de visualizar meus formulários
     para gerenciar itens.
 
+    Contexto: 
+        Dado que temos Formulários cadastrados
+            | id  | nome        |  tipoForm |  tituloForm    | textoForm      |
+            | 1   | Formulario X|  Text     |  Titulo x      | Texto x        |
+
     Cenário: Visualizar Formulario
-        Dado que eu esteja autenticado como o usuário "grupo4@teste.com"
+        Dado que eu esteja autenticado como o usuário "grupo4@teste.com" com senha "grupo4321"
         E esteja na tela "Your Archive"
         Quando clicar em um formulário existente
-        Então deve ser aberta uma tela contendo o formulário. Essa tela deve ter um botão "Editar" que abra uma tela que permita o usuário editar o formulário
+        Então deve ser aberta uma tela contendo o formulário.

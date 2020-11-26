@@ -1,122 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import "./App.css";
+
+import { useDispatch } from "react-redux";
+import { getCurrentUserService } from "@store/auth/services";
+import { AUTH_REDUCER_LOGOUT } from "@store/auth/reducer";
+
 import Routes from "./routes";
-import { connect } from 'react-redux';
-//import { Auth } from "aws-amplify";
+import "./App.css";
 
-
-import Signup from "./containers/Signup";
-import Login from "./containers/Login";
-
-function App(props, {signInUser, user}) {
+function App(props) {
+    const dispatch = useDispatch()
     const [isAuthenticated, userHasAuthenticated] = useState(false);
     const [isAuthenticating, setIsAuthenticating] = useState(true);
+    
+    //botao esquerdo superior para voltar 
+    const { location, history } = props;
+    const initialPages = ['/home', '/dashboard']
 
-    useEffect(() => {
-        onLoad();
-    }, []);
-
-    //Feio
-    async function onLoad() {
-        if(user?.id === ""){
-            userHasAuthenticated(true);
-        } else {
-            //alert('No current user');
+    useEffect( () => {
+        async function onLoad() {
+            try {
+                const user = await getCurrentUserService(dispatch)
+                if(user) userHasAuthenticated(true);
+            }
+            catch(e) {
+                if (e !== 'No current user') {
+                    alert(e);
+                }
+            }
+    
             setIsAuthenticating(false);
-        }  
-    }
+        }
+        onLoad();
+    }, [dispatch]);
 
     async function handleLogout() {
-        signInUser(
-            null,
-            null,
-            null
-        );
-        
+        dispatch({type: AUTH_REDUCER_LOGOUT})
         userHasAuthenticated(false);
-        props.history.push("/Login");
+
+        props.history.push("/login");
     }
 
     return (
-        !isAuthenticating &&
-        <div className="App container">
-            <Navbar fluid collapseOnSelect>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <Link to="/">Scratch</Link>
-                    </Navbar.Brand>
-                    <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                    <Nav pullRight>
-                        {isAuthenticated
-                            ? <NavItem onClick={handleLogout}>Sair</NavItem>
-                            : <>
-                                <Link to="/Signup">
-                                    <NavItem>Cadastrar</NavItem>
-                                </Link>
-                                <Link to="/Login">
-                                    <NavItem>Entrar</NavItem>
-                                </Link>
-                            </>
-                        }
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+        <>
+            {!initialPages.includes(location.pathname) && (
+                <button className="goback" id="botao_03" onClick={history.goBack}>
+                    <i className="fas fa-chevron-left"></i>
+                </button>
+            )}
             <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
-        </div>
+        </>
     );
 }
 
-//export default withRouter(App);
-
-const mapStateToProps = state => ({
-    user: state.user
-});
-
-export default connect(mapStateToProps)(App);
-
-
-// async function handleLogout() {
-//     //await Auth.signOut();
-
-//     userHasAuthenticated(false);
-
-//     props.history.push("/Login");
-// }
-
-    // async function onLoad() {
-    //     API.get(`/profile?email=${fields.email}&password${fields.senha}`)
-    //     .then(Response =>{
-    //         props.userHasAuthenticated(true);
-    //         signInUser(
-    //             Response.data[0].id,
-    //             Response.data[0].email,
-    //             Response.data[0].password
-    //         )
-    //     })
-    //     .catch((e) => {
-    //         alert(e.message);
-    //         setIsLoading(false);
-    //     })
-    //     setIsAuthenticating(false)
-    // }
-
-
-    
-    // async function onLoad() {
-    //     try {
-    //         await Auth.currentSession();
-    //         userHasAuthenticated(true);
-    //     }
-    //     catch(e) {
-    //         if (e !== 'No current user') {
-    //             alert(e);
-    //         }
-    //     }
-
-    //     setIsAuthenticating(false);
-    // }
+export default withRouter(App);
