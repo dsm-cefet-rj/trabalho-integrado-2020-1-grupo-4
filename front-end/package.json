@@ -4,7 +4,7 @@
   "private": true,
   "author": "Diegobrvt, Zirondi",
   "license": "ISC",
-  "description": "Simple note taking app",
+  "description": "An app to help you organize your notes!",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@babel/plugin-syntax-jsx": "^7.12.1",
