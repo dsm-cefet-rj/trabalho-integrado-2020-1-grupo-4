@@ -105,3 +105,18 @@ Quando('clicar em "Deletar"', () =>{
 Dado('que é exibida a tela de pastas', () => {
     cy.visit('/dashboard/folders');
 });
+
+
+Dado('que o usuário tenha entrado numa pasta', () => {
+    cy.visit('/yourarchive/1');
+});
+
+Quando('clico em um arquivo', () =>{
+    cy.get('#tabela_06 > .file').first().click(); //TODO pegar campo file certo quando for implementado
+});
+
+Entao('deve ser exibida a tela com as informações do arquivo', () => {
+    cy.url().should('include', '/file/1');
+    cy.get('#botao_34').should('be.visible'); // nao tem ID do nome do arquivo
+});
+
