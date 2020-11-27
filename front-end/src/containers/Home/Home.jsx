@@ -4,15 +4,18 @@ import { Switch } from "react-router-dom";
 import { Login, Signup, Welcome } from "./";
 import UnauthenticatedRoute from "@components/UnauthenticatedRoute";
 import "./Home.css";
+import GoBackButton from "@components/GoBackButton";
 
 export function Home(props) {
+    
     const userProps = {
         isAuthenticated: props.isAuthenticated, 
         userHasAuthenticated: props.userHasAuthenticated
     }
-
+    
     return (
         <>
+            <GoBackButton props={props}/>
             <div className="home" id="home">
                 <div className="title" id="home-title">
                     <h1> Scratch </h1>
