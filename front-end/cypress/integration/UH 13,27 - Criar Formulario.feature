@@ -8,19 +8,25 @@ Funcionalidade: Criar Formúlario
     Contexto:
         Dado que estou autenticado com email "grupo4@teste.com" e senha "grupo4321"
 
-    Cenário: Selecionar Formulário para criação
-        Dado que esteja na tela de criação de formulário "Your Archive"
+    Cenário: Selecionar Criação de Formulário
+        Dado esteja na tela "Your Archive"
         Quando o usuário clicar em "New Form"
-        Então deve ser aberta uma tela com uma lista de tipos de formulário, onde o usuário deve escolher um para ser criado.
+        Então deve ser aberta uma tela com uma lista de tipos de formulário, onde o usuário deve escolher um para ser criado
 
     Cenário: Criar Formulário
         Dado que esteja na tela de criação de formulário
-        Quando o usuário definir um nome para o formulário obedecendo os critérios de faixa de tamanho de caracteres "Teste1" 
-            E tendo pelo menos um campo criado como o de titulo com "Titulo de Teste"
-            E clicar em salvar
-        Então o usuário terá acesso ao seu formulário salvo na lista de formulários em "Your Archive".
+        Quando definir um nome "teste" para o formulario
+            E definir um tipo de formulario "1" para o formulario
+            E definir um titulo "teste" para o formulario
+            E definir um texto "teste" para o formulario
+            E definir um tipo "1" para a pergunta "1" do formulario
+            E definir um titulo "teste" para a pergunta "1" do formulario
+            E definir um texto "teste" para a pergunta "1" do formulario
+            E clicar no botão "Save"
+        Então o usuário terá acesso ao seu formulário salvo de nome "teste" na lista de formulários em "Your Archive"
 
     Cenário: Cancelar a Criação de um Formulário
-        Dado que esteja na tela de criação do formulário
+        Dado que esteja na tela de criação de formulário
         Quando o usuário clicar em cancelar
-        Então a aplicação retornará à tela de "Your Archive".
+        Então a aplicação retornará à tela de "Your Archive"
+            

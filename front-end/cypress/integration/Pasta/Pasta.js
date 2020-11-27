@@ -15,7 +15,7 @@ Dado('que temos pastas cadastradas', async function (pastas) {
         }
 
         this.pastas[i] = p_cast;
-        await window.fetch(URL +'folders/' + u.id, {method: 'DELETE'})
+        await window.fetch(URL +'folders/' + p.id, {method: 'DELETE'})
         await window.fetch(URL +'folders', {method: 'POST', body: JSON.stringify(p_cast),
         headers: {
             'Accept': 'application/json',
@@ -103,5 +103,5 @@ Quando('clicar em "Deletar"', () =>{
 });
 
 Dado('que é exibida a tela de pastas', () => {
-    cy.visit('/dashboard/folders');
+    cy.visit('/home/folders');
 });
