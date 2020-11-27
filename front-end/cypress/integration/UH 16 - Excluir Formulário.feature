@@ -14,15 +14,14 @@ Funcionalidade: Exclusão de Formulário
                 | 1   | Formulario X|  Text     |  Titulo x      |  Texto x       |
 
     Cenário: Confirmar exclusão
-        Dado que estou autenticado com email "grupo4@teste.com" e senha "grupo4321"
-            E que o usuário esteja na tela de edição do formulário de id "1"
+        Dado que o usuário esteja na tela de edição do formulario de id "1"
         Quando clicar em "Deletar"
-           E confirma a exclusão
+        E confirma a exclusão
         Então a aplicação retornará a tela "Your Archive"
-           E o formulário de id "1" será excluído
+        E o formulário de id "1" será excluído
 
     Cenário: Cancelar exclusão
-        Dado que o usuário esteja na tela de edição do formulário de id "1"
+        Dado que o usuário esteja na tela de edição do formulario de id "1"
         Quando clicar em "Deletar"
-           E cancela a exclusão
+        E cancela a exclusão
         Então a aplicação retornará à edição do formulário de id "1"
