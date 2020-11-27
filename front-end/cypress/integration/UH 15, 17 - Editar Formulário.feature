@@ -19,7 +19,7 @@ Funcionalidade: Edição de Formulário
             E o formulário de id "1" tem o nome alterado para "teste"
             
     Cenario: Cancelar edição
-        Dado que o usuário esteja na tela de edição do formulário de id "1"
+        Dado que o usuário esteja na tela de edição do formulario de id "1"
         Quando clicar no botão de "setinha" no canto superior esquerdo da tela
         Então então a aplicação retornará à tela "Your Archive"
             E nenhum dado será alterado
