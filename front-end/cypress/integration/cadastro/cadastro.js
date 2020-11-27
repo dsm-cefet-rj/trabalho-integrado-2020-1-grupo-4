@@ -14,7 +14,7 @@ Quando(`insiro nome {string}, email {string} e senha {string}`, (nome, email, se
 
 Quando(`clico no botão cadastrar`, () => {
     cy.get('#botao_04').click();//cadastrar
-    cy.get('#botao_05').click();//fechar modal
+    //cy.get('#botao_05').click();//fechar modal
 });
 
 //FUNCTION DO ENTAO JA IMPLEMENTADA NO ARQUIVO DE LOGIN
