@@ -9,11 +9,10 @@ import { getNotesService } from "@store/notes/services";
 
 import { Switch } from "react-router-dom";
 
-import {Folder, Form, Note} from "./";
-import AuthenticatedRoute from "@components/AuthenticatedRoute";
+import AuthenticatedRoute from "@components/AuthenticatedRoute/AuthenticatedRoute.js";
 
-import LogOutButton from '@components/LogOutButton'
-import GoBackButton from '@components/GoBackButton'
+import LogOutButton from "@components/LogOutButton/LogOutButton.jsx";
+import GoBackButton from "@components/GoBackButton/GoBackButton.jsx";
 
 export function Dashboard(props) {
 

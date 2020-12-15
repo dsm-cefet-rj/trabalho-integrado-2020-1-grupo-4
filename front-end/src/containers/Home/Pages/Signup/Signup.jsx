@@ -5,7 +5,7 @@ import { ControlLabel, FormControl, FormGroup, Button } from "react-bootstrap";
 import { alertService } from '@services/alert.service.js';
 
 
-import LoaderButton from "@components/LoaderButton";
+import LoaderButton from "@components/LoaderButton/LoaderButton.jsx";
 import { createUserService } from "@store/auth/services";
 import { useFormFields } from "@libs/hooksLib";
 

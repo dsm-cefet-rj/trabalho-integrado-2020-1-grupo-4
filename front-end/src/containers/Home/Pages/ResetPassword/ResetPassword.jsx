@@ -7,7 +7,7 @@ import {
     FormControl,
     ControlLabel
 } from "react-bootstrap";
-import LoaderButton from "../../../../components/LoaderButton";
+import LoaderButton from "@components/LoaderButton/LoaderButton.jsx";
 import "./ResetPassword.css";
 
 export class ResetPassword extends Component {
