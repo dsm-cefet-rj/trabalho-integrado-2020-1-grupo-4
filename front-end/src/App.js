@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { getCurrentUserService } from "@store/auth/services";
+import { getCurrentUserService } from "./store/auth/services";
 
 import Routes from "./routes";
 import "./App.css";

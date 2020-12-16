@@ -3,16 +3,17 @@ import { ListGroup, ListGroupItem, PageHeader } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
-import { NotesSelector } from "@store/notes/selectors";
-import { AuthUserSelector } from "@store/auth/selectors";
-import { getNotesService } from "@store/notes/services";
+import { NotesSelector } from "../../store/notes/selectors";
+import { AuthUserSelector } from "../../store/auth/selectors";
+import { getNotesService } from "../../store/notes/services";
+
 
 import { Switch } from "react-router-dom";
 
-import AuthenticatedRoute from "@components/AuthenticatedRoute/AuthenticatedRoute.js";
+import AuthenticatedRoute from "../../components/AuthenticatedRoute/AuthenticatedRoute.js";
 
-import LogOutButton from "@components/LogOutButton/LogOutButton.jsx";
-import GoBackButton from "@components/GoBackButton/GoBackButton.jsx";
+import LogOutButton from "../../components/LogOutButton/LogOutButton.jsx";
+import GoBackButton from "../../components/GoBackButton/GoBackButton.jsx";
 
 export function Dashboard(props) {
 

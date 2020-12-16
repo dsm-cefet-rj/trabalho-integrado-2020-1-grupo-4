@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { AUTH_REDUCER_LOGOUT } from "@store/auth/reducer";
+import { AUTH_REDUCER_LOGOUT } from "../../store/auth/reducer";
 
 import './LogOutButton.css'
 

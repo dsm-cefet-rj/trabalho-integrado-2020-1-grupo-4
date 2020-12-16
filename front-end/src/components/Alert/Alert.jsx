@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { alertService, AlertType } from '@services/alert.service.js';
+import { alertService, AlertType } from "../../services/alert.service.js";
 
 const propTypes = {
     id: PropTypes.string,
@@ -111,4 +111,4 @@ export default function Alert({ id, fade }) {
 
 Alert.propTypes = propTypes;
 Alert.defaultProps = defaultProps;
-export { Alert };
+//export { Alert };

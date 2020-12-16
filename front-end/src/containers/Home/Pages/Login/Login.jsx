@@ -3,10 +3,10 @@ import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { loginUserService } from "@store/auth/services";
+import { loginUserService } from "../../../../store/auth/services";
 
-import LoaderButton from "@components/LoaderButton/LoaderButton.jsx";
-import { useFormFields } from "@libs/hooksLib";
+import LoaderButton from "../../../../components/LoaderButton/LoaderButton.jsx";
+import { useFormFields } from "../../../../libs/hooksLib";
 
 import "./Login.css";
 

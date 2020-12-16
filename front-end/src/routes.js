@@ -3,16 +3,16 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
 
 
-import { Home } from '@containers/Home';
+import { Home } from './containers/Home';
 
-import { Dashboard } from '@containers/Dashboard';
+import { Dashboard } from './containers/Dashboard';
 
-import { NotFound } from '@containers/NotFound'
+import { NotFound } from './containers/NotFound'
 
-import AppliedRoute from "@components/AppliedRoute/AppliedRoute.js";
-import AuthenticatedRoute from "@components/AuthenticatedRoute/AuthenticatedRoute.js";
+import AppliedRoute from "./components/AppliedRoute/AppliedRoute.js";
+import AuthenticatedRoute from "./components/AuthenticatedRoute/AuthenticatedRoute.js";
 
-import { Alert } from '@components/Alert/Alert.jsx';
+import Alert from "./components/Alert/Alert.jsx";
 
 export default function Routes({ appProps }) {
     return (

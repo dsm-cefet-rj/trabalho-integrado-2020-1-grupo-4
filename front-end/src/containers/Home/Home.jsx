@@ -2,9 +2,9 @@ import React from "react";
 import { Switch } from "react-router-dom";
 
 import { Login, Signup, Welcome } from "./";
-import UnauthenticatedRoute from "@components/UnauthenticatedRoute/UnauthenticatedRoute.js";
+import UnauthenticatedRoute from "../../components/UnauthenticatedRoute/UnauthenticatedRoute.js";
 import "./Home.css";
-import GoBackButton from "@components/GoBackButton/GoBackButton.jsx";
+import GoBackButton from "../../components/GoBackButton/GoBackButton.jsx";
 
 export function Home(props) {
     
