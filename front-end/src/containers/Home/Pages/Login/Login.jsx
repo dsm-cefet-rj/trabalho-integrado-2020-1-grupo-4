@@ -40,7 +40,7 @@ export function Login(props) {
     return (
         <div className="Login">
             <form onSubmit={handleSubmit}>
-                <FormGroup id="form_06" controlId="email" bsSize="large">
+                <FormGroup id="email" controlId="form_06" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
                     <FormControl
                         autoFocus
@@ -49,7 +49,7 @@ export function Login(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup id="form_07" controlId="password" bsSize="large">
+                <FormGroup id="password" controlId="form_07" bsSize="large">
                     <ControlLabel>Password</ControlLabel>
                     <FormControl
                         type="password"
