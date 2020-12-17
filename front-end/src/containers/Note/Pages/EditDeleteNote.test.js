@@ -1,48 +1,247 @@
 //Editar e Excluir Nota
 
-//################################ CAMPO NOME ################################
-test('Nome vazio', () => {throw 'Not implemented yet'});
+import {React} from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import {useSelector} from 'react-redux';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { MemoryRouter, Route } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
+import {EditNote} from './EditNote';
 
-test('Nome limite inferior válido', () => {throw 'Not implemented yet'});
+window.alert = jest.fn();
 
-test('Nome válido', () => {throw 'Not implemented yet'});
+// Mocking redux module
+jest.mock("react-redux", () => ({
+    ...jest.requireActual("react-redux"),
+    useSelector: jest.fn(),
+    useDispatch: jest.fn( () => jest.fn((param) => param) )
+}));
 
-test('Nome limite superior válido -1', () => {throw 'Not implemented yet'});
+// Mocking the state
+const mockAppState = {
+    users: [
+        {email: "grupo4@teste.com", 
+        password: "$2a$10$NI/hL/IqIaZTQce5olXsAuu9G6cowlyp2tZqYJtsszFUVC/HBGCL.", 
+        id: "f560ba87-b8df-4c70-bfc5-7fb112309b07"
+    }]    
+}
 
-test('Nome limite superior válido', () => {throw 'Not implemented yet'});
 
-test('Nome limite superior inválido', () => {throw 'Not implemented yet'});
+const fieldTest = async (nomeParam, conteudoParam, isNameValido, isConteudoValido, msgEsperada = null, path = "/", containerParam = null, historyParam = null) => {
+    const history = historyParam ? historyParam : createMemoryHistory();
+    const { container } = containerParam ? containerParam : render(<Router history={history}><EditNote/></Router>);
+
+    const nome = container.querySelector("#form_08");
+    const conteudo = container.querySelector("#form_09");
+    const submitButton = container.querySelector("#botao_09");
+    
+    fireEvent.input(nome, {target: {value: nomeParam}});
+    fireEvent.input(conteudo, {target: {value: conteudoParam}});      
+    
+    if(isNameValido && isConteudoValido){
+        await act(async () => {
+            fireEvent.submit(submitButton);
+        });
+        
+        expect(history.location.pathname).toBe(path);
+    }else{
+        expect(container.querySelector("#botao_09")).toHaveAttribute('disabled');
+    }
+}
+
+const buttonSaveTest = async (isFormValido,  containerParam = null, historyParam = null) => {
+    const history = historyParam ? historyParam : createMemoryHistory();
+    const { container } = containerParam ? containerParam : render(<Router history={history}><EditNote/></Router>);
+
+    const nome = container.querySelector("#form_08");
+    const conteudo = container.querySelector("#form_09");
+
+    const submitButton = container.querySelector("#botao_09");
+    if(isFormValido){
+        fireEvent.input(nome, {target: {value: 'nomeParam'}});
+        fireEvent.input(conteudo, {target: {value: 'conteudoParam'}});
+
+        expect(container.querySelector("#botao_09").getAttribute("disabled")).toBe("");
+    }else{
+        expect(container.querySelector("#botao_09")).toHaveAttribute('disabled');
+    }
+
+}
+
+const buttonUploadTest = async (isFormValido,  containerParam = null, historyParam = null) => {
+    const history = historyParam ? historyParam : createMemoryHistory();
+    const { container } = containerParam ? containerParam : render(<Router history={history}><EditNote/></Router>);
+
+    const fileTable = container.querySelector("#tabela_03");
+
+    const uploadButton = container.querySelector("#botao_13");
+    if(isFormValido){
+        fireEvent.input(fileTable, {target: {value: 'anexo2.jpg'}});
+
+        expect(container.querySelector("#tabela_03").getAttribute("value")).toBe("anexo2.jpg");
+    }else{
+        expect(container.querySelector("#tabela_03").getAttribute("value")).toBe("");
+    }
+
+}
+
+const buttonCancelTest = async (isFormValido,  containerParam = null, historyParam = null) => {
+    const history = historyParam ? historyParam : createMemoryHistory();
+    const { container } = containerParam ? containerParam : render(<Router history={history}><EditNote/></Router>);
+
+    const nome = container.querySelector("#form_08");
+    const conteudo = container.querySelector("#form_09");
+
+    const cancelButton = container.querySelector("#botao_14");
+    if(isFormValido){
+        fireEvent.input(nome, {target: {value: 'nomeParam'}});
+        fireEvent.input(conteudo, {target: {value: 'conteudoParam'}});
+
+        // Talvez um pop-up de confirmação de cancelamento deveria aparecer, pois tem itens preenchidos.
+        await act(async () => {
+            fireEvent.submit(cancelButton);
+        });
+
+        expect(history.location.pathname).toBe(path);
+    }else{
+        await act(async () => {
+            fireEvent.submit(cancelButton);
+        });
+
+        expect(history.location.pathname).toBe(path);
+    }
+
+}
+
+const buttonDeleteTest = async (isFormValido,  containerParam = null, historyParam = null) => {
+    const history = historyParam ? historyParam : createMemoryHistory();
+    const { container } = containerParam ? containerParam : render(<Router history={history}><EditNote/></Router>);
+
+    const nome = container.querySelector("#form_08");
+    const conteudo = container.querySelector("#form_09");
+
+    const deleteButton = container.querySelector("#botao_36");
+    if(isFormValido){
+        fireEvent.input(nome, {target: {value: 'nomeParam'}});
+        fireEvent.input(conteudo, {target: {value: 'conteudoParam'}});
+
+        // Talvez um pop-up de confirmação de exclusão deveria aparecer, pois tem itens preenchidos.
+        await act(async () => {
+            fireEvent.submit(deleteButton);
+        });
+
+        expect(history.location.pathname).toBe(path);
+    }else{
+        await act(async () => {
+            fireEvent.submit(deleteButton);
+        });
+
+        expect(history.location.pathname).toBe(path);
+    }
+
+}
 
 
-//################################ CAMPO CONTEÚDO ################################
-test('Conteúdo vazio', () => {throw 'Not implemented yet'});
+describe("EditNote unit", () => {
 
-test('Conteúdo limite inferior válido', () => {throw 'Not implemented yet'});
+    beforeEach(() => {
+        useSelector.mockImplementation(callback => {
+          return callback(mockAppState);
+        });
+    });
+    
+    afterEach(() => {
+        useSelector.mockClear();
+        //addProjetoServer.mockClear();
+    });
 
-test('Conteúdo válido', () => {throw 'Not implemented yet'});
+    //################################ CAMPO NOME ################################
+    test('Nome vazio', () => {
+        fieldTest('', 'Conteúdo de nota de teste', false, true);
+    });
 
-test('Conteúdo limite superior válido -1', () => {throw 'Not implemented yet'});
+    test('Nome limite inferior válido', () => {
+        fieldTest('TesteMin', 'Conteúdo de nota de teste', true, true);
+    });
 
-test('Conteúdo limite superior válido', () => {throw 'Not implemented yet'});
+    test('Nome válido', () => {
+        fieldTest('Teste nome Válido', 'Conteúdo de nota de teste', true, true);
+    });
 
-test('Conteúdo limite superior inválido', () => {throw 'Not implemented yet'});
+    test('Nome limite superior válido -1', () => {
+        fieldTest('Nome teste com limite superior válido com um caractere a menos &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', 'Conteúdo de nota de teste', true, true);
+    });
 
-//################################ BOTÃO DE UPLOAD DE ANEXO ################################
-test('Clicar no botão para fazer upload de anexo e selecionar um arquivo de aúdio', () => {throw 'Not implemented yet'});
+    test('Nome limite superior válido', () => {
+        fieldTest('Nome teste com limite superior válido &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', 'Conteúdo de nota de teste', true, true);      
+    });
 
-test('Clicar no botão para fazer upload de anexo e selecionar um arquivo de imagem', () => {throw 'Not implemented yet'});
+    test('Nome limite superior inválido', () => {
+        fieldTest('Nome teste com limite superior inválido &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', 'Conteúdo de nota de teste', false, true);       
+    });
 
-test('Clicar no botão para fazer upload de anexo e selecionar um arquivo de video', () => {throw 'Not implemented yet'});
 
-//################################ BOTAO CANCELAR ################################
-test('Clicar no botão para cancelar sem campos preenchidos', () => {throw 'Not implemented yet'});
+    //################################ CAMPO CONTEÚDO ################################
+    test('Conteúdo vazio', () => {
+        fieldTest('Teste nome Válido', '', true, false);
+    });
 
-test('Clicar no botão para cancelar com campos preenchidos', () => {throw 'Not implemented yet'});
+    test('Conteúdo limite inferior válido', () => {
+        fieldTest('Teste nome Válido', 'T', true, true);
+    });
 
-//################################ BOTAO SALVAR ################################
-test('Clicar no botão para salvar Nota com os campos únicos existentes no banco', () => {throw 'Not implemented yet'});
+    test('Conteúdo válido', () => {
+        fieldTest('Teste nome Válido', 'Conteúdo de nota de teste', true, true);
+    });
 
-test('Clicar no botão para salvar Nota com os campos únicos não existentes no banco', () => {throw 'Not implemented yet'});
+    test('Conteúdo limite superior válido -1', () => {
+        fieldTest('Teste nome Válido', 'Conteúdo de nota de teste com limite superior válido com um caractere a menos &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', true, true);
+    });
 
-//################################ BOTAO DELETAR ################################
-test('Clicar no botão para deletar Nota', () => {throw 'Not implemented yet'});
+    test('Conteúdo limite superior válido', () => {
+        fieldTest('Teste nome Válido', 'Conteúdo de nota de teste com limite superior válido &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', true, true);
+    });
+
+    test('Conteúdo limite superior inválido', () => {
+        fieldTest('Teste nome Válido', 'Conteúdo de nota de teste com limite superior inválido &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', true, false);
+    });
+
+    //################################ BOTAO SALVAR ################################
+    test('Clicar no botão para salvar Nota com os campos únicos existentes no banco', () => {
+        buttonSaveTest(false);
+    });
+
+    test('Clicar no botão para salvar Nota com os campos únicos não existentes no banco', () => {
+        buttonSaveTest(true);
+    });
+
+    //################################ BOTÃO DE UPLOAD DE ANEXO ################################
+    test('Clicar no botão para fazer upload de anexo e selecionar um arquivo de video', () => {
+        buttonUploadTest(false);
+    });
+
+    test('Clicar no botão para fazer upload de anexo e selecionar um arquivo de aúdio', () => {
+        buttonUploadTest(true);
+    });
+
+    test('Clicar no botão para fazer upload de anexo e selecionar um arquivo de imagem', () => {
+        buttonUploadTest(true);
+    });
+
+    //################################ BOTAO CANCELAR ################################
+    test('Clicar no botão para cancelar sem campos preenchidos', () => {
+        buttonCancelTest(false);
+    });
+
+    test('Clicar no botão para cancelar com campos preenchidos', () => {
+        buttonCancelTest(true);
+    });
+
+    //################################ BOTAO DELETAR ################################
+    test('Clicar no botão para deletar Nota', () => {
+        buttonDeleteTest(true);
+    });
+
+
+});
