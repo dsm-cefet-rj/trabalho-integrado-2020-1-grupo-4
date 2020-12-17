@@ -1,4 +1,4 @@
-import {React} from 'react';
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import {useSelector} from 'react-redux';
 import { Router } from 'react-router-dom';
@@ -44,7 +44,7 @@ const fieldTest = async (emailParam, senhaParam, isEmailValido, isSenhaValida, m
         
         expect(history.location.pathname).toBe(path);
     }else{
-        expect(container.querySelector("#botao_07")).toHaveAttribute('disabled');
+        expect(submitButton).toHaveAttribute('disabled');
     }
 }
 

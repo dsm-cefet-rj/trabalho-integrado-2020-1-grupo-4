@@ -61,7 +61,7 @@ export function Signup(props) {
     function renderForm() {
         return (
             <form onSubmit={handleSubmit}>
-                <FormGroup id="form_01" controlId="name" bsSize="large">
+                <FormGroup id="name" controlId="form_01" bsSize="large">
                     <ControlLabel>Nome</ControlLabel>
                     <FormControl
                         autoFocus
@@ -70,7 +70,7 @@ export function Signup(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup id="form_02" controlId="email" bsSize="large">
+                <FormGroup id="email" controlId="form_02" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
                     <FormControl
                         autoFocus
@@ -79,7 +79,7 @@ export function Signup(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup id="form_03" controlId="confirmEmail" bsSize="large">
+                <FormGroup id="confirmEmail" controlId="form_03" bsSize="large">
                     <ControlLabel>Email Confirmation</ControlLabel>
                     <FormControl
                         autoFocus
@@ -88,7 +88,7 @@ export function Signup(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup id="form_04" controlId="password" bsSize="large">
+                <FormGroup id="password" controlId="form_04" bsSize="large">
                     <ControlLabel>Password</ControlLabel>
                     <FormControl
                         type="password"
@@ -96,7 +96,7 @@ export function Signup(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup id="form_05" controlId="confirmPassword" bsSize="large">
+                <FormGroup id="confirmPassword" controlId="form_05" bsSize="large">
                     <ControlLabel>Confirm Password</ControlLabel>
                     <FormControl
                         type="password"
