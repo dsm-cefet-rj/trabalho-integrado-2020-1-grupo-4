@@ -5,7 +5,6 @@ import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { MemoryRouter, Route } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
-import {NewNote} from './NewNote';
 
 window.alert = jest.fn();
 
