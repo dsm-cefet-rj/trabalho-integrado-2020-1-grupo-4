@@ -1,0 +1,180 @@
+npx: installed 109 in 13.766s
+Unused dependencies
+* @babel/plugin-syntax-jsx
+* @cypress/instrument-cra
+* @svgr/webpack
+* @testing-library/user-event
+* identity-obj-proxy
+* jest-circus
+* jest-resolve
+* prompts
+* sass-loader
+* yup
+* yup-locale-pt
+Unused devDependencies
+* cucumber
+Missing dependencies
+* history: .\src\containers\Note\Pages\EditDeleteNote.test.js
+* babel-loader: .\config\webpack.config.js
+
+
+npm-check
+
+@babel/core                            😎  PATCH UP  Patch update available. https://babeljs.io/
+                                                    npm install --save @babel/core@7.12.10 to go from 7.12.3 to 7.12.10
+
+@babel/plugin-syntax-jsx               😕  NOTUSED?  Still using @babel/plugin-syntax-jsx?
+                                                    Depcheck did not find code similar to require('@babel/plugin-syntax-jsx') or import from '@babel/plugin-syntax-jsx'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save @babel/plugin-syntax-jsx
+
+@cypress/instrument-cra                😕  NOTUSED?  Still using @cypress/instrument-cra?
+                                                    Depcheck did not find code similar to require('@cypress/instrument-cra') or import from '@cypress/instrument-cra'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save @cypress/instrument-cra
+
+@pmmmwh/react-refresh-webpack-plugin   😎  NEW VER!  NonSemver update available. https://github.com/pmmmwh/react-refresh-webpack-plugin#readme
+                                                    npm install --save @pmmmwh/react-refresh-webpack-plugin@0.4.3 to go from 0.4.2 to 0.4.3
+
+@svgr/webpack                          😎  MINOR UP  Minor update available. https://react-svgr.com
+                                                    npm install --save @svgr/webpack@5.5.0 to go from 5.4.0 to 5.5.0
+                                       😕  NOTUSED?  Still using @svgr/webpack?
+                                                    Depcheck did not find code similar to require('@svgr/webpack') or import from '@svgr/webpack'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save @svgr/webpack
+
+@testing-library/jest-dom              😎  MAJOR UP  Major update available. https://github.com/testing-library/jest-dom#readme
+                                                    npm install --save @testing-library/jest-dom@5.11.6 to go from 4.2.4 to 5.11.6
+
+@testing-library/react                 😎  MAJOR UP  Major update available. https://github.com/testing-library/react-testing-library#readme
+                                                    npm install --save @testing-library/react@11.2.2 to go from 9.5.0 to 11.2.2
+
+@testing-library/user-event            😎  MAJOR UP  Major update available. https://github.com/testing-library/user-event#readme
+                                                    npm install --save @testing-library/user-event@12.6.0 to go from 7.2.1 to 12.6.0
+                                       😕  NOTUSED?  Still using @testing-library/user-event?
+                                                    Depcheck did not find code similar to require('@testing-library/user-event') or import from '@testing-library/user-event'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save @testing-library/user-event
+
+css-loader                             😎  MAJOR UP  Major update available. https://github.com/webpack-contrib/css-loader
+                                                    npm install --save css-loader@5.0.1 to go from 4.3.0 to 5.0.1
+
+eslint                                 😍  UPDATE!   Your local install is out of date. https://eslint.org
+                                                    npm install --save eslint@7.16.0 to go from 7.15.0 to 7.16.0
+
+file-loader                            😎  MINOR UP  Minor update available. https://github.com/webpack-contrib/file-loader
+                                                    npm install --save file-loader@6.2.0 to go from 6.1.1 to 6.2.0
+
+identity-obj-proxy                     😕  NOTUSED?  Still using identity-obj-proxy?
+                                                    Depcheck did not find code similar to require('identity-obj-proxy') or import from 'identity-obj-proxy'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save identity-obj-proxy
+
+jest                                   😎  PATCH UP  Patch update available. https://jestjs.io/
+                                                    npm install --save jest@26.6.3 to go from 26.6.0 to 26.6.3
+
+jest-circus                            😎  PATCH UP  Patch update available. https://github.com/facebook/jest#readme
+                                                    npm install --save jest-circus@26.6.3 to go from 26.6.0 to 26.6.3
+                                       😕  NOTUSED?  Still using jest-circus?
+                                                    Depcheck did not find code similar to require('jest-circus') or import from 'jest-circus'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save jest-circus
+
+jest-resolve                           😎  PATCH UP  Patch update available. https://github.com/facebook/jest#readme
+                                                    npm install --save jest-resolve@26.6.2 to go from 26.6.0 to 26.6.2
+                                       😕  NOTUSED?  Still using jest-resolve?
+                                                    Depcheck did not find code similar to require('jest-resolve') or import from 'jest-resolve'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save jest-resolve
+
+mini-css-extract-plugin                😎  MAJOR UP  Major update available. https://github.com/webpack-contrib/mini-css-extract-plugin
+                                                    npm install --save mini-css-extract-plugin@1.3.3 to go from 0.11.3 to 1.3.3
+
+postcss-flexbugs-fixes                 😎  MAJOR UP  Major update available. https://github.com/luisrudge/postcss-flexbugs-fixes#readme
+                                                    npm install --save postcss-flexbugs-fixes@5.0.2 to go from 4.2.1 to 5.0.2
+
+postcss-loader                         😎  MAJOR UP  Major update available. https://github.com/webpack-contrib/postcss-loader
+                                                    npm install --save postcss-loader@4.1.0 to go from 3.0.0 to 4.1.0
+
+postcss-normalize                      😎  MAJOR UP  Major update available. https://github.com/csstools/postcss-normalize#readme
+                                                    npm install --save postcss-normalize@9.0.0 to go from 8.0.1 to 9.0.0
+
+prompts                                😕  NOTUSED?  Still using prompts?
+                                                    Depcheck did not find code similar to require('prompts') or import from 'prompts'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save prompts
+
+react                                  😎  MAJOR UP  Major update available. https://reactjs.org/
+                                                    npm install --save react@17.0.1 to go from 16.14.0 to 17.0.1
+
+react-bootstrap                        😎  MAJOR UP  Major update available. https://react-bootstrap.github.io/
+                                                    npm install --save react-bootstrap@1.4.0 to go from 0.33.1 to 1.4.0
+
+react-dom                              😎  MAJOR UP  Major update available. https://reactjs.org/
+                                                    npm install --save react-dom@17.0.1 to go from 16.14.0 to 17.0.1
+
+react-refresh                          😎  NEW VER!  NonSemver update available. https://reactjs.org/
+                                                    npm install --save react-refresh@0.9.0 to go from 0.8.3 to 0.9.0
+
+resolve                                😎  MINOR UP  Minor update available. https://github.com/browserify/resolve#readme
+                                                    npm install --save resolve@1.19.0 to go from 1.18.1 to 1.19.0
+
+sass-loader                            😎  MAJOR UP  Major update available. https://github.com/webpack-contrib/sass-loader
+                                                    npm install --save sass-loader@10.1.0 to go from 8.0.2 to 10.1.0
+                                       😕  NOTUSED?  Still using sass-loader?
+                                                    Depcheck did not find code similar to require('sass-loader') or import from 'sass-loader'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save sass-loader
+
+semver                                 😎  PATCH UP  Patch update available. https://github.com/npm/node-semver#readme
+                                                    npm install --save semver@7.3.4 to go from 7.3.2 to 7.3.4
+
+style-loader                           😎  MAJOR UP  Major update available. https://github.com/webpack-contrib/style-loader
+                                                    npm install --save style-loader@2.0.0 to go from 1.3.0 to 2.0.0
+
+terser-webpack-plugin                  😎  MAJOR UP  Major update available. https://github.com/webpack-contrib/terser-webpack-plugin
+                                                    npm install --save terser-webpack-plugin@5.0.3 to go from 4.2.3 to 5.0.3
+
+webpack                                😎  MAJOR UP  Major update available. https://github.com/webpack/webpack
+                                                    npm install --save webpack@5.11.0 to go from 4.44.2 to 5.11.0
+
+webpack-manifest-plugin                😎  MAJOR UP  Major update available. https://github.com/shellscape/webpack-manifest-plugin
+                                                    npm install --save webpack-manifest-plugin@3.0.0 to go from 2.2.0 to 3.0.0
+
+workbox-webpack-plugin                 😎  MAJOR UP  Major update available. https://github.com/GoogleChrome/workbox
+                                                    npm install --save workbox-webpack-plugin@6.0.2 to go from 5.1.4 to 6.0.2
+
+yup                                    😎  NEW VER!  NonSemver update available. https://github.com/jquense/yup
+                                                    npm install --save yup@0.32.8 to go from 0.30.0 to 0.32.8
+                                       😕  NOTUSED?  Still using yup?
+                                                    Depcheck did not find code similar to require('yup') or import from 'yup'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save yup
+
+yup-locale-pt                          😕  NOTUSED?  Still using yup-locale-pt?
+                                                    Depcheck did not find code similar to require('yup-locale-pt') or import from 'yup-locale-pt'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save yup-locale-pt
+
+cucumber                               😕  NOTUSED?  Still using cucumber?
+                                                    Depcheck did not find code similar to require('cucumber') or import from 'cucumber'.
+                                                    Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                    Use --skip-unused to skip this check.
+                                                    To remove this package: npm uninstall --save-dev cucumber
+
+history                                😟  PKG ERR!  Not in the package.json. Found in: \src\containers\Folder\Pages\DeleteFile.unit.test.js, \src\containers\Folder\Pages\NewFolder.unit.test.js, \src\containers\Folder\Pages\ViewFile.unit.test.js, \src\containers\Folder\Pages\ViewFolder.unit.test.js, \src\containers\Home\Pages\Login\Login.unit.test.js, \src\containers\Home\Pages\Signup\Signup.unit.test.js, \src\containers\Note\Pages\EditDeleteNote.test.js, \src\containers\Note\Pages\NewNote.test.js
+                                       😎  MAJOR UP  Major update available. https://github.com/ReactTraining/history#readme
+                                                    npm install --save history@5.0.0 to go from 4.10.1 to 5.0.0
+
+Use npm-check -u for interactive update.

@@ -25,11 +25,6 @@ app.use(express.json());
 
 app.use(passport.initialize());
 
-app.get("/", function(req, res) {
-    console.log("requisição")
-    res.send("Requisição!")
-});
-
 forOwn(routes, ( value, key ) => { app.use(`/api/${key}`, value) });
 
 

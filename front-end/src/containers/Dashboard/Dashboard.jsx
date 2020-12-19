@@ -64,9 +64,6 @@ export function Dashboard(props) {
         );
     }
 
-
-
-
     return(
         <>
         <LogOutButton props={userProps} />

@@ -9,16 +9,15 @@ var authenticate = require("../authenticate");
 router.use(bodyParser.json());
 
 router.post("/signup", ( req, res, next ) => {
-    User.register(new User({ username: req.body.username }), req.body.password,
+    User.register(new User({ username: req.body.username, nome: req.body.nome }), req.body.password,
     ( err, user ) => {
         if (err) {
             res.statusCode = 500;
             res.setHeader("Content-Type", "application/json");
             res.json( { err: err } );
         } else {
+            res.statusCode = 201;
             passport.authenticate("local")( req, res, () => {
-                //Talvez nao necessario a linha 20 (TESTAR)
-                res.statusCode = 200;
                 res.setHeader("Content-Type", "application/json");
                 res.json( { success: true, status: "Registration Succesful!" } );
             });
@@ -26,10 +25,9 @@ router.post("/signup", ( req, res, next ) => {
     });
 });
 
+//Reavaliar questao de login try catch de authenticate
 router.post("/login", passport.authenticate("local"), ( req, res ) => {
     var token = authenticate.getToken( { _id: req.user._id } );
-    //Talvez nao necessario a linha 32 (TESTAR)
-    res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");
     res.json( { success: true, token: token, status: "You are Logged in."  } )
 });

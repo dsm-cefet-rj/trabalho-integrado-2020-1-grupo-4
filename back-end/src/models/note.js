@@ -11,6 +11,10 @@ var Note = mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "attach"
     },
+    owner_id : {
+        type: mongoose.Types.ObjectId,
+        ref: owneID,
+    },
 });
 
 Note.plugin(normalize);
