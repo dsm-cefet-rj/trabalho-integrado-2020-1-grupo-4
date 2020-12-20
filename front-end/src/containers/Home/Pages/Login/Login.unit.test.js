@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitForElement } from '@testing-library/react';
 import {useSelector} from 'react-redux';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
@@ -30,8 +30,8 @@ const fieldTest = async (emailParam, senhaParam, isEmailValido, isSenhaValida, m
     const history = historyParam ? historyParam : createMemoryHistory();
     const { container } = containerParam ? containerParam : render(<Router history={history}><Login/></Router>);
 
-    const email = container.querySelector("#form_06");
-    const senha = container.querySelector("#form_07");
+    const email = container.querySelector('[name="form_06"]');
+    const senha = container.querySelector('[name="form_07"]');
     const submitButton = container.querySelector("#botao_07");
     
     fireEvent.input(email, {target: {value: emailParam}});
@@ -41,10 +41,9 @@ const fieldTest = async (emailParam, senhaParam, isEmailValido, isSenhaValida, m
         await act(async () => {
             fireEvent.submit(submitButton);
         });
-        
-        expect(history.location.pathname).toBe(path);
+        await waitForElement(() => expect(history.location.pathname).toBe(path))
     }else{
-        expect(submitButton).toHaveAttribute('disabled');
+        await waitForElement(() => expect(submitButton).toHaveAttribute('disabled'))
     }
 }
 
@@ -52,15 +51,15 @@ const buttonTest = async (isFormValido,  containerParam = null, historyParam = n
     const history = historyParam ? historyParam : createMemoryHistory();
     const { container } = containerParam ? containerParam : render(<Router history={history}><Login/></Router>);
 
-    const email = container.querySelector("#form_06");
-    const senha = container.querySelector("#form_07");
+    const email = container.querySelector('[name="form_06"]');
+    const senha = container.querySelector('[name="form_07"]');
 
     const submitButton = container.querySelector("#botao_07");
     if(isFormValido){
         fireEvent.input(email, {target: {value: 'emailParam'}});
         fireEvent.input(senha, {target: {value: 'senhaParam'}});
 
-        expect(container.querySelector("#botao_07").getAttribute("disabled")).toBe("");
+        expect(container.querySelector("#botao_07").getAttribute("disabled")).toBe(null);
     }else{
         expect(container.querySelector("#botao_07")).toHaveAttribute('disabled');
     }
