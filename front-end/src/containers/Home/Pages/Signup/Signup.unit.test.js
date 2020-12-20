@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitForElement } from '@testing-library/react';
 import {useSelector} from 'react-redux';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
@@ -32,11 +32,11 @@ const fieldTest = async (nomeParam, emailParam, confirmEmailParam, senhaParam, c
     const history = historyParam ? historyParam : createMemoryHistory();
     const { container } = containerParam ? containerParam : render(<Router history={history}><Signup/></Router>);
 
-    const nome = container.querySelector("#form_01");
-    const email = container.querySelector("#form_02");
-    const confirmEmail = container.querySelector("#form_03");
-    const senha = container.querySelector("#form_04");
-    const confirmSenha = container.querySelector("#form_05");
+    const nome = container.querySelector('[name="form_01"]');
+    const email = container.querySelector('[name="form_02"]');
+    const confirmEmail = container.querySelector('[name="form_03"]');
+    const senha = container.querySelector('[name="form_04"]');
+    const confirmSenha = container.querySelector('[name="form_05"]');
     const submitButton = container.querySelector("#botao_04");
     
     fireEvent.input(nome, {target: {value: nomeParam}});
@@ -52,10 +52,36 @@ const fieldTest = async (nomeParam, emailParam, confirmEmailParam, senhaParam, c
             fireEvent.submit(submitButton);
         });
         
+        expect(submitButton.getAttribute("disabled")).toBe("");
         expect(history.location.pathname).toBe(path);
     }else{
         expect(submitButton).toHaveAttribute('disabled');
     }
+}
+
+const buttonTest = async (isFormValido,  containerParam = null, historyParam = null) => {
+    const history = historyParam ? historyParam : createMemoryHistory();
+    const { container } = containerParam ? containerParam : render(<Router history={history}><Signup/></Router>);
+
+    const nome = container.querySelector('[name="form_01"]');
+    const email = container.querySelector('[name="form_02"]');
+    const confirmEmail = container.querySelector('[name="form_03"]');
+    const senha = container.querySelector('[name="form_04"]');
+    const confirmSenha = container.querySelector('[name="form_05"]');
+    const submitButton = container.querySelector("#botao_04");
+    
+    if(isFormValido){
+        fireEvent.input(nome, {target: {value: 'Teste Grupo'}});
+        fireEvent.input(email, {target: {value: 'teste@gmail.com'}});
+        fireEvent.input(confirmEmail, {target: {value: 'teste@gmail.com'}});
+        fireEvent.input(senha, {target: {value: 'Teste123'}});
+        fireEvent.input(confirmSenha, {target: {value: 'Teste123'}});
+
+        expect(submitButton.getAttribute("disabled")).toBe(null);
+    }else{
+        expect(submitButton).toHaveAttribute('disabled');
+    }
+
 }
 
 
@@ -219,8 +245,12 @@ describe("Singup unit", () => {
 
     //####### BOTAO CADASTRAR ################################
 
-    test('Clicar no botão cadastrar sem campos preenchidos', () => {throw 'Not implemented yet'});
+    test('Clicar no botão cadastrar sem campos preenchidos',  async () => {
+        buttonTest(false);
+    });
 
-    test('Clicar no botão cadastrar com os campos preenchidos', () => {throw 'Not implemented yet'});
+    test('Clicar no botão cadastrar com os campos preenchidos',  async () => {
+        buttonTest(true);
+    });
 
 });
