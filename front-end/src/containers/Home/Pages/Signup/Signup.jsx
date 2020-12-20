@@ -61,44 +61,49 @@ export function Signup(props) {
     function renderForm() {
         return (
             <form onSubmit={handleSubmit}>
-                <FormGroup id="name" controlId="form_01" bsSize="large">
+                <FormGroup controlId="name" bsSize="large">
                     <ControlLabel>Nome</ControlLabel>
                     <FormControl
+                        name="form_01"
                         autoFocus
                         type="name"
                         value={fields.name}
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup id="email" controlId="form_02" bsSize="large">
+                <FormGroup controlId="email" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
                     <FormControl
+                        name="form_02"
                         autoFocus
                         type="email"
                         value={fields.email}
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup id="confirmEmail" controlId="form_03" bsSize="large">
+                <FormGroup controlId="confirmEmail" bsSize="large">
                     <ControlLabel>Email Confirmation</ControlLabel>
                     <FormControl
+                        name="form_03"
                         autoFocus
                         type="email"
                         value={fields.confirmEmail}
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup id="password" controlId="form_04" bsSize="large">
+                <FormGroup controlId="password"  bsSize="large">
                     <ControlLabel>Password</ControlLabel>
                     <FormControl
+                        name="form_04"
                         type="password"
                         value={fields.password}
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup id="confirmPassword" controlId="form_05" bsSize="large">
+                <FormGroup controlId="confirmPassword" bsSize="large">
                     <ControlLabel>Confirm Password</ControlLabel>
                     <FormControl
+                        name="form_05"
                         type="password"
                         onChange={handleFieldChange}
                         value={fields.confirmPassword}

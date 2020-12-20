@@ -40,18 +40,20 @@ export function Login(props) {
     return (
         <div className="Login">
             <form onSubmit={handleSubmit}>
-                <FormGroup name="form_06" controlId="email" bsSize="large">
+                <FormGroup  controlId="email" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
                     <FormControl
+                        name="form_06"
                         autoFocus
                         type="email"
                         value={fields.email}
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
-                <FormGroup name="form_07" controlId="password" bsSize="large">
+                <FormGroup controlId="password" bsSize="large">
                     <ControlLabel>Password</ControlLabel>
                     <FormControl
+                        name="form_07"
                         type="password"
                         value={fields.password}
                         onChange={handleFieldChange}
