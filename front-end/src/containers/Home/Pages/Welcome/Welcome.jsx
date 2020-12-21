@@ -7,7 +7,7 @@ export const Welcome = (props) => {
     return(
         <>
             <div className="description" id="home-description">
-                <h5>An app to help you organize your notes!</h5>
+                <h5>Uma aplicação para te ajudar a organizar suas anotações!</h5>
             </div>
 
             <div className="actions" id="home-actions">

@@ -13,7 +13,6 @@ import { Switch } from "react-router-dom";
 import AuthenticatedRoute from "../../components/AuthenticatedRoute/AuthenticatedRoute.js";
 
 import LogOutButton from "../../components/LogOutButton/LogOutButton.jsx";
-import GoBackButton from "../../components/GoBackButton/GoBackButton.jsx";
 
 export function Dashboard(props) {   
     const dispatch = useDispatch()
@@ -69,7 +68,7 @@ export function Dashboard(props) {
 
                 <ul className="separator">
                     <li>Nova Nota
-                        <a href="#">
+                        <a href="/note">
                             <i className="fas fa-plus fa-lg fa-border fa-pull-right"></i>
                         </a></li>
                     <li>Nova Pasta
@@ -100,5 +99,4 @@ export function Dashboard(props) {
         </div>
         </>
     );
-
 }

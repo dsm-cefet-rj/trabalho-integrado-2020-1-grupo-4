@@ -11,7 +11,7 @@ import { Dashboard } from './containers/Dashboard';
 //import { Folder } from './containers/Folder';
 //import { Form } from './containers/Form';
 import { Home } from './containers/Home';
-//import { Note } from './containers/Note';
+import { Note } from './containers/Note';
 import { NotFound } from './containers/NotFound';
 
 export default function Routes(appProps){
@@ -48,11 +48,11 @@ export default function Routes(appProps){
                     /> */}
 
 
-                    {/* <AuthenticatedRoute
+                    <AuthenticatedRoute
                         path="/note" exact
                         component={Note}
                         appProps={appProps}
-                    /> */}
+                    />
 
                     <Route component={NotFound} />
                 </Switch>

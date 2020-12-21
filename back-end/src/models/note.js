@@ -1,10 +1,14 @@
 var mongoose = require("mongoose");
-var passportLocalMongose = require("passport-local-mongoose");
 const normalize = require('normalize-mongoose');
 
-
 var Note = mongoose.Schema({
+    noteName: {
+        type: String,
+    },
     contents: {
+        type: String,
+    },
+    attachments_name: {
         type: String,
     },
     attachments: {
