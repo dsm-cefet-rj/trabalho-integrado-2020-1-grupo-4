@@ -11,28 +11,29 @@ const INITIAL_STATE = {
 };
 
 
-export const notesReducer = (state = INITIAL_STATE, action) => {
+export const notesReducer = ( action, state = INITIAL_STATE) => {
+  if(action){
+    switch (action.type) {
 
-  switch (action.type) {
-
-    case NOTES_REDUCER_SET_NOTES:
-      return {
-        ...state, notes: normalizeNotes(action.payload),
-      };
-
-    case NOTES_REDUCER_SET_NOTES_WITH_S3:
-      return {
-        ...state, notes: action.payload.map(normalizeNoteWithS3),
-      };
-
-    case NOTES_REDUCER_SET_NOTE_WITH_S3:
-      return {
-        ...state, note: normalizeNoteWithS3(action.payload),
-      };
-
-    default: return state;
-
+      case NOTES_REDUCER_SET_NOTES:
+        return {
+          ...state, notes: normalizeNotes(action.payload),
+        };
+  
+      case NOTES_REDUCER_SET_NOTES_WITH_S3:
+        return {
+          ...state, notes: action.payload.map(normalizeNoteWithS3),
+        };
+  
+      case NOTES_REDUCER_SET_NOTE_WITH_S3:
+        return {
+          ...state, note: normalizeNoteWithS3(action.payload),
+        };
+  
+      default: return state;
+    }
   }
 
+  return state;
 };
 

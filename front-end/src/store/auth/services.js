@@ -17,9 +17,10 @@ export const createUserService = async(dispatch, user) => {
         (response) => {
             dispatch({
                 type: AUTH_REDUCER_SET_USER,
-                payload: {user: response.data},
+                payload: {user: {token: response.data.token, _id: response.data._id}},
             });
-            localStorage.setItem('user', response.data.token);
+            localStorage.setItem('userToken', response.data.token);
+            localStorage.setItem('userID', response.data._id)
             
             return Promise.resolve(response.data);
         },
@@ -43,9 +44,10 @@ export const loginUserService = async(dispatch, {email, password}) => {
         (response) => {
             dispatch({
             type: AUTH_REDUCER_SET_USER,
-            payload: { user: response.data},
+            payload: { user: {token: response.data.token, _id: response.data._id}},
             })
-            localStorage.setItem('user', response.data.token);
+            localStorage.setItem('userToken', response.data.token);
+            localStorage.setItem('userID', response.data._id)
 
         return Promise.resolve(response.data.token);
         },

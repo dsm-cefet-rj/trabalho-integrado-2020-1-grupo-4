@@ -12,7 +12,6 @@ export const authReducer = (action, state = INITIAL_STATE) => {
   if (action) {
     switch (action.type) {
       case AUTH_REDUCER_SET_USER:
-      console.log(action.payload)  
       return {
           ...state, 
           user: normalizeAuthUser(action.payload),
@@ -23,9 +22,7 @@ export const authReducer = (action, state = INITIAL_STATE) => {
           ...state, 
           user: null
         }
-  
       default: return state;
-  
     }
   }
   return state;
