@@ -11,8 +11,7 @@ var Folder = mongoose.Schema({
         maxLenght: 32,
     },
     attachments: {
-        type: mongoose.Types.ObjectId,
-        ref: "attach"
+        type: String,
     },
 });
 
