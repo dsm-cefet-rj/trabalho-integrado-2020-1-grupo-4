@@ -12,7 +12,7 @@ var Note = mongoose.Schema({
     },
     owner_id : {
         type: mongoose.Types.ObjectId,
-        ref: "ownerID",
+        ref: "User",
     },
 });
 

@@ -12,17 +12,17 @@ export const authReducer = (action, state = INITIAL_STATE) => {
   if (action) {
     switch (action.type) {
       case AUTH_REDUCER_SET_USER:
-        return {
-          ...state, user: normalizeAuthUser(action.payload),
+      return {
+          ...state, 
+          user: normalizeAuthUser(action.payload),
         };
       case AUTH_REDUCER_LOGOUT:
         localStorage.removeItem('user')
         return {
-          ...state, user: null
+          ...state, 
+          user: null
         }
-  
       default: return state;
-  
     }
   }
   return state;

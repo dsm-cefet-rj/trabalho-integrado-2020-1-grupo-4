@@ -6,8 +6,7 @@ import UnauthenticatedRoute from "../../components/UnauthenticatedRoute/Unauthen
 import "./Home.css";
 import GoBackButton from "../../components/GoBackButton/GoBackButton.jsx";
 
-export function Home(props) {   
-    console.log(props);
+export function Home(props) {
     return (
         <>
             <GoBackButton props={props}/>

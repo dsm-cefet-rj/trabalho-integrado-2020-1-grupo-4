@@ -15,17 +15,13 @@ import AuthenticatedRoute from "../../components/AuthenticatedRoute/Authenticate
 import LogOutButton from "../../components/LogOutButton/LogOutButton.jsx";
 import GoBackButton from "../../components/GoBackButton/GoBackButton.jsx";
 
-export function Dashboard(props) {
-
-    const userProps = {
-        isAuthenticated: props.isAuthenticated, 
-        userHasAuthenticated: props.userHasAuthenticated
-    }
-
+export function Dashboard(props) {   
     const dispatch = useDispatch()
     const user = useSelector(AuthUserSelector)
     const notes = useSelector(NotesSelector);
     const [isLoading, setIsLoading] = useState(true);
+
+
 
     useEffect(() => {
         async function onLoad() {
