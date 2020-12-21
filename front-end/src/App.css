@@ -4,14 +4,75 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 20px;
   font-family: "Roboto", sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(aquamarine,white) ;
+
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", sans-serif;
+  color: black;
 }
+.botoes{
+  padding: 10px;
+  margin-top: 25px;
+}
+
+.botoes h1{
+
+  color: aqua;
+  text-align: center;
+  margin-top: 40px;
+  border-radius: 20px;
+  border-color: black;
+  background-color: white;
+  margin: 10px;
+}
+
+.botoes h6{
+
+  color: black;
+  text-align: center;
+  margin-bottom: 25px;
+}
+.botoes i{
+
+  color:black;
+  border-radius: 9px;
+  border-color: black;
+  background-color: white;
+}
+
+
+
+
+.notes h3{
+  color: aqua;
+  text-align: center;
+  border-radius: 9px;
+  border-color: black;
+  background-color: white;
+  margin: 10px;
+
+}
+
+ul.separator {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+ul.separator li {
+  padding: .5em 0;
+  border-bottom: 1px solid #CCC;
+}
+
+ul.separator li:last-child {
+  border-bottom: 0;
+}
+

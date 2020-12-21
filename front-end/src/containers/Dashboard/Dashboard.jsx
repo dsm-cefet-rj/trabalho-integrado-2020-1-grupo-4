@@ -67,10 +67,37 @@ export function Dashboard(props) {
     return(
         <>
         <LogOutButton props={props} />
-        <h1>Your Archiver</h1>
+            <div className="botoes">
+                <h1>Dashboard</h1>
+                <h6>Adicione novos arquivos</h6>
 
-        <div className="notes">
-            <PageHeader>Your Notes</PageHeader>
+                <ul className="separator">
+                    <li>Nova Nota
+                        <a href="#">
+                            <i className="fas fa-plus fa-lg fa-border fa-pull-right"></i>
+                        </a></li>
+                    <li>Nova Pasta
+                        <a href="#">
+                            <i className="fas fa-plus fa-lg fa-border fa-pull-right"></i>
+                        </a></li>
+                    <li>Novo Form
+                        <a href="#">
+                            <i className="fas fa-plus fa-lg fa-border fa-pull-right"></i>
+                        </a></li>
+
+                </ul>
+
+
+
+            </div>
+
+      <div className="notes">
+          <h3>Arquivos</h3>
+            <p >Nova Pasta</p>
+            <p >Nova Pasta</p>
+            <p >Nova Pasta</p>
+            <p >Nova Pasta</p>
+            <p >Nova Pasta</p>
                 <ListGroup>
                     {!isLoading && renderNotesList(notes)}
                 </ListGroup>
