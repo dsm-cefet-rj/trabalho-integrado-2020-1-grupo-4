@@ -1,6 +1,4 @@
-import { v4 as uuid } from 'uuid'
-import {hashSync, compareSync} from 'bcryptjs'
-import { AUTH_REDUCER_LOGOUT, AUTH_REDUCER_SET_USER } from "./reducer";
+import { AUTH_REDUCER_SET_USER } from "./reducer";
 import { api } from "../../api";
 
 export const getCurrentUserService = async (dispatch) => {
@@ -13,7 +11,7 @@ export const getCurrentUserService = async (dispatch) => {
 }
 
 export const createUserService = async(dispatch, user) => {
-    await api
+    return await api
     .post('/api/user/signup', user)
     .then(
         (response) => {
@@ -21,6 +19,7 @@ export const createUserService = async(dispatch, user) => {
                 type: AUTH_REDUCER_SET_USER,
                 payload: {user: response.data},
             });
+            localStorage.setItem('user', response.data.token);
             
             return Promise.resolve(response.data);
         },
@@ -32,21 +31,21 @@ export const createUserService = async(dispatch, user) => {
             error.message ||
             error.toString();
 
-            return Promise.reject(error);
+            return Promise.reject(message);
         }
     );
 }
 
-
 export const loginUserService = async(dispatch, {email, password}) => {
-    await api.post('/api/user/login', {username: email, password})
+    return await api
+    .post('/api/user/login', {username: email, password})
     .then(
         (response) => {
-            console.log(response.data)
             dispatch({
             type: AUTH_REDUCER_SET_USER,
             payload: { user: response.data},
             })
+            localStorage.setItem('user', response.data.token);
 
         return Promise.resolve(response.data.token);
         },
@@ -58,7 +57,7 @@ export const loginUserService = async(dispatch, {email, password}) => {
             error.message ||
             error.toString();
 
-        return Promise.reject(error);
+        return Promise.reject(message);
         }
     );
 }

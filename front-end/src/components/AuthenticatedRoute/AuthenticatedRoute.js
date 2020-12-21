@@ -6,7 +6,7 @@ export default function AuthenticatedRoute({ component: C, appProps, ...rest }) 
         <Route
             {...rest}
             render={props =>
-                localStorage.getItem('user')
+                localStorage.getItem('user') !== null || localStorage.getItem('user') !== undefined
                     ? <C {...props} {...appProps} />
                     : <Redirect
                         to={'/home'}

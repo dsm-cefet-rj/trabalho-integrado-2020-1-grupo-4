@@ -16,16 +16,14 @@ import LogOutButton from "../../components/LogOutButton/LogOutButton.jsx";
 import GoBackButton from "../../components/GoBackButton/GoBackButton.jsx";
 
 export function Dashboard(props) {
-
-    const userProps = {
-        isAuthenticated: props.isAuthenticated, 
-        userHasAuthenticated: props.userHasAuthenticated
-    }
-
+    console.log(localStorage)
+    
     const dispatch = useDispatch()
     const user = useSelector(AuthUserSelector)
     const notes = useSelector(NotesSelector);
     const [isLoading, setIsLoading] = useState(true);
+
+
 
     useEffect(() => {
         async function onLoad() {

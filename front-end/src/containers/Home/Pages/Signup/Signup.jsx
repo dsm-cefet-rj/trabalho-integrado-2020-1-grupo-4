@@ -43,8 +43,7 @@ export function Signup(props) {
                 username: fields.email,
                 password: fields.password
             };
-            const user = await createUserService(dispatch, newUser)
-            localStorage.setItem('user', JSON.stringify(user));
+            createUserService(dispatch, newUser)
             setIsLoading(false);
             props.history.push('/dashboard')
         } catch (e) {
