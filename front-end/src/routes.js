@@ -24,10 +24,9 @@ export default function Routes(appProps){
                         <Redirect to='/home' />
                     </Route>
 
-                    <AppliedRoute
+                    <Route
                         path='/home'
                         component={Home}
-                        appProps={appProps}
                     />
 
                     <AuthenticatedRoute

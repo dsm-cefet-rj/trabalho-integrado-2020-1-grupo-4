@@ -13,27 +13,52 @@ export const getCurrentUserService = async (dispatch) => {
 }
 
 export const createUserService = async(dispatch, user) => {
-  const user_data = {
-    ...user,
-    password: hashSync(user.password, process.env.SALT || 10),
-    id:  uuid()
-  }
+    await api
+    .post('/api/user/signup', user)
+    .then(
+        (response) => {
+            dispatch({
+                type: AUTH_REDUCER_SET_USER,
+                payload: {user: response.data},
+            });
+            
+            return Promise.resolve(response.data);
+        },
+        (error) => {
+            const message = 
+            (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+            error.message ||
+            error.toString();
 
-  await api.post('users', user_data)
-  dispatch({type: AUTH_REDUCER_SET_USER, payload: user_data})
-
-  return user_data
+            return Promise.reject(error);
+        }
+    );
 }
 
 
 export const loginUserService = async(dispatch, {email, password}) => {
-  const {data: [user]} = await api.get('users', {params: {email}})
-  if(user) {
-    if(compareSync(password, user.password)) {
-      dispatch({type: AUTH_REDUCER_SET_USER, payload: user})
-      return user
-    }
-  }
-  dispatch({type: AUTH_REDUCER_LOGOUT})
-  throw new Error('Invalid auth data provided')
+    await api.post('/api/user/login', {username: email, password})
+    .then(
+        (response) => {
+            console.log(response.data)
+            dispatch({
+            type: AUTH_REDUCER_SET_USER,
+            payload: { user: response.data},
+            })
+
+        return Promise.resolve(response.data.token);
+        },
+        (error) => {
+            const message = 
+            (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+        return Promise.reject(error);
+        }
+    );
 }

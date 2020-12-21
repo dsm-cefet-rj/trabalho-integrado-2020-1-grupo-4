@@ -1,8 +1,5 @@
 const INITIAL_STATE = {
-    id: "",
-    name:"",
-    email: "",
-    password: ""
+    user:"",
 }
 
 export default function user(action, state = INITIAL_STATE) {
@@ -12,10 +9,7 @@ export default function user(action, state = INITIAL_STATE) {
         case 'CHANGE_PASSWORD':    
             return {
                 ...state,
-                id: action.payload.id,
-                name: action.payload.name,
-                email: action.payload.email,
-                password: action.payload.password
+                user: action.payload.data,
             }
 
         default: 

@@ -8,12 +8,11 @@ var Note = mongoose.Schema({
         type: String,
     },
     attachments: {
-        type: mongoose.Types.ObjectId,
-        ref: "attach"
+        type: String,
     },
     owner_id : {
         type: mongoose.Types.ObjectId,
-        ref: owneID,
+        ref: "ownerID",
     },
 });
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { ControlLabel, FormControl, FormGroup, Button } from "react-bootstrap";
 // import { Alert } from '@components/Alert.jsx';
-import { alertService } from '../../../../services/alert.service.js';
+//import { alertService } from '../../../../services/alert.service.js';
 
 
 import LoaderButton from "../../../../components/LoaderButton/LoaderButton.jsx";
@@ -39,25 +39,20 @@ export function Signup(props) {
         setIsLoading(true);
         try {
             const newUser = {
-                email: fields.email,
+                name: fields.name,
+                username: fields.email,
                 password: fields.password
             };
-            const {id: user_id} = await createUserService(dispatch, newUser)
-            localStorage.setItem('user_id', user_id)
+            const user = await createUserService(dispatch, newUser)
+            localStorage.setItem('user', JSON.stringify(user));
             setIsLoading(false);
-            props.userHasAuthenticated(true)
-            props.history.push('/')
+            props.history.push('/dashboard')
         } catch (e) {
             alert(e);
             setIsLoading(false);
         }
     }
-
-    const [options, setOptions] = useState({
-        autoClose: false,
-        keepAfterRouteChange: true
-    });
-
+    
     function renderForm() {
         return (
             <form onSubmit={handleSubmit}>
@@ -117,7 +112,6 @@ export function Signup(props) {
                     bsSize="large"
                     isLoading={isLoading}
                     disabled={!validateForm()}
-                    onClick={() => alertService.success('Success!!', options)}
                 >
                     Signup
                 </LoaderButton>

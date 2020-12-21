@@ -66,7 +66,7 @@ export function Dashboard(props) {
 
     return(
         <>
-        <LogOutButton props={userProps} />
+        <LogOutButton props={props} />
         <h1>Your Archiver</h1>
 
         <div className="notes">

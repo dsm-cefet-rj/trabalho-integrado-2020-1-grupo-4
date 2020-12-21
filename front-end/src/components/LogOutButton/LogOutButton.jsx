@@ -4,12 +4,13 @@ import { AUTH_REDUCER_LOGOUT } from "../../store/auth/reducer";
 
 import './LogOutButton.css'
 
-export default function LogOutButton ({ props }) {
-    
+export default function LogOutButton ({props}) {
+    console.log(props);
     const dispatch = useDispatch()
     async function handleLogout() {
         dispatch({type: AUTH_REDUCER_LOGOUT})
-        props.userHasAuthenticated(false);
+        localStorage.removeItem('user')
+        props.history.push('/')
     }
 
     return(

@@ -29,8 +29,8 @@ export function Login(props) {
 
         try {
             const user = await loginUserService(dispatch, fields);
-            localStorage.setItem('user_id', user.id)
-            props.userHasAuthenticated(true);
+            localStorage.setItem('user', JSON.stringify(user));
+            props.history.push('/dashboard');
         } catch (e) {
             alert(e.message);
             setIsLoading(false);

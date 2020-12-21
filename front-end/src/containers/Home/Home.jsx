@@ -6,13 +6,8 @@ import UnauthenticatedRoute from "../../components/UnauthenticatedRoute/Unauthen
 import "./Home.css";
 import GoBackButton from "../../components/GoBackButton/GoBackButton.jsx";
 
-export function Home(props) {
-    
-    const userProps = {
-        isAuthenticated: props.isAuthenticated, 
-        userHasAuthenticated: props.userHasAuthenticated
-    }
-    
+export function Home(props) {   
+    console.log(props);
     return (
         <>
             <GoBackButton props={props}/>
@@ -22,9 +17,9 @@ export function Home(props) {
                 </div>
 
                 <Switch>
-                    <UnauthenticatedRoute path="/home" exact component={Welcome} appProps={userProps} />
-                    <UnauthenticatedRoute path="/home/login" exact component={Login} appProps={userProps} />
-                    <UnauthenticatedRoute path="/home/signup" exact component={Signup} appProps={userProps} />
+                    <UnauthenticatedRoute path="/home" exact component={Welcome} />
+                    <UnauthenticatedRoute path="/home/login" exact component={Login} />
+                    <UnauthenticatedRoute path="/home/signup" exact component={Signup} />
                 </Switch>
             </div>
         </>
