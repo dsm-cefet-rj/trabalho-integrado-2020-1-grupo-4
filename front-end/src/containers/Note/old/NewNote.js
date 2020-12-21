@@ -79,6 +79,7 @@ export default function NewNote(props) {
                     bsStyle="primary"
                     isLoading={isLoading}
                     disabled={!validateForm()}
+                    data-testid="testaCreate"
                 >
                     Create
                 </LoaderButton>

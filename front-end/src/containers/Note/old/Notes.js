@@ -145,6 +145,7 @@ export default function Notes(props) {
                         bsStyle="primary"
                         isLoading={isLoading}
                         disabled={!validateForm()}
+                        data-testid="testaSalvar"
                     >
                         Save
                     </LoaderButton>
@@ -154,6 +155,7 @@ export default function Notes(props) {
                         bsStyle="danger"
                         onClick={handleDelete}
                         isLoading={isDeleting}
+                        data-testid="testaDeletar"
                     >
                         Delete
                     </LoaderButton>
