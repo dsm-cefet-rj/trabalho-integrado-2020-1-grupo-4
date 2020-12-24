@@ -52,7 +52,7 @@ const fieldTest = async (nomeParam, emailParam, confirmEmailParam, senhaParam, c
             fireEvent.submit(submitButton);
         });
         
-        expect(submitButton.getAttribute("disabled")).toBe("");
+        expect(submitButton.getAttribute("disabled")).toBe(null);
         expect(history.location.pathname).toBe(path);
     }else{
         expect(submitButton).toHaveAttribute('disabled');
