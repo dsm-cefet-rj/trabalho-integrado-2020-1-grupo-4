@@ -1,13 +1,14 @@
-import { normalizeNotes, normalizeNoteWithS3 } from "./normalizers";
+import { normalizeNotes } from "./normalizers";
 
 export const NOTES_REDUCER_SET_NOTES = 'NOTES_REDUCER_SET_NOTES'
-export const NOTES_REDUCER_SET_NOTES_WITH_S3 = 'NOTES_REDUCER_SET_NOTES_WITH_S3'
-export const NOTES_REDUCER_SET_NOTE_WITH_S3 = 'NOTES_REDUCER_SET_NOTE_WITH_S3'
+export const NOTES_REDUCER_SEND_NOTES = 'NOTES_REDUCER_GET_NOTES'
 
 const INITIAL_STATE = {
-
-  notes: [],
-  note: null
+  noteName: "",
+  contents: "",
+  attachments_name: "",
+  attachment: "",
+  owner_id: "",
 };
 
 
@@ -20,20 +21,14 @@ export const notesReducer = ( action, state = INITIAL_STATE) => {
           ...state, notes: normalizeNotes(action.payload),
         };
   
-      case NOTES_REDUCER_SET_NOTES_WITH_S3:
+      case NOTES_REDUCER_SEND_NOTES:
         return {
-          ...state, notes: action.payload.map(normalizeNoteWithS3),
-        };
-  
-      case NOTES_REDUCER_SET_NOTE_WITH_S3:
-        return {
-          ...state, note: normalizeNoteWithS3(action.payload),
+          ...state, notes:normalizeNotes(action.payload),
         };
   
       default: return state;
     }
   }
-
   return state;
 };
 

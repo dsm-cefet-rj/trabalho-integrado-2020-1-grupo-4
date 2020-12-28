@@ -24,7 +24,7 @@ router.route('/')
     .then((folder) => {
         res.statsCode = 200;
         res.setHeader('Content-Type', 'application/json');
-        res.json(projeto);
+        res.json(folder);
     }, (err) => next(err))
     .catch((err) => next(err));
 })
