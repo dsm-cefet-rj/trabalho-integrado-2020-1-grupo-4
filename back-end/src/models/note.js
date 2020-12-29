@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-const normalize = require('normalize-mongoose');
 
 var Note = mongoose.Schema({
     noteName: {
@@ -19,7 +18,5 @@ var Note = mongoose.Schema({
         ref: "User",
     },
 });
-
-Note.plugin(normalize);
 
 module.exports = mongoose.model("Note", Note);
