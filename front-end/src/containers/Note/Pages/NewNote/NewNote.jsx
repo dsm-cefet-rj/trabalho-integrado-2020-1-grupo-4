@@ -13,23 +13,23 @@ import './NewNote.css'
     //   };
 
 export function NewNote(){
-    const dispatch = useDispatch()
-    const [fields, handleFieldChange] = useFormFields({
-        noteName: "",
-        contents: "",
-        attachments_name: "",
-        attachment: "",
-        owner_id: localStorage.getItem('UserID'), 
-    });
+    // const dispatch = useDispatch()
+    // const [fields, handleFieldChange] = useFormFields({
+    //     noteName: "",
+    //     contents: "",
+    //     attachments_name: "",
+    //     attachment: "",
+    //     owner_id: localStorage.getItem('UserID'), 
+    // });
 
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
-    function validateForm(){
-        return (
-            fields.noteName.lenght > 0 &&
-            fields.contents.lenght > 0 
-        );
-    }
+    // function validateForm(){
+    //     return (
+    //         fields.noteName.lenght > 0 &&
+    //         fields.contents.lenght > 0 
+    //     );
+    // }
     
 
 

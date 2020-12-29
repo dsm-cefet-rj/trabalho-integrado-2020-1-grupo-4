@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
 
 import LoaderButton from "../../../../components/LoaderButton/LoaderButton.jsx";
-import { createUserService } from "../../../../store/auth/services";
+import { createUserService, loginUserService } from "../../../../store/auth/services";
 import { useFormFields } from "../../../../libs/hooksLib";
 
 import "./Signup.css";
@@ -40,7 +40,7 @@ export function Signup(props) {
                 username: fields.email,
                 password: fields.password
             };
-            createUserService(dispatch, newUser)
+            createUserService(dispatch, newUser);
             setIsLoading(false);
             props.history.push('/dashboard')
         } catch (e) {

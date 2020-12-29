@@ -8,7 +8,8 @@ export default function LogOutButton ({props}) {
     const dispatch = useDispatch()
     async function handleLogout() {
         dispatch({type: AUTH_REDUCER_LOGOUT})
-        localStorage.removeItem('user')
+        localStorage.removeItem('userID')
+        localStorage.removeItem('userToken')
         props.history.push('/')
     }
 
