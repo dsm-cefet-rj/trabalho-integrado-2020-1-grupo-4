@@ -71,14 +71,7 @@ export function Dashboard(props) {
                         <a href="/note">
                             <i className="fas fa-plus fa-lg fa-border fa-pull-right"></i>
                         </a></li>
-                    <li>Nova Pasta
-                        <a href="#">
-                            <i className="fas fa-plus fa-lg fa-border fa-pull-right"></i>
-                        </a></li>
-                    <li>Novo Form
-                        <a href="#">
-                            <i className="fas fa-plus fa-lg fa-border fa-pull-right"></i>
-                        </a></li>
+                    <li></li>
 
                 </ul>
 
@@ -87,12 +80,7 @@ export function Dashboard(props) {
             </div>
 
       <div className="notes">
-          <h3>Arquivos</h3>
-            <p >Nova Pasta</p>
-            <p >Nova Pasta</p>
-            <p >Nova Pasta</p>
-            <p >Nova Pasta</p>
-            <p >Nova Pasta</p>
+
                 <ListGroup>
                     {!isLoading && renderNotesList(notes)}
                 </ListGroup>

@@ -10,7 +10,9 @@ body {
   color: #333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(aquamarine,white) ;
+  background-color: #ffaa00 ;
+  background-size: auto;
+
 
 }
 
@@ -25,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .botoes h1{
 
-  color: aqua;
+  color: #ffaa00 ;
   text-align: center;
   margin-top: 40px;
   border-radius: 20px;
@@ -52,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .notes h3{
-  color: aqua;
+  color: #ffaa00;
   text-align: center;
   border-radius: 9px;
   border-color: black;
