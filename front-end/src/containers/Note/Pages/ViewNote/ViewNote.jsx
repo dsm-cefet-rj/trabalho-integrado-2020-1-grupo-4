@@ -19,6 +19,12 @@ export function ViewNote(){
                     <label htmlFor="mensagem">Mensagem</label>
                     <textarea ></textarea>
                 </div>
+
+                <div className="upload-btn-wrapper">
+                    <button className="btn">Upload File</button>
+                    <input type="file" name="myfile"/>
+                </div><br/>
+                
                 <div className='botaosalvarecancelar'>
 
                     <button className="botao submit" type="submit" name="submit">Salvar</button><br/>
