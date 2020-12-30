@@ -16,7 +16,7 @@ export function Note(props) {
         <>
             <GoBackButton props={props}/>
             <Switch>
-                <AuthenticatedRoute path="/note" exact component={NewNote} />
+                <AuthenticatedRoute path="/note" exact component={NewNote} props={props} />
                 <AuthenticatedRoute path="/note/viewnote" exact component={ViewNote} />
                 <AuthenticatedRoute path="/home/editnote" exact component={EditNote} />
             </Switch>

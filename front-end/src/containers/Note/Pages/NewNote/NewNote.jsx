@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useFormFields } from "../../../../libs/hooksLib";
 
 import './NewNote.css'
+import GoBackButton from "../../../../components/GoBackButton/GoBackButton";
     // const INITIAL_STATE = {
     //     noteName: "",
     //     contents: "",
@@ -12,14 +13,15 @@ import './NewNote.css'
     //     owner_id: "",
     //   };
 
-export function NewNote(){
+export function NewNote(props){
+
     // const dispatch = useDispatch()
     // const [fields, handleFieldChange] = useFormFields({
     //     noteName: "",
     //     contents: "",
     //     attachments_name: "",
     //     attachment: "",
-    //     owner_id: localStorage.getItem('UserID'), 
+    //     owner_id: localStorage.getItem('UserID'),
     // });
 
     // const [isLoading, setIsLoading] = useState(false);
@@ -27,17 +29,11 @@ export function NewNote(){
     // function validateForm(){
     //     return (
     //         fields.noteName.lenght > 0 &&
-    //         fields.contents.lenght > 0 
+    //         fields.contents.lenght > 0
     //     );
-    // }
-    
+    // };
 
-
-;    
-    
-    return(
-        <>
-
+return(
     <body>
         <h1>Nova Nota</h1>
             <form action="#" method="post">
@@ -45,15 +41,13 @@ export function NewNote(){
 
                     <fieldset className="grupo">
                         <div className="campo">
-                            <label htmlFor="nome">Nome</label>
+                            <label htmlFor="nome">Nome Nota</label>
                             <input type="text" />
                         </div>
                     </fieldset>
                     <div className="campo">
-                        <label htmlFor="mensagem">Mensagem</label>
+                        <label htmlFor="mensagem">Mensagem da Nota</label>
                         <textarea ></textarea>
-
-
                     </div>
 
                     <div className="upload-btn-wrapper">
@@ -61,22 +55,14 @@ export function NewNote(){
                         <input type="file" name="myfile"/>
                     </div><br/>
 
-
-
                     <div className='botaosalvarecancelar'>
-
-
-                        <button className="botao submit" type="submit" name="submit">Salvar</button><br/>
-
-                        <button className="botao2" type="submit" name="submit">Cancelar</button>
-
+                        <loaderButton className="botao submit"  type="submit" name="submit">Salvar</loaderButton><br/><br/>
+                        <button className="botao2" onClick={()=>props.history.push('/dashboard')} >Cancelar</button>
                     </div>
-                    </fieldset>
+
+              </fieldset>
             </form>
+
 </body>
-
-
-            </>
-    );
-
+);
 }

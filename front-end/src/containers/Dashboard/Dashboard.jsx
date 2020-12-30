@@ -64,7 +64,7 @@ export function Dashboard(props) {
         <LogOutButton props={props} />
             <div className="botoes">
                 <h1>Dashboard</h1>
-                <h6>Adicione novos arquivos</h6>
+                <h6>Adicione novas notas</h6>
 
                 <ul className="separator">
                     <li>Nova Nota

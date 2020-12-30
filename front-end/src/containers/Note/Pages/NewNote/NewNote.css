@@ -72,7 +72,7 @@ fieldset.grupo .campo {
     font-size: 20px;
     background: #0064f6;
     border: 0;
-    margin-bottom: 5px;
+    margin-bottom: 0x;
     color: #FFF;
     padding: 10px;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
@@ -114,8 +114,6 @@ div.botaosalvarecancelar{
 
 
 
-
-
 .upload-btn-wrapper {
     position: relative;
     overflow: hidden;
@@ -138,4 +136,10 @@ div.botaosalvarecancelar{
     left: 0;
     top: 0;
     opacity: 0;
+}
+body h1{
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    color: #ffaa00;
 }
