@@ -25,6 +25,12 @@ const mockAppState = {
     }]    
 }
 
+jest.mock("../../../../store/auth/services", () => ({
+    loginUserService: jest.fn(),
+    createUserService: jest.fn(),
+    getCurrentUserService: jest.fn()
+}));
+
 
 const fieldTest = async (emailParam, senhaParam, isEmailValido, isSenhaValida, msgEsperada = null, path = "/", containerParam = null, historyParam = null) => {
     const history = historyParam ? historyParam : createMemoryHistory();
@@ -76,7 +82,6 @@ describe("Login unit", () => {
     
     afterEach(() => {
         useSelector.mockClear();
-        //addProjetoServer.mockClear();
     });
 
 

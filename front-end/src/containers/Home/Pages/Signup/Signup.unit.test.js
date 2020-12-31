@@ -25,6 +25,12 @@ const mockAppState = {
     }]    
 }
 
+jest.mock("../../../../store/auth/services", () => ({
+    loginUserService: jest.fn(),
+    createUserService: jest.fn(),
+    getCurrentUserService: jest.fn()
+}));
+
 const fieldTest = async (nomeParam, emailParam, confirmEmailParam, senhaParam, confirmSenhaParam, 
                         isNomeValido, isEmailValido, isConfirmEmailValido, isSenhaValida, isConfirmSenhaValida, 
                         msgEsperada = null, path = "/", containerParam = null, historyParam = null) => {
