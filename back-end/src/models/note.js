@@ -17,6 +17,9 @@ var Note = mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "User",
     },
+    create_date : {
+        type: Date,
+    },
 });
 
 module.exports = mongoose.model("Note", Note);

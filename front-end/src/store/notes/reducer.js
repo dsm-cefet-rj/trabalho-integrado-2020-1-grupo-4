@@ -15,17 +15,11 @@ const INITIAL_STATE = {
 export const notesReducer = ( action, state = INITIAL_STATE) => {
   if(action){
     switch (action.type) {
-
       case NOTES_REDUCER_SET_NOTES:
+      case NOTES_REDUCER_SEND_NOTES:
         return {
           ...state, notes: normalizeNotes(action.payload),
         };
-  
-      case NOTES_REDUCER_SEND_NOTES:
-        return {
-          ...state, notes:normalizeNotes(action.payload),
-        };
-  
       default: return state;
     }
   }
