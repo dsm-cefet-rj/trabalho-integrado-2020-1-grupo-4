@@ -8,8 +8,9 @@ router.use(bodyParser.json());
 
 router.route('/')
 .get(authenticate.verifyUser, async (req, res, next) => {
+    const {user} = req
     try{
-        const notesDB = await Note.find({});
+        const notesDB = await Note.find({owner_id: user._id});
         res.statusCode = 200;
         res.setHeader('Content-Type', 'applications/json');
         res.json(notesDB);

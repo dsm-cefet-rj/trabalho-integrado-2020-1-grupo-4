@@ -14,9 +14,11 @@ router.post("/signup", ( req, res, next ) => {
             res.json( { err: err } );
         } else {
             res.statusCode = 201;
-            passport.authenticate("local")( req, res, () => {
+            passport.authenticate("local", {session: false})( req, res, () => {
+                const {_id} = user
+                const token = authenticate.getToken( { _id } );
                 res.setHeader("Content-Type", "application/json");
-                res.json( { success: true, status: "Registration Succesful!" } );
+                res.json( { success: true, status: "Registration Succesful!", token, _id } );
             });
         }
     });

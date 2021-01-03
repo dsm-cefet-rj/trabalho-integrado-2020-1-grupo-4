@@ -1,2 +1,3 @@
-export const NotesSelector = ({notes: {notes}}) => notes
-//export const NoteSelector = ({notes: {note}}) => note
+export const NotesSelector = ({notes}) => notes
+
+export const NoteSelector = (noteID) => ({notes}) => notes.find((note) => noteID === note._id)

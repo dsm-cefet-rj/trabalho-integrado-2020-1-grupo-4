@@ -1,25 +1,17 @@
 import React from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-
-import { Provider } from "react-redux";
-import { store } from "./store";
-
-import AppliedRoute from "./components/AppliedRoute/AppliedRoute.js";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import AuthenticatedRoute from "./components/AuthenticatedRoute/AuthenticatedRoute.js";
 
-import { Dashboard } from './containers/Dashboard';
-//import { Folder } from './containers/Folder';
-//import { Form } from './containers/Form';
-import { Home } from './containers/Home';
-import { Note } from './containers/Note';
-import { NotFound } from './containers/NotFound';
+import {Dashboard} from './containers/Dashboard';
+import {Home} from './containers/Home';
+import {Note} from './containers/Note';
+import {NotFound} from './containers/NotFound';
 
 export default function Routes(appProps){
     return (
-        <Provider store={store}>
             <BrowserRouter>
                 <Switch>
-                    
+
                     <Route exact path='/'>
                         <Redirect to='/home' />
                     </Route>
@@ -54,9 +46,14 @@ export default function Routes(appProps){
                         appProps={appProps}
                     />
 
+                    <AuthenticatedRoute
+                        path="/note/:id" exact
+                        component={Note}
+                        appProps={appProps}
+                    />
+
                     <Route component={NotFound} />
                 </Switch>
             </BrowserRouter>
-        </Provider>
     )
 }

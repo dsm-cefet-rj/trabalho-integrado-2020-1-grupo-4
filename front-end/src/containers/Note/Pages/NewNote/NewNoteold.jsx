@@ -1,12 +1,8 @@
-import React, { useEffect, useRef, UseState} from "react";
-
-import { useDispatch } from "react-redux";
-
-import { useFormFields } from "../../../../libs/hooksLib";
+import React from "react";
 
 import './NewNote.css'
-import GoBackButton from "../../../../components/GoBackButton/GoBackButton";
-    // const INITIAL_STATE = {
+import LoaderButton from "../../../../components/LoaderButton/LoaderButton";
+// const INITIAL_STATE = {
     //     noteName: "",
     //     contents: "",
     //     attachments_name: "",
@@ -56,7 +52,7 @@ return(
                     </div><br/>
 
                     <div className='botaosalvarecancelar'>
-                        <loaderButton className="botao submit"  type="submit" name="submit">Salvar</loaderButton><br/><br/>
+                        <LoaderButton className="botao submit"  type="submit" name="submit">Salvar</LoaderButton><br/><br/>
                         <button className="botao2" onClick={()=>props.history.push('/dashboard')} >Cancelar</button>
                     </div>
 

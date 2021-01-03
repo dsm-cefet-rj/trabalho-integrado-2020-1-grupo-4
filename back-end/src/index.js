@@ -1,5 +1,6 @@
 const cors = require("cors");
 const express = require("express");
+const bodyParser = require('body-parser')
 const mongoose = require("mongoose");
 const passport = require("passport");
 const { forOwn } = require("lodash");
@@ -11,7 +12,7 @@ const routes = require("./routes");
 
 mongoose
 .connect(
-    dbConfig.url, 
+    dbConfig.url,
     {useCreateIndex: true, useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true}
 )
 .then(() => {
@@ -20,7 +21,10 @@ mongoose
 
 const app = express();
 
-app.use(cors({origin: appConfig.corsOrigin}));
+app.use(cors({origin: '*'}));
+app.use(bodyParser.json({limit: '50mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
+
 app.use(express.json());
 
 app.use(passport.initialize());

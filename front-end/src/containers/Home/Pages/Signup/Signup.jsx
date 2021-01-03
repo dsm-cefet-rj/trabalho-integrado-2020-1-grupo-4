@@ -40,7 +40,7 @@ export function Signup(props) {
                 username: fields.email,
                 password: fields.password
             };
-            createUserService(dispatch, newUser);
+            await createUserService(dispatch, newUser);
             setIsLoading(false);
             props.history.push('/dashboard')
         } catch (e) {

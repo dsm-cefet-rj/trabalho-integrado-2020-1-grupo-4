@@ -28,26 +28,22 @@ export const loginUserService = async(dispatch, {email, password}) => {
 }
 
 export const createUserService = async(dispatch, user) => {
-    return await api
-    .post('/api/user/signup', user)
-    .then(
-        (response) => {
-            const login = {
-                'email': user.username,
-                'password': user.password
-            }
-            loginUserService(dispatch, login);
-            return Promise.resolve(response.data);
-        },
-        (error) => {
-            const message = 
+    try{
+        const response = await api.post('/api/user/signup', user)
+        const login = {
+            'email': user.username,
+            'password': user.password
+        }
+
+        await loginUserService(dispatch, login)
+        return Promise.resolve(response.data)
+    }catch (error){
+        const message =
             (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
+                error.response.data &&
+                error.response.data.message) ||
             error.message ||
             error.toString();
-
-            return Promise.reject(message);
-        }
-    );
+        return Promise.reject(message)
+    }
 }

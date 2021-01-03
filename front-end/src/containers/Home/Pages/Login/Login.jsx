@@ -28,7 +28,7 @@ export function Login(props) {
         setIsLoading(true);
 
         try {
-            loginUserService(dispatch, fields);
+            await loginUserService(dispatch, fields);
             props.history.push('/dashboard');
         } catch (e) {
             alert(e.message);

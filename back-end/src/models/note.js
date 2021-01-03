@@ -7,19 +7,13 @@ var Note = mongoose.Schema({
     contents: {
         type: String,
     },
-    attachments_name: {
-        type: String,
-    },
     attachments: {
-        type: String,
+        type: Array,
     },
     owner_id : {
         type: mongoose.Types.ObjectId,
         ref: "User",
     },
-    create_date : {
-        type: Date,
-    },
-});
+}, {timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }});
 
 module.exports = mongoose.model("Note", Note);

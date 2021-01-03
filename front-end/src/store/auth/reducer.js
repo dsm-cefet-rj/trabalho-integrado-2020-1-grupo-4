@@ -8,23 +8,20 @@ const INITIAL_STATE = {
 };
 
 
-export const authReducer = (action, state = INITIAL_STATE) => {
-  if (action) {
-    switch (action.type) {
-      case AUTH_REDUCER_SET_USER:
+export const authReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case AUTH_REDUCER_SET_USER:
+    return {
+        ...state,
+        user: normalizeAuthUser(action.payload),
+      };
+    case AUTH_REDUCER_LOGOUT:
+      localStorage.removeItem('user')
       return {
-          ...state, 
-          user: normalizeAuthUser(action.payload),
-        };
-      case AUTH_REDUCER_LOGOUT:
-        localStorage.removeItem('user')
-        return {
-          ...state, 
-          user: null
-        }
-      default: return state;
-    }
+        ...state,
+        user: null
+      }
+    default: return state;
   }
-  return state;
 };
 

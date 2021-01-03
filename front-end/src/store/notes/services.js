@@ -1,22 +1,27 @@
 import { api } from "../../api";
 import authHeader from '../../helpers/authHeader';
-import { NOTES_REDUCER_SEND_NOTES, NOTES_REDUCER_SET_NOTES } from "./reducer";
+import {
+    NOTES_REDUCER_DELETE_NOTE,
+    NOTES_REDUCER_GET_NOTE,
+    NOTES_REDUCER_SEND_NOTES,
+    NOTES_REDUCER_SET_NOTES
+} from "./reducer";
 
 
 export const getNotesService = async(dispatch) => {
-    return await api
+    return api
   .get('api/note/', authHeader())
   .then(
-    (response) => {
+    ({data: notes}) => {
         dispatch({
             type:NOTES_REDUCER_SET_NOTES,
-            payload: response
+            payload: notes
         })
 
-        return Promise.resolve(response)
+        return Promise.resolve(notes)
     },
     (error) => {
-        const message = 
+        const message =
         (error.response &&
         error.response.data &&
         error.response.data.message) ||
@@ -31,24 +36,46 @@ export const getNotesService = async(dispatch) => {
 }
 
 export const getNoteService = async(dispatch, noteID) => {
+    try{
+        const {data: note} = await api
+            .get(`api/note/${noteID}`, authHeader())
+    dispatch({
+        type: NOTES_REDUCER_GET_NOTE,
+        payload: [note]
+    })}
+    catch(error){
+        const message =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString();
 
+        return Promise.reject(message);
+    }
 }
 
-export const sendNoteService = async(dispatch, note) => {
-    console.log('oi')
-    return await api
-    .post('api/note/', note, authHeader())
+export const sendNoteService = async(dispatch, note, id) => {
+    let method = 'post'
+    let url = `api/note`
+    if (id){
+        method = 'put'
+        url = `${url}/${id}`
+    }
+
+    return await api[method]
+    (url, note, authHeader())
     .then(
-    (response) => {
+    ({data:note}) => {
         dispatch({
             type:NOTES_REDUCER_SEND_NOTES,
-            payload: response
+            payload: [note]
         })
-        
-        return Promise.resolve(response)
+
+        return Promise.resolve(note)
     },
     (error) => {
-        const message = 
+        const message =
         (error.response &&
         error.response.data &&
         error.response.data.message) ||
@@ -59,6 +86,25 @@ export const sendNoteService = async(dispatch, note) => {
     },
 
   );
+}
+
+export const deleteNoteService = async (dispatch, note) => {
+    try{
+        await api.delete(`api/note/${note._id}`, authHeader())
+        dispatch({
+            type: NOTES_REDUCER_DELETE_NOTE,
+            payload: note
+        })}
+    catch(error){
+        const message =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+        return Promise.reject(message);
+    }
 }
 //AINDA PRO BACK-MOCKADO
 // export const getNotesService = async (dispatch, user_id) => {
@@ -80,11 +126,11 @@ export const sendNoteService = async(dispatch, note) => {
 //                 type: NOTES_REDUCER_SEND_NOTES,
 //                 payload: note,
 //             })
-            
+
 //             return Promise.resolve(note);
 //         },
 //         (error) => {
-//             const message = 
+//             const message =
 //             (error.response &&
 //             error.response.data &&
 //             error.response.data.message) ||

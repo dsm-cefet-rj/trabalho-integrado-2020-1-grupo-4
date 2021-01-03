@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch } from "react-router-dom";
-import { 
-    EditNote, 
-    ViewNote, 
+import {
+    EditNote,
+    ViewNote,
     NewNote } from "./";
 
 
@@ -17,8 +17,7 @@ export function Note(props) {
             <GoBackButton props={props}/>
             <Switch>
                 <AuthenticatedRoute path="/note" exact component={NewNote} props={props} />
-                <AuthenticatedRoute path="/note/viewnote" exact component={ViewNote} />
-                <AuthenticatedRoute path="/home/editnote" exact component={EditNote} />
+                <AuthenticatedRoute path="/note/:id" exact component={NewNote} props={props} />
             </Switch>
         </>
     );

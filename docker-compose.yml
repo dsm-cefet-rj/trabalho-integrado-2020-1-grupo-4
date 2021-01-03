@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  app_frontend:
+    image: react-frontend
+    build:
+      context: "./front-end"
+    ports:
+    - 3000:80
+    links:
+      - db
+    environment:
+      API_URL: http://localhost:8000
+    depends_on:
+      - app_backend
+  app_backend:
+    image: express-backend
+    build:
+      context: "./front-end"
+      ports:
+        - 8000:3001
+      links:
+        - db
+      environment:
+        PORT: 3000
+        DB_URL: mongodb://db:27017/sketch
+      depends_on:
+        - db
+  db_admin:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: db
+      ME_CONFIG_BASICAUTH_USERNAME: root
+      ME_CONFIG_BASICAUTH_PASSWORD: 123456
+      ME_CONFIG_MONGODB_PORT: 27017
+    links:
+      - db
+    depends_on:
+      - db
+    networks:
+      - notes-network
+
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - /data/db
+    networks:
+      - notes-network
+
+networks:
+  notes-network:
+    driver: bridge
