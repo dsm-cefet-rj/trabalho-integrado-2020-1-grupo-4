@@ -7,8 +7,6 @@ services:
       context: "./front-end"
     ports:
     - 3000:80
-    links:
-      - db
     environment:
       API_URL: http://localhost:8000
     depends_on:
@@ -16,16 +14,18 @@ services:
   app_backend:
     image: express-backend
     build:
-      context: "./front-end"
-      ports:
-        - 8000:3001
-      links:
-        - db
-      environment:
-        PORT: 3000
-        DB_URL: mongodb://db:27017/sketch
-      depends_on:
-        - db
+      context: "./back-end"
+    ports:
+      - 3001:3000
+    links:
+      - db
+    environment:
+      PORT: 3000
+      DB_URL: mongodb://db:27017/sketch
+    depends_on:
+      - db
+    networks:
+      - notes-network
   db_admin:
     image: mongo-express
     ports:
