@@ -150,6 +150,7 @@ export function NewNote(props) {
                             Upload attachment
                         </Button>
                     </FormGroup>
+                    <ControlLabel>Tamanho máximo 50MB</ControlLabel>
                     <ul>
                         {fields.attachments.map(
                             (attachment, i) => <ListGroupItem>
@@ -177,7 +178,7 @@ export function NewNote(props) {
                         Save
                     </LoaderButton>
                 </div>
-                <br/><br/>
+                <br/>
                 <div style={{display: 'flex', justifyContent: "space-between"}}>
                     {note ? <Button
                         type="button" className="btn-danger btn-sm"
