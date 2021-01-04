@@ -8,6 +8,8 @@ import { useFormFields } from "../../../../libs/hooksLib";
 
 import "./Signup.css";
 
+import passwordStrength from 'check-password-strength';
+
 export function Signup(props) {
 
     const dispatch = useDispatch()
@@ -27,7 +29,8 @@ export function Signup(props) {
             fields.email.length > 0 &&
             fields.email === fields.confirmEmail &&
             fields.password.length > 0 &&
-            fields.password === fields.confirmPassword
+            fields.password === fields.confirmPassword &&
+            passwordStrength(fields.password).id >= 1
         );
     }
 
@@ -91,6 +94,7 @@ export function Signup(props) {
                         onChange={handleFieldChange}
                     />
                 </FormGroup>
+                <h5>A senha deve conter pelo menos 8 caracteres com pelo menos 1 minúsculo, 1 maiúsculo e um número</h5>
                 <FormGroup controlId="confirmPassword" bsSize="large">
                     <ControlLabel>Confirm Password</ControlLabel>
                     <FormControl
