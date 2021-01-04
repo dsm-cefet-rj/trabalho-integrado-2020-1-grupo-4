@@ -26,6 +26,7 @@
     "bfj": "^7.0.2",
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "check-password-strength": "^1.0.15",
     "css-loader": "4.3.0",
     "cypress-file-upload": "^4.1.1",
     "dotenv": "8.2.0",
