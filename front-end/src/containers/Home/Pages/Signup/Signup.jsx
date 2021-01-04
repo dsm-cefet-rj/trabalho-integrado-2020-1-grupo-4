@@ -23,6 +23,8 @@ export function Signup(props) {
     });
     const [isLoading, setIsLoading] = useState(false);
 
+
+
     function validateForm() {
         return (
             fields.name.length > 0 &&
@@ -92,9 +94,10 @@ export function Signup(props) {
                         type="password"
                         value={fields.password}
                         onChange={handleFieldChange}
+                        onClick
                     />
                 </FormGroup>
-                <h5>A senha deve conter pelo menos 8 caracteres com pelo menos 1 minúsculo, 1 maiúsculo e um número</h5>
+                <p>A senha deve conter pelo menos 8 caracteres com pelo menos 1 minúsculo, 1 maiúsculo e um número</p>
                 <FormGroup controlId="confirmPassword" bsSize="large">
                     <ControlLabel>Confirm Password</ControlLabel>
                     <FormControl
@@ -102,7 +105,9 @@ export function Signup(props) {
                         type="password"
                         onChange={handleFieldChange}
                         value={fields.confirmPassword}
+
                     />
+
                 </FormGroup>
                 
                 <LoaderButton

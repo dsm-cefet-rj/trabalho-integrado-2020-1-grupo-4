@@ -134,7 +134,7 @@ export function NewNote(props) {
                         />
                     </FormGroup>
                     <FormGroup controlId="contents" bsSize="large">
-                        <ControlLabel>Mensagem Nota</ControlLabel>
+                        <ControlLabel>Note Mensagem</ControlLabel>
                         <FormControl
                             name="name_02"
                             type="contents"
