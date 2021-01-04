@@ -16,7 +16,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 exports.getToken = function( user ) {
     return jwt.sign( user, secretOrKey,
-        {expiresIn: 3600});
+        {expiresIn: 1800});
 };
 
 var opts = {};
